@@ -1,0 +1,16 @@
+{
+    "articles": [
+        {
+            "id": "123",
+            "title": "Nodejs stream"
+        },
+        {
+            "id": "456",
+            "title": "Nodejs Http"
+        },
+        {
+            "id": "789",
+            "title": "Nodejs Net"
+        }
+    ]
+}
