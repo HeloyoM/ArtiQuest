@@ -12,7 +12,7 @@ class ArtDatabaseAccess {
     }
 
     init() {
-        const path = join(__dirname, '../../../data/articles.json')
+        const path = join(__dirname, '../../../data/articles.data.json')
 
         const file = fs.readFileSync(path, 'utf-8')
         const artsList = JSON.parse(file).articles
