@@ -1,18 +1,31 @@
-import { Controller, Get, Post, Delete, Put } from '@nestjs/common'
+import { Controller, Get, Post, Delete, Put, Body, Param } from '@nestjs/common'
+import { UserService } from './user.service'
+import { User } from 'src/database/User/interface/IUser.interface'
 
-@Controller()
+@Controller('user')
 export class UserController {
-    constructor() { }
+    constructor(private userService: UserService) { }
 
     @Get()
-    get() { }
+    async get() {
+        return this.userService.findAll()
+    }
 
     @Post()
-    post() { }
+    async post(@Body() user: User) {
+        await this.userService.createArt(user)
+    }
 
-    @Put()
-    put() { }
+    @Put(':id')
+    async put(
+        @Param('id') id: string,
+        @Body() user: User
+    ) {
+        return await this.userService.updateUser(id, user)
+    }
 
-    @Delete()
-    delete() { }
+    @Delete(':id')
+    async delete(@Param('id') id: string): Promise<string> {
+        return await this.userService.remove(id)
+    }
 }
