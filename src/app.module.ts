@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common'
 import { ArtiQuestModule } from './ArtiQuest/artiQuest.module'
-import { ProductModule } from './product/product.module'
+import { ProductModule } from './Product/product.module'
+import { UserModule } from './User/user.module'
 
 @Module({
   imports: [
     ArtiQuestModule,
 
-    ProductModule
+    ProductModule,
+
+    UserModule
   ],
   controllers: [],
   providers: [],

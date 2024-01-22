@@ -1,0 +1,25 @@
+{
+    "users": [
+        {
+            "id": "123",
+            "first_name":"Meir",
+            "last_name":"Juli",
+            "email":"em@example.com",
+            "phone_number":"0293"
+        },
+        {
+            "id": "456",
+            "first_name":"Jhon",
+            "last_name":"Deo",
+            "email":"em@example.com",
+            "phone_number":"0293"
+        },
+        {
+            "id": "789",
+            "first_name":"Bat",
+            "last_name":"Sheva",
+            "email":"em@example.com",
+            "phone_number":"0293"
+        }
+    ]
+}

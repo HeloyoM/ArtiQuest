@@ -33,14 +33,14 @@ class ProductDatabaseAccess implements IProductQuery {
     }
 
     async update(id: string, product: Product): Promise<Product> {
-        const artToUpdate = this.product.find(a => a.id.toString() === id.toString())
+        const productToUpdate = this.product.find(a => a.id.toString() === id.toString())
 
-        if (!artToUpdate)
-            throw Error(`Unable to find art with given id: ${id}`)
+        if (!productToUpdate)
+            throw Error(`Unable to find product with given id: ${id}`)
 
-        const artIndex = this.product.findIndex(a => a.id == id)
+        const productIndex = this.product.findIndex(a => a.id == id)
 
-        this.product = [product, ...this.product.slice(artIndex + 1, this.product.length)]
+        this.product = [product, ...this.product.slice(productIndex + 1, this.product.length)]
 
         return product
     }
