@@ -11,10 +11,17 @@ export class ProductService {
         return await this.productDatabaseAccess.findAll()
     }
 
-    create() {
-
+    async create(product: Product) {
+        await this.productDatabaseAccess.create(product)
     }
 
+    async remove(id: string): Promise<string> {
+        return await this.productDatabaseAccess.remove(id)
+    }
+
+    async updateProduct(id: string, product: Product): Promise<Product> {
+        return await this.productDatabaseAccess.update(id, product)
+    }
 
 
 }

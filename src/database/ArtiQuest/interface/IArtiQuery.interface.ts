@@ -1,8 +1,8 @@
 import { Art } from "./Art.interface"
 
 export interface IArtiQuest {
-    findAll(): Art[]
+    findAll(): Promise<Art[]>
     create(art: Art): void
     remove(id: string): void
-    update(art: Art): void
+    update(id: string, art: Art): Promise<Art>
 }

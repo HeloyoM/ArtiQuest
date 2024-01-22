@@ -2,9 +2,10 @@ import { join } from "path"
 import { Art } from "./interface/Art.interface"
 import * as fs from 'fs'
 import { Injectable } from "@nestjs/common"
+import { IArtiQuest } from "./interface/IArtiQuery.interface"
 
 @Injectable()
-class ArtDatabaseAccess {
+class ArtDatabaseAccess implements IArtiQuest{
     arts: Art[] = []
 
     constructor() {
