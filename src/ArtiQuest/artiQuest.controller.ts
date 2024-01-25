@@ -13,15 +13,19 @@ export class ArtiQuestController {
         return this.artService.getAllArticles()
     }
 
+    @Get('/cat')
+    getAllCategories() {
+        return this.artService.getAllCategories()
+    }
+
     @Get('/findOne/:id')
     getArticleById(@Param('id') id: string) {
-        console.log('cats')
         return this.artService.getArticleById(id)
     }
 
-    @Get('/cat')
-    async getAllCategories() {
-        return await this.artService.getAllCategories()
+    @Get('/cat/findOne/:id')
+    getCategoryById(@Param('id') id: string) {
+        return this.artService.getCategoryById(id)
     }
 
     @Post()

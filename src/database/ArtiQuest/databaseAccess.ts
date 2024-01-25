@@ -5,10 +5,11 @@ import { Injectable } from "@nestjs/common"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
+import db_constants from '../constants'
 
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
-    path = join(__dirname, '../../../data/articles.data.json')
+    path = join(__dirname, db_constants.ARTICLES_URL)
     arts: Article[] = []
     categories: Category[] = []
 
@@ -38,36 +39,28 @@ class ArtDatabaseAccess implements IArtiQuest {
         }
     }
 
-    async getAllArticles(): Promise<Article<Category>[]> {
-        let categoriesMap = new Map(this.categories.map(category => [category.id, category]))
-
-        const articlesArr: Article<Category>[] = []
-
-        this.arts.forEach((art: Article) => {
-            let categoryId = art.cat
-
-            if (categoriesMap.has(categoryId)) {
-                articlesArr.push({ ...art, cat: categoriesMap.get(categoryId) })
-            }
-        })
-
-        return articlesArr
+    async getAllArticles(): Promise<Article[]> {
+        return this.arts
     }
 
-    getOneArticle(id: string): Article {
-        return this.arts.find(a => a.id === id)
+    getArticleById(id: string): Article {
+        return this.arts.find(a => a.id.toString() === id.toString())
     }
 
-    getCategories(): Category[] {
+    getAllCategories(): Category[] {
         return this.categories
+    }
+
+    getCategoryById(id: string): Category {
+        return this.categories.find(c => c.id.toString() === id.toString())
     }
 
     async create(art: Article): Promise<Article> {
         art.id = randomUUID()
         this.arts.push(art)
 
-        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
-
+        //query will replace it
+        fs.writeFile(db_constants.ARTICLES_URL, JSON.stringify(this.arts), 'utf-8', (err) => {
             if (err)
                 throw Error(`Something went wrong whild inserting new article`)
 
@@ -91,6 +84,7 @@ class ArtDatabaseAccess implements IArtiQuest {
 
         this.arts = newArtsArray
 
+        //query will replace it
         fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
 
             if (err)
@@ -104,11 +98,12 @@ class ArtDatabaseAccess implements IArtiQuest {
     async remove(id: string): Promise<string> {
         this.arts = this.arts.filter(a => a.id !== id)
 
+        //query will replace it
         fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
             if (err)
                 throw Error(`Error occuer while removing article [${id}]`)
 
-                
+
             else return 'article removed'
         })
 
