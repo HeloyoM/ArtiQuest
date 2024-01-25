@@ -108,6 +108,7 @@ class ArtDatabaseAccess implements IArtiQuest {
             if (err)
                 throw Error(`Error occuer while removing article [${id}]`)
 
+                
             else return 'article removed'
         })
 
