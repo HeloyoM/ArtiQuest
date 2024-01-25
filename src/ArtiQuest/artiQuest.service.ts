@@ -2,9 +2,6 @@ import { Injectable } from '@nestjs/common'
 import ArtDatabaseAccess from '../database/ArtiQuest/databaseAccess'
 import { Article } from 'src/interface/Article.interface'
 import { Category } from 'src/interface/category.interface'
-import * as fs from 'fs'
-import db_constants from '../database/constants'
-
 
 @Injectable()
 export class ArtiQuestService {

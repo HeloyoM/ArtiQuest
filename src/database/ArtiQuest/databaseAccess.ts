@@ -5,11 +5,10 @@ import { Injectable } from "@nestjs/common"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
-import db_constants from '../constants'
 
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
-    path = join(__dirname, db_constants.ARTICLES_URL)
+    path = join(__dirname, '../../../data/articles.data.json')
     arts: Article[] = []
     categories: Category[] = []
 
@@ -60,9 +59,9 @@ class ArtDatabaseAccess implements IArtiQuest {
         this.arts.push(art)
 
         //query will replace it
-        fs.writeFile(db_constants.ARTICLES_URL, JSON.stringify(this.arts), 'utf-8', (err) => {
+        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
             if (err)
-                throw Error(`Something went wrong whild inserting new article`)
+                throw Error(`Something went wrong whild inserting new article: ${err}`)
 
             else return 'article inserted successfully'
         })
