@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
-import { ArtiQuestModule } from './ArtiQuest/artiQuest.module'
-import { ProductModule } from './Product/product.module'
-import { UserModule } from './User/user.module'
+import { ArtiQuestModule } from './artiQuest/artiQuest.module'
+import { ProductModule } from './product/product.module'
+import { AuthModule } from './Auth/auth.module'
 
 @Module({
   imports: [
@@ -9,7 +9,7 @@ import { UserModule } from './User/user.module'
 
     ProductModule,
 
-    UserModule
+    AuthModule
   ],
   controllers: [],
   providers: [],

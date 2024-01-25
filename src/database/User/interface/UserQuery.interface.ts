@@ -1,4 +1,4 @@
-import { User } from './IUser.interface'
+import { User } from "src/interface/user.interface"
 
 export interface IUserQuery {
     findAll(): Promise<User[]>

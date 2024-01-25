@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Delete, Put, Body, Param } from '@nestjs/common'
 import { UserService } from './user.service'
-import { User } from 'src/database/User/interface/IUser.interface'
+import { User } from 'src/interface/user.interface'
 
 @Controller('user')
 export class UserController {
@@ -13,7 +13,8 @@ export class UserController {
 
     @Post()
     async post(@Body() user: User) {
-        await this.userService.createArt(user)
+        console.log(user)
+        await this.userService.createUser(user)
     }
 
     @Put(':id')

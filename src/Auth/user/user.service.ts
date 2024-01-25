@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { User } from 'src/database/User/interface/IUser.interface'
 import UserDatabaseAccess from 'src/database/User/userDatabaseAccess'
+import { User } from 'src/interface/user.interface'
 
 @Injectable()
 export class UserService {
@@ -11,7 +11,7 @@ export class UserService {
         return await this.userDatabaseAccess.findAll()
     }
 
-    async createArt(user: User): Promise<void> {
+    async createUser(user: User): Promise<void> {
         await this.userDatabaseAccess.create(user)
     }
 

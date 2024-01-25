@@ -1,0 +1,18 @@
+[
+    {
+        "id": "90449a6d-16ee-4b77-bc48-53f9d26ce201",
+        "name": "Frontend"
+    },
+    {
+        "id": "208bb572-447b-4fe5-ac52-b670d77ed116",
+        "name": "Backend"
+    },
+    {
+        "id": "9f7f9a8c-38dd-48b1-912d-8ac609ecf91e",
+        "name": "devops"
+    },
+    {
+        "id": "16449039-7c12-4aa7-bbcb-ec606127539c",
+        "name": "arcitecture"
+    }
+]

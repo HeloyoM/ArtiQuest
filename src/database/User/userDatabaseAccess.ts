@@ -2,7 +2,8 @@ import { join } from "path"
 import * as fs from 'fs'
 import { Injectable } from "@nestjs/common"
 import { IUserQuery } from "./interface/UserQuery.interface"
-import { User } from "./interface/IUser.interface"
+import * as bcrypt from 'bcryptjs'
+import { User } from "src/interface/user.interface"
 
 @Injectable()
 class UserDatabaseAccess implements IUserQuery {
@@ -16,7 +17,7 @@ class UserDatabaseAccess implements IUserQuery {
         const path = join(__dirname, '../../../data/users.data.json')
 
         const file = fs.readFileSync(path, 'utf-8')
-        const usersList = JSON.parse(file).users
+        const usersList = JSON.parse(file)
 
         for (const a of usersList) {
             this.users.push(a)
@@ -28,6 +29,9 @@ class UserDatabaseAccess implements IUserQuery {
     }
 
     async create(user: User): Promise<void> {
+        user.password = await bcrypt.hash(user.password, 12)
+        user.active = true
+
         this.users.push(user)
     }
 
