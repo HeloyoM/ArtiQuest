@@ -4,9 +4,12 @@ import { Injectable } from "@nestjs/common"
 import { IUserQuery } from "./interface/UserQuery.interface"
 import * as bcrypt from 'bcryptjs'
 import { User } from "src/interface/user.interface"
+import { randomUUID } from "crypto"
 
 @Injectable()
 class UserDatabaseAccess implements IUserQuery {
+    path = join(__dirname, '../../../data/users.data.json')
+
     users: User[] = []
 
     constructor() {
@@ -14,9 +17,7 @@ class UserDatabaseAccess implements IUserQuery {
     }
 
     init() {
-        const path = join(__dirname, '../../../data/users.data.json')
-
-        const file = fs.readFileSync(path, 'utf-8')
+        const file = fs.readFileSync(this.path, 'utf-8')
         const usersList = JSON.parse(file)
 
         for (const a of usersList) {
@@ -28,11 +29,21 @@ class UserDatabaseAccess implements IUserQuery {
         return this.users
     }
 
-    async create(user: User): Promise<void> {
+    async create(user: User): Promise<User> {
         user.password = await bcrypt.hash(user.password, 12)
         user.active = true
+        user.id = randomUUID()
 
         this.users.push(user)
+
+        fs.writeFile(this.path, JSON.stringify(this.users), 'utf-8', (err) => {
+            if (err)
+                throw Error(`Something went wrong whild new user registered: ${err}`)
+
+            else return 'user registered successfully'
+        })
+
+        return user
     }
 
     async update(id: string, user: User): Promise<User> {
@@ -41,15 +52,39 @@ class UserDatabaseAccess implements IUserQuery {
         if (!userToUpdate)
             throw Error(`Unable to find user with given id: ${id}`)
 
-        const userIndex = this.users.findIndex(a => a.id == id)
+        user.password = await bcrypt.hash(user.password, 12)
 
-        this.users = [user, ...this.users.slice(userIndex + 1, this.users.length)]
+        const newUsersArray = this.users.map((u: User) => {
+            if (u.id.toString() === id.toString()) return user
+
+            else return u
+        })
+
+        this.users = newUsersArray
+
+        //query will replace it
+        fs.writeFile(this.path, JSON.stringify(this.users), 'utf-8', (err) => {
+
+            if (err)
+                throw Error(`Something went wrong whild updating user details, given id ${user.id}`)
+
+            else return 'user updated successfully'
+        })
 
         return user
     }
 
     async remove(id: string): Promise<string> {
         this.users = this.users.filter(a => a.id !== id)
+
+        //query will replace it
+        fs.writeFile(this.path, JSON.stringify(this.users), 'utf-8', (err) => {
+            if (err)
+                throw Error(`Error occuer while removing user [${id}]`)
+
+
+            else return 'user removed'
+        })
 
         return id
     }

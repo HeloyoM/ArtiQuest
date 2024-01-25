@@ -11,8 +11,8 @@ export class UserService {
         return await this.userDatabaseAccess.findAll()
     }
 
-    async createUser(user: User): Promise<void> {
-        await this.userDatabaseAccess.create(user)
+    async createUser(user: User): Promise<User> {
+        return await this.userDatabaseAccess.create(user)
     }
 
     async updateUser(id: string, user: User): Promise<User> {

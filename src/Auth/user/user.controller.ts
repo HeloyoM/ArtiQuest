@@ -13,8 +13,7 @@ export class UserController {
 
     @Post()
     async post(@Body() user: User) {
-        console.log(user)
-        await this.userService.createUser(user)
+        return await this.userService.createUser(user)
     }
 
     @Put(':id')
