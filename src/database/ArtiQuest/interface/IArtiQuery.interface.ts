@@ -4,6 +4,7 @@ import { Category } from "src/interface/category.interface"
 export interface IArtiQuest {
     getAllArticles(): Promise<Article[]>
     getArticleById(id: string): Article
+    getArticlesByCategoryId(id: string): Promise<Article[]>
 
     getAllCategories(): Category[]
     getCategoryById(id: string): Category

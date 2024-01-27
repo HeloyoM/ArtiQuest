@@ -27,6 +27,13 @@ export class ArtiQuestService {
         return articlesArr
     }
 
+    async getArticlesByCategoryId(id: string) {
+        const articlesWithCat = await this.getAllArticles()
+        const byCatId = articlesWithCat.filter((a: Article<Category>) => a.cat.id.toString() === id.toString())
+
+        return byCatId
+    }
+
     getArticleById(id: string) {
         return this.artDatabaseAccess.getArticleById(id)
     }

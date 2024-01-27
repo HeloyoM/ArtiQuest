@@ -3,4 +3,5 @@ export interface Article<T = string> {
     title: string
     sub_title: string
     cat: T
+    created: Date | string
 }

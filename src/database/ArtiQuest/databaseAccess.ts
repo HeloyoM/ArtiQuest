@@ -50,6 +50,10 @@ class ArtDatabaseAccess implements IArtiQuest {
         return this.categories
     }
 
+    async getArticlesByCategoryId(id: string): Promise<Article[]> {
+        return this.arts.filter(a => a.cat.toString() == id.toString())
+    }
+
     getCategoryById(id: string): Category {
         return this.categories.find(c => c.id.toString() === id.toString())
     }
