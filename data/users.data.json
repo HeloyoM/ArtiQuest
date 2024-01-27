@@ -1198,5 +1198,14 @@
         "phone_number": "681-577-0018",
         "email": "smeanwell45@furl.net",
         "password": "$2a$04$a7uezrkR8D3INqlj6NL70u8CPBM2OWEJwhoQVldVMDniz8ruJkKge"
+    },
+    {
+        "first_name": "Donald",
+        "last_name": "Trump",
+        "phone_number": "123-132-0000",
+        "email": "mybs2323@gmail.com",
+        "password": "$2a$12$hsXWcppgd.d0CsFfXsiA8.ShdNqrcNE9C7THtJZGqUJD9J3Lhi1sy",
+        "active": true,
+        "id": "4326cc30-bb6f-4359-90be-b0afa42385dd"
     }
 ]

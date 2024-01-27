@@ -7,6 +7,10 @@ export class UserService {
 
     constructor(private readonly userDatabaseAccess: UserDatabaseAccess) { }
 
+    async getUserById(email: string) {
+        return this.userDatabaseAccess.getUserById(email)
+    }
+
     async findAll(): Promise<User[]> {
         return await this.userDatabaseAccess.findAll()
     }

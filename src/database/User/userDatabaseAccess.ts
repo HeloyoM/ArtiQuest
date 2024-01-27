@@ -25,6 +25,10 @@ class UserDatabaseAccess implements IUserQuery {
         }
     }
 
+    async getUserById(id: string): Promise<User> {
+        return this.users.find(u => u.email === id)
+    }
+
     async findAll(): Promise<User[]> {
         return this.users
     }
