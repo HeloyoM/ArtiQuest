@@ -1207,5 +1207,33 @@
         "password": "$2a$12$hsXWcppgd.d0CsFfXsiA8.ShdNqrcNE9C7THtJZGqUJD9J3Lhi1sy",
         "active": true,
         "id": "4326cc30-bb6f-4359-90be-b0afa42385dd"
+    },
+    {
+        "firstName": "Bat-sheva",
+        "lastName": "Juli",
+        "email": "Bat@sheva.com",
+        "phoneNumber": "0512769313",
+        "password": "$2a$12$JNaktkAFCwxa0upRJ0RJWuopUGKtn/NaCzbEkwX2qMXSDT/439sKy",
+        "active": true,
+        "id": "74bed974-4dca-4983-841a-f071895af8da"
+    },
+    {
+        "firstName": "test",
+        "lastName": "t",
+        "email": "t2fasd",
+        "phoneNumber": "3123",
+        "password": "$2a$12$gEDaCeuW0h/VTsw2rMPSTOtu.2okgtUyGwSLDzUu.6vUmiSVLmSIC",
+        "active": true,
+        "id": "adc49629-48ba-473e-abc0-e3a49ee98662"
+    },
+    {
+        "firstName": "test1",
+        "lastName": "t2",
+        "email": "t2fasd@gmail.com",
+        "phoneNumber": "3123",
+        "password": "$2a$12$T9VcU38W10Yfz/7YNYnD0urcQZXsF2cDZhIlLpG7x.EU9NcCnqo8W",
+        "active": true,
+        "id": "77e1fd26-807c-4b4f-a245-9e269bb7c0b4",
+        "joined": "2024-01-28T11:42:13.888Z"
     }
 ]

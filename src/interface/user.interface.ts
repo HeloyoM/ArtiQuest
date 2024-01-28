@@ -12,6 +12,8 @@ export interface User {
     active: boolean
 
     password: string
+
+    joined: Date
 }
 // @OneToMany(() => RefreshSession, refreshSession => refreshSession.user)
 // sessions: RefreshSession[]

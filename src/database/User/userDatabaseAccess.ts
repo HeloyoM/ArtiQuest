@@ -34,9 +34,11 @@ class UserDatabaseAccess implements IUserQuery {
     }
 
     async create(user: User): Promise<User> {
+        console.log(user, user.password)
         user.password = await bcrypt.hash(user.password, 12)
         user.active = true
         user.id = randomUUID()
+        user.joined = new Date()
 
         this.users.push(user)
 
