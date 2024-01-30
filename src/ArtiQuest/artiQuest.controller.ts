@@ -19,8 +19,8 @@ export class ArtiQuestController {
     }
 
     @Get('/findOne/:id')
-    getArticleById(@Param('id') id: string) {
-        return this.artService.getArticleById(id)
+    async getArticleById(@Param('id') id: string) {
+        return await this.artService.getArticleById(id)
     }
 
     @Get('/cat')

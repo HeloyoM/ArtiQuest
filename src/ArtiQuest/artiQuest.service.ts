@@ -17,7 +17,7 @@ export class ArtiQuestService {
         const articlesArr: Article<Category>[] = []
 
         articles.forEach((art: Article) => {
-            let categoryId = art.cat
+            let categoryId = art.cat as string
 
             if (categoriesMap.has(categoryId)) {
                 articlesArr.push({ ...art, cat: categoriesMap.get(categoryId) })
@@ -34,8 +34,16 @@ export class ArtiQuestService {
         return byCatId
     }
 
-    getArticleById(id: string) {
-        return this.artDatabaseAccess.getArticleById(id)
+    async getArticleById(id: string): Promise<Article> {
+        const catefories = this.artDatabaseAccess.getAllCategories()
+
+        const art = this.artDatabaseAccess.getArticleById(id)
+
+        const articleCategory: Category = catefories.find(c => c.id.toString() === art.cat.toString())
+
+        art.cat = articleCategory
+        console.log(art)
+        return art
     }
 
     async getAllCategories() {
@@ -44,9 +52,9 @@ export class ArtiQuestService {
         const arts = await this.artDatabaseAccess.getAllArticles()
 
         const categoriesList = catefories.map((cat: Category) => {
-            const len = arts.filter(a => a.cat.toString() === cat.id.toString()).length
+            const catArticles = arts.filter(a => a.cat.toString() === cat.id.toString())
 
-            return { ...cat, len }
+            return { ...cat, arts: catArticles, len: catArticles.length }
         })
 
         return categoriesList

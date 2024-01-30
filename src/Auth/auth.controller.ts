@@ -11,6 +11,7 @@ export class AuthController {
 
     @Post('login')
     async post(@Body() payload: LoginDto): Promise<any> {
+        console.log(payload)
         return await this.authService.login(payload.email, payload.password)
     }
 
