@@ -5,6 +5,7 @@ import { Injectable } from "@nestjs/common"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
+import UserDatabaseAccess from "../User/userDatabaseAccess"
 
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
@@ -12,7 +13,7 @@ class ArtDatabaseAccess implements IArtiQuest {
     arts: Article[] = []
     categories: Category[] = []
 
-    constructor() {
+    constructor(private readonly userDatabaseAccess: UserDatabaseAccess) {
         this.initArts()
         this.initCategories()
 

@@ -7,5 +7,6 @@ export interface Article<T = string | Category> {
     sub_title: string
     cat: T
     created: Date | string
-    auther: User 
+    auther: User | string
+    body: string
 }

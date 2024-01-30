@@ -2,14 +2,28 @@ import { Injectable } from '@nestjs/common'
 import ArtDatabaseAccess from '../database/ArtiQuest/databaseAccess'
 import { Article } from 'src/interface/Article.interface'
 import { Category } from 'src/interface/category.interface'
+import UserDatabaseAccess from 'src/database/User/userDatabaseAccess'
 
 @Injectable()
 export class ArtiQuestService {
 
-    constructor(private readonly artDatabaseAccess: ArtDatabaseAccess) { }
+    constructor(
+        private readonly artDatabaseAccess: ArtDatabaseAccess,
+        private readonly userDatabaseAccess: UserDatabaseAccess
+
+    ) { }
 
     async getAllArticles(): Promise<Article<Category>[]> {
         const articles = await this.artDatabaseAccess.getAllArticles()
+
+        const articlesAssignedCategories = await this.assignCategories(articles)
+
+        const articlesAssignedAuthers = await this.assignAuthers(articlesAssignedCategories)
+
+        console.log(articlesAssignedAuthers)
+        return articlesAssignedAuthers
+    }
+    assignCategories(articles: Article[]): Article<Category>[] {
         const categories = this.artDatabaseAccess.getAllCategories()
 
         let categoriesMap = new Map(categories.map(category => [category.id, category]))
@@ -27,6 +41,23 @@ export class ArtiQuestService {
         return articlesArr
     }
 
+    async assignAuthers(articles: Article<Category>[]): Promise<Article<Category>[]> {
+        const users = await this.userDatabaseAccess.findAll()
+
+        let authersMap = new Map(users.map(user => [user.id, user]))
+
+        const articlesArr: Article<Category>[] = []
+
+        articles.forEach((art: Article) => {
+            let autherId = art.auther as string
+
+            if (authersMap.has(autherId)) {
+                articlesArr.push({ ...art, cat: art.cat as Category, auther: authersMap.get(autherId) })
+            }
+        })
+
+        return articlesArr
+    }
     async getArticlesByCategoryId(id: string) {
         const articlesWithCat = await this.getAllArticles()
         const byCatId = articlesWithCat.filter((a: Article<Category>) => a.cat.id.toString() === id.toString())

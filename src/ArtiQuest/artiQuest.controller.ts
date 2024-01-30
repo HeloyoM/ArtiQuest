@@ -10,7 +10,7 @@ export class ArtiQuestController {
 
     @Get()
     async getAllArticles() {
-        return this.artService.getAllArticles()
+        return await this.artService.getAllArticles()
     }
 
     @Get('/findBy/:cat')
