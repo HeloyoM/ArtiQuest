@@ -84,7 +84,9 @@ export class ArtiQuestService {
 
         art.cat = articleCategory
 
-        return art
+        const [articlesAssignedAuthers] = await this.assignAuthers([art])
+
+        return articlesAssignedAuthers
     }
 
 
@@ -96,13 +98,12 @@ export class ArtiQuestService {
 
         const articlesAssignedAuthers = await this.assignAuthers(arts)
 
+
         const categoriesList = catefories.map((cat: Category) => {
             const catArticles = articlesAssignedAuthers.filter(a => a.cat.toString() === cat.id.toString())
 
             return { ...cat, arts: catArticles, len: catArticles.length }
         })
-
-
 
         return categoriesList
     }

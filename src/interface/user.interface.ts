@@ -15,5 +15,3 @@ export interface User {
 
     joined: Date
 }
-// @OneToMany(() => RefreshSession, refreshSession => refreshSession.user)
-// sessions: RefreshSession[]

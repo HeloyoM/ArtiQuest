@@ -16,7 +16,7 @@ export class AuthService {
 
     async login(email: string, password: string) {
         const user = await this.userService.getUserById(email)
-        console.log(user)
+
         if (user == null) return null
 
         if (user == null || !user.active) return null
@@ -26,7 +26,6 @@ export class AuthService {
         const payload = { id: user.id, email: user.email }
         const token = await this.generateAccessToken(payload)
 
-        console.log(token)
         return new LoginResult(user, token)
     }
 
