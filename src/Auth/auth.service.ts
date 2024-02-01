@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common'
-import { User } from 'src/interface/user.interface'
-import { UserService } from './user/user.service'
-import * as bcrypt from 'bcryptjs'
-import { LoginResult } from './models/Login.model'
-import { AceessTokenPayload } from './models/Token.model'
 import { JwtService } from '@nestjs/jwt'
+import * as bcrypt from 'bcryptjs'
+
+import { UserService } from './user/user.service'
+import { AceessTokenPayload } from './models/token.model'
+
+import { User } from 'src/interface/user.interface'
+import { LoginResultDto } from './dto/loginResult.dto'
 
 @Injectable()
 export class AuthService {
@@ -23,10 +25,10 @@ export class AuthService {
 
         if (!(await bcrypt.compare(password, user.password))) return null
 
-        const payload = { id: user.id, email: user.email }
-        const token = await this.generateAccessToken(payload)
+        const tokenPayload = { id: user.id, email: user.email }
+        const token = await this.generateAccessToken(tokenPayload)
 
-        return new LoginResult(user, token)
+        return new LoginResultDto(user, token)
     }
 
     async generateAccessToken(payload: AceessTokenPayload): Promise<string> {

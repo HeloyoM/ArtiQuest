@@ -34,7 +34,6 @@ class UserDatabaseAccess implements IUserQuery {
     }
 
     async create(user: User): Promise<User> {
-        console.log(user, user.password)
         user.password = await bcrypt.hash(user.password, 12)
         user.active = true
         user.id = randomUUID()
@@ -42,9 +41,10 @@ class UserDatabaseAccess implements IUserQuery {
 
         this.users.push(user)
 
+        //query will replace it
         fs.writeFile(this.path, JSON.stringify(this.users), 'utf-8', (err) => {
             if (err)
-                throw Error(`Something went wrong whild new user registered: ${err}`)
+                throw Error(`Something went wrong while new user registered: ${err}`)
 
             else return 'user registered successfully'
         })

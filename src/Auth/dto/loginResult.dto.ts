@@ -1,6 +1,6 @@
 import { User } from "src/interface/user.interface"
 
-export class LoginResult {
+export class LoginResultDto {
     user: User
     token: string
 
