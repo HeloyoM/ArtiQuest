@@ -1,7 +1,7 @@
 import { join } from "path"
 import { Article } from "src/interface/Article.interface"
 import * as fs from 'fs'
-import { Injectable } from "@nestjs/common"
+import { Injectable, Logger } from "@nestjs/common"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
@@ -10,6 +10,7 @@ import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
 
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
+    private readonly logger = new Logger(ArtDatabaseAccess.name)
     path = join(__dirname, '../../../data/articles.data.json')
     arts: Article[] = []
     categories: Category[] = []
@@ -66,10 +67,13 @@ class ArtDatabaseAccess implements IArtiQuest {
 
         //query will replace it
         fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
-            if (err)
-                throw Error(`Something went wrong whild inserting new article: ${err}`)
+            if (err) {
+                this.logger.error(
+                    `Something went wrong whild inserting new article: ${err}`,
+                )
+            }
 
-            else return 'article inserted successfully'
+            else this.logger.log('article inserted successfully')
         })
 
         return art
@@ -109,9 +113,9 @@ class ArtDatabaseAccess implements IArtiQuest {
         fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
 
             if (err)
-                throw Error(`Something went wrong whild editing article body with given id ${id}`)
+                this.logger.error(`Something went wrong whild editing article body with given id ${id}`)
 
-            else return 'article updated successfully'
+            else this.logger.log('article updated successfully')
         })
 
         return updatedItem
@@ -135,9 +139,9 @@ class ArtDatabaseAccess implements IArtiQuest {
         fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
 
             if (err)
-                throw Error(`Something went wrong whild updating article with given id ${art.id}`)
+                this.logger.error(`Something went wrong whild updating article with given id ${art.id}`)
 
-            else return 'article updated successfully'
+            else this.logger.log('article updated successfully')
         })
         return art
     }
@@ -148,10 +152,10 @@ class ArtDatabaseAccess implements IArtiQuest {
         //query will replace it
         fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
             if (err)
-                throw Error(`Error occuer while removing article [${id}]`)
+                this.logger.error(`Error occuer while removing article [${id}]`)
 
 
-            else return 'article removed'
+            else this.logger.log('article removed !')
         })
 
         return id
