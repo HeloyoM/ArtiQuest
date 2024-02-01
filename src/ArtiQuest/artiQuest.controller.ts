@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Delete, Put, Body, Param } from '@nestjs/common'
+import { Controller, Get, Post, Delete, Put, Body, Param, Patch } from '@nestjs/common'
 import { ArtiQuestService } from './artiQuest.service'
 import { Article } from 'src/interface/Article.interface'
+import { EditPayloadDto } from './dto/editPayload.dto'
 
 @Controller('art')
 export class ArtiQuestController {
@@ -36,6 +37,11 @@ export class ArtiQuestController {
     @Post()
     async post(@Body() art: Article) {
         await this.artService.createArt(art)
+    }
+
+    @Patch(':id')
+    async editArticle(@Param('id') id: string, @Body() payload: EditPayloadDto) {
+        return await this.artService.editArticle(id, payload)
     }
 
     @Put(':id')

@@ -6,6 +6,7 @@ import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
 import UserDatabaseAccess from "../User/userDatabaseAccess"
+import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
 
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
@@ -72,6 +73,48 @@ class ArtDatabaseAccess implements IArtiQuest {
         })
 
         return art
+    }
+
+    async editArticle(id: string, payload: EditPayloadDto): Promise<Article> {
+        const { body: editedParagraphs, location } = payload
+
+
+        const currentArt = this.getArticleById(id)
+
+        const { body } = currentArt
+        const paragraphs = body.split(/[\n\r]+/)
+
+
+
+        const updatedBody: string[] = paragraphs
+        for (let i = 0; i < location.length; i++) {
+            const p = paragraphs[location[i]]
+
+            const index = paragraphs.indexOf(p)
+
+            updatedBody[index] = editedParagraphs[i]
+        }
+
+        const updatedItem = { ...currentArt, body: updatedBody.join('\n') }
+
+        const newArtsArray = this.arts.map((a: Article) => {
+            if (a.id.toString() === id.toString()) return updatedItem
+
+            else return a
+        })
+
+        this.arts = newArtsArray
+
+        //query will replace it
+        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
+
+            if (err)
+                throw Error(`Something went wrong whild editing article body with given id ${id}`)
+
+            else return 'article updated successfully'
+        })
+
+        return updatedItem
     }
 
     async update(id: string, art: Article): Promise<Article> {

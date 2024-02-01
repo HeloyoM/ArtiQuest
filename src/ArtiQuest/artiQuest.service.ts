@@ -3,6 +3,7 @@ import ArtDatabaseAccess from '../database/ArtiQuest/databaseAccess'
 import { Article } from 'src/interface/Article.interface'
 import { Category } from 'src/interface/category.interface'
 import UserDatabaseAccess from 'src/database/User/userDatabaseAccess'
+import { EditPayloadDto } from './dto/editPayload.dto'
 
 @Injectable()
 export class ArtiQuestService {
@@ -114,6 +115,10 @@ export class ArtiQuestService {
 
     async createArt(art: Article): Promise<void> {
         await this.artDatabaseAccess.create(art)
+    }
+
+    async editArticle(id: string, payload: EditPayloadDto) {
+       return  await this.artDatabaseAccess.editArticle(id, payload)
     }
 
     async updateArt(id: string, art: Article): Promise<Article> {
