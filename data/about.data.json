@@ -1,0 +1,42 @@
+{
+    "fields": {
+        "name": "Meir Juli",
+        "phone": "058-776-9313",
+        "email": "Mybs2323@gmail.com",
+        "linkedin": "www.linkedin.com/in/meir-juli-a301a5197",
+        "github": "https://github.com/HeloyoM",
+        "summary": "About three years of experience in various development environments. Experience in start-up companies. Full stack developer. I'm Backend oriented. Experience: JS 3 years', React \u0026 Nodejs: 2.5 years' and 1 year in Google play store",
+        "experience": [
+            {
+                "title": "FULL STACK DEVELOPER",
+                "company": "SOLVE HERZILIA",
+                "start_date": "2022",
+                "end_date": "2023",
+                "description": "Development of a website and application starting from scratch until the packaging of the product and its delivery to customers. I was involved in company decisions about the system architecture (such as: the flow of data, data storage, applying 'SOLID' principles). Agile development. Development in the following technologies: Frontend: React. Backend: Nest (using typeorm). Db: MySql + Mongodb. Cloud: Azure."
+            },
+            {
+                "title": "FULL STACK WEB DEVELOPER",
+                "company": "INDEPENDENT COPENHAGEN DENMARK",
+                "start_date": "2022",
+                "end_date": "2022",
+                "description": "Website development for an independent business, serving families of terminally ill patients. Development in the following technologies: Frontend: Angular, Backend: Nodejs (exprees.js) db: mongo"
+            }
+        ],
+        "education": [
+            {
+                "degree": "FULL STACK DEVELOPER CERTIFICATE IN WEB TECHNOLOGIES AND APPLICATIONS",
+                "institution": "JOHN BRYCE TRAINING COLLEGE",
+                "location": "TEL AVIV"
+            }
+        ],
+        "skills": {
+            "backend": "Nodejs (exprees.js, Nestjs), ORM",
+            "db": "Sql(mysql) and NoSql (mongodb \u0026 aggregation framework)",
+            "devops": "Azure, google cloud, Docker, Github",
+            "frontend": "React, Angular 13+",
+            "linux": "Intermediate knowledge, familiar with common commands.",
+            "languages": "JS, Python"
+        }
+    },
+    "text": "MEIR     058-776-9313\n                 Mybs2323@gmail.com\n\n  JULI     LinkedIn:www.linkedin.com/in/meir-juli-a301a5197\n                 Github: https://github.com/HeloyoM\n\n\n   PROFILE     Aboutthreeyears ofexperience in various development environments.\n                 Experience in start-up companies.\n                 Full stack developer. I'm Backend oriented.\n                 Experience: JS 3 years', React \u0026 Nodejs: 2.5 years' and 1 year in Google play store\n\n\nEXPERIENC     FULL STACK DEVELOPER ,SOLVE HERZILIA\n           E\n                 2022-2023\n\n                 Developmentof a website and application starting from scratch until the packaging ofthe product\n\n                 and its deliveryto customers. I was involved in company decisions aboutthe system architecture\n                 (such as:the flow ofdata, data storage, applying 'SOLID' principles). Agile development.\n\n                 Development in the following technologies:\n                 Frontend: React.\n                 Backend: Nest (using typeorm)\n\n                 Db:MySql + Mongodb.\n                 Cloud: Azure.\n\n                 FULL STACK WEB DEVELOPER, INDEPENDENT COPENHAGEN DENMARK\n\n                 2022-2022\n\n                 Website development for an independent business, serving families ofterminally ill patients.\n                 Development in the following technologies: Frontend: Angular, Backend: Nodejs (exprees.js) db:\n\n                 mongo\n\n\nEDUCATION     FULL STACK DEVELOPER CERTIFICATE IN WEB TECHNOLOGIES AND APPLICATIONS,\n\n                 JOHN BRYCE TRAINING COLLEGE, TEL AVIV\n\n\n\n     SKILLS         ●   Backend: Nodejs (exprees.js, Nestjs), ORM\n\n                     ●   Db:Sql(mysql) and NoSql (mongodb \u0026 aggregation framework)\n\n                     ●   DevOps:Azure, google cloud, Docker, Github\n\n                     ●   Frontend: React, Angular 13+\n\n                         Linux: Intermediate knowledge, familiar with common commands.\n\n                     ●   Languages: JS, Python\n"
+}

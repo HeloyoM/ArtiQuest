@@ -1,12 +1,15 @@
-import { join } from "path"
+import path, { join } from "path"
 import { Article } from "src/interface/Article.interface"
 import * as fs from 'fs'
-import { Injectable, Logger } from "@nestjs/common"
+import { HttpStatus, Injectable, Logger } from "@nestjs/common"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
 import UserDatabaseAccess from "../User/userDatabaseAccess"
 import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
+import { range } from '../../utils/range'
+import { PDFDocument } from 'pdf-lib'
+
 
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
@@ -61,23 +64,27 @@ class ArtDatabaseAccess implements IArtiQuest {
         return this.categories.find(c => c.id.toString() === id.toString())
     }
 
-    async create(art: Article): Promise<Article> {
+    async create(art: Article): Promise<any> {
         art.id = randomUUID()
+        art.created = new Date().toLocaleDateString()
         this.arts.push(art)
 
+
+
         //query will replace it
-        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
-            if (err) {
-                this.logger.error(
-                    `Something went wrong whild inserting new article: ${err}`,
-                )
-            }
+        // fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
+        //     if (err) {
+        //         this.logger.error(
+        //             `Something went wrong whild inserting new article: ${err}`,
+        //         )
+        //     }
 
-            else this.logger.log('article inserted successfully')
-        })
+        //     else this.logger.log('article inserted successfully')
+        // })
 
-        return art
+        // return art
     }
+
 
     async editArticle(id: string, payload: EditPayloadDto): Promise<Article> {
         const { body: editedParagraphs, location } = payload
