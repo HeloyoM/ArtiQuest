@@ -9,4 +9,5 @@ export interface Article<T = string | Category> {
     created: Date | string
     auther: User | string
     body: string
+    rank: number
 }

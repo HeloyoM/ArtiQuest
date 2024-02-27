@@ -1,14 +1,13 @@
-import path, { join } from "path"
+import { join } from "path"
 import { Article } from "src/interface/Article.interface"
 import * as fs from 'fs'
-import { HttpStatus, Injectable, Logger } from "@nestjs/common"
+import { Injectable, Logger } from "@nestjs/common"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
 import UserDatabaseAccess from "../User/userDatabaseAccess"
 import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
-import { range } from '../../utils/range'
-import { PDFDocument } from 'pdf-lib'
+
 
 
 @Injectable()
@@ -23,6 +22,7 @@ class ArtDatabaseAccess implements IArtiQuest {
         this.initCategories()
 
     }
+
 
     initArts() {
         const file = fs.readFileSync(this.path, 'utf-8')
@@ -67,7 +67,11 @@ class ArtDatabaseAccess implements IArtiQuest {
     async create(art: Article): Promise<any> {
         art.id = randomUUID()
         art.created = new Date().toLocaleDateString()
+
         this.arts.push(art)
+
+
+
 
 
 
@@ -83,7 +87,35 @@ class ArtDatabaseAccess implements IArtiQuest {
         // })
 
         // return art
+
     }
+
+
+    async update(id: string, art: Article): Promise<Article> {
+        const artToUpdate = this.arts.find(a => a.id.toString() === id.toString())
+
+        if (!artToUpdate)
+            throw Error(`Unable to find art with given id: ${id}`)
+
+        const newArtsArray = this.arts.map((a: Article) => {
+            if (a.id.toString() === id.toString()) return art
+
+            else return a
+        })
+
+        this.arts = newArtsArray
+
+        //query will replace it
+        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
+
+            if (err)
+                this.logger.error(`Something went wrong whild updating article with given id ${art.id}`)
+
+            else this.logger.log('article updated successfully')
+        })
+        return art
+    }
+
 
 
     async editArticle(id: string, payload: EditPayloadDto): Promise<Article> {
@@ -128,29 +160,8 @@ class ArtDatabaseAccess implements IArtiQuest {
         return updatedItem
     }
 
-    async update(id: string, art: Article): Promise<Article> {
-        const artToUpdate = this.arts.find(a => a.id.toString() === id.toString())
-
-        if (!artToUpdate)
-            throw Error(`Unable to find art with given id: ${id}`)
-
-        const newArtsArray = this.arts.map((a: Article) => {
-            if (a.id.toString() === id.toString()) return art
-
-            else return a
-        })
-
-        this.arts = newArtsArray
-
-        //query will replace it
-        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
-
-            if (err)
-                this.logger.error(`Something went wrong whild updating article with given id ${art.id}`)
-
-            else this.logger.log('article updated successfully')
-        })
-        return art
+    rate(id: string): Promise<Article<string | Category>> {
+        throw new Error("Method not implemented.")
     }
 
     async remove(id: string): Promise<string> {
@@ -166,6 +177,15 @@ class ArtDatabaseAccess implements IArtiQuest {
         })
 
         return id
+    }
+
+
+    async rankArt(_id: string, rank: number) {
+        // 3
+        // 4
+        // 5
+
+
     }
 }
 export default ArtDatabaseAccess

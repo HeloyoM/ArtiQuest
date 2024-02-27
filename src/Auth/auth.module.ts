@@ -5,17 +5,20 @@ import userDatabaseAccess from 'src/database/User/userDatabaseAccess'
 import { UserController } from './user/user.controller'
 import { AuthService } from './auth.service'
 import { JwtModule } from '@nestjs/jwt'
-import { generateSecretKey } from './secret'
-
+import { jwtConstants } from './secret'
+import { PassportModule } from '@nestjs/passport'
+import { LocalStrategy } from './local/local.strategy'
+import { JwtStrategy } from './jwt/jwt.strategy'
 @Module({
     imports: [
+        PassportModule,
         JwtModule.register({
             global: true,
-            secret: generateSecretKey(),
-            signOptions: { expiresIn: '60s' }
-        })
+            secret: jwtConstants.secret,
+            signOptions: { expiresIn: '1800s' }, // too short
+        }),
     ],
     controllers: [AuthController, UserController],
-    providers: [UserService, AuthService, userDatabaseAccess],
+    providers: [UserService, AuthService, userDatabaseAccess, LocalStrategy, JwtStrategy],
 })
 export class AuthModule { }

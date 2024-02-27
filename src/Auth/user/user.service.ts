@@ -7,8 +7,8 @@ export class UserService {
 
     constructor(private readonly userDatabaseAccess: UserDatabaseAccess) { }
 
-    async getUserById(email: string) {
-        return this.userDatabaseAccess.getUserById(email)
+    async getUserById(id: string) {
+        return this.userDatabaseAccess.getUserById(id)
     }
 
     async findAll(): Promise<User[]> {

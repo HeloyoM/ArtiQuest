@@ -12,8 +12,11 @@ export interface IArtiQuest {
 
 
     create(art: Article): Promise<Article>
+
     remove(id: string): void
-    
+
     update(id: string, art: Article): Promise<Article>
+
     editArticle(id: string, payload: EditPayloadDto): Promise<Article>
+    rate(id: string): Promise<Article>
 }

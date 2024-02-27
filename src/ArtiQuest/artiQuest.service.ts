@@ -121,6 +121,9 @@ export class ArtiQuestService {
         return await this.artDatabaseAccess.editArticle(id, payload)
     }
 
+    async rate(id: string) {
+        return await this.artDatabaseAccess.rate(id)
+    }
     async updateArt(id: string, art: Article): Promise<Article> {
         return await this.artDatabaseAccess.update(id, art)
     }
