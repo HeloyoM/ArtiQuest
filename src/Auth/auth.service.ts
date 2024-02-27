@@ -18,7 +18,7 @@ export class AuthService {
 
     async validateUser(email: string, pass: string): Promise<any> {
         const user = await this.userService.getUserById(email)
-        console.log(user)
+
         if (user && await bcrypt.compare(pass, user.password)) {
             const { password, ...result } = user
             return result
@@ -27,41 +27,12 @@ export class AuthService {
     }
 
     async login(user: any) {
-        const payload = { sub: user.id, email: user.email }
+        const payload = { sub: user.id }
 
         const token = await this.generateAccessToken(payload)
 
-        return new LoginResultDto(user, token)
+        return new LoginResultDto(token)
     }
-
-    // async login(email: string, pass: string) {
-    //     const user = await this.userService.getUserById(email)
-    //     console.log(user.password, pass)
-    //     if (!(await bcrypt.compare(pass, user.password))) {
-    //         throw new UnauthorizedException()
-    //     }
-    //     const { password, ...result } = user
-
-    //     const payload = { sub: result.id, email: result.email }
-
-    //     const token = await this.generateAccessToken(payload)
-
-    //     return new LoginResultDto(user, token)
-
-    // const user = await this.userService.getUserById(email)
-
-    // if (user == null) return null
-
-    // if (user == null || !user.active) return null
-
-    // if (!(await bcrypt.compare(password, user.password))) return null
-
-    // const payload = { sub: user.id, email: user.email }
-
-    // const token = await this.generateAccessToken(payload)
-
-    // return new LoginResultDto(user, token)
-    // }
 
     async generateAccessToken(payload: AceessTokenPayload): Promise<string> {
         return this.jwtService.signAsync(payload)
