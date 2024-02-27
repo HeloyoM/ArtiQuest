@@ -2,6 +2,7 @@ import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGua
 import { ArtiQuestService } from './artiQuest.service'
 import { Article } from 'src/interface/Article.interface'
 import { EditPayloadDto } from './dto/editPayload.dto'
+import { JwtAuthGuard } from 'src/Auth/jwt/jwt-auth.guard'
 
 @Controller('art')
 export class ArtiQuestController {
@@ -52,9 +53,13 @@ export class ArtiQuestController {
         return await this.artService.editArticle(id, payload)
     }
 
+    @UseGuards(JwtAuthGuard)
     @Patch('rate/:id')
-    async rateArticle(@Param('id') id: string) {
-        return await this.artService.rate(id)
+    async rateArticle(
+        @Param('id') id: string,
+        @Body() payload,
+        @Request() req) {
+        return await this.artService.rate(id, payload.rate, req.user)
     }
 
 

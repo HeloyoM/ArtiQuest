@@ -21,7 +21,9 @@ export class ArtiQuestService {
 
         const articlesAssignedAuthers = await this.assignAuthers(articlesAssignedCategories)
 
-        return articlesAssignedAuthers
+        const articlesAssignedRates = await this.assignRates(articlesAssignedAuthers)
+
+        return articlesAssignedRates
     }
 
     assignCategories(articles: Article[]): Article<Category>[] {
@@ -62,6 +64,32 @@ export class ArtiQuestService {
                 articlesArr.push({ ...art, cat: category, auther: authersMap.get(autherId) })
             }
         })
+
+        return articlesArr
+    }
+
+    async assignRates(articles: Article[]) {
+        const rates = this.artDatabaseAccess.getRates()
+
+        const articlesArr: Article[] = []
+
+        for (const a of articles) {
+            const artRates = rates.filter(r => r.id === a.id)
+
+            if (!artRates) return
+
+            else {
+                let sum = 0
+                for (let i = 0; i < artRates.length; i++) {
+                    sum += artRates[i].rate
+                }
+                const rank = (Math.round(sum / artRates.length))
+
+                a.rank = rank
+
+                articlesArr.push(a)
+            }
+        }
 
         return articlesArr
     }
@@ -121,8 +149,8 @@ export class ArtiQuestService {
         return await this.artDatabaseAccess.editArticle(id, payload)
     }
 
-    async rate(id: string) {
-        return await this.artDatabaseAccess.rate(id)
+    async rate(id: string, rate: number, user: any) {
+        return await this.artDatabaseAccess.rate(id, rate, user)
     }
     async updateArt(id: string, art: Article): Promise<Article> {
         return await this.artDatabaseAccess.update(id, art)

@@ -7,6 +7,7 @@ import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
 import UserDatabaseAccess from "../User/userDatabaseAccess"
 import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
+import { IRate } from "./interface/IRate.interface"
 
 
 
@@ -14,13 +15,15 @@ import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
 class ArtDatabaseAccess implements IArtiQuest {
     private readonly logger = new Logger(ArtDatabaseAccess.name)
     path = join(__dirname, '../../../data/articles.data.json')
+    ratePath = join(__dirname, '../../../data/rates.data.json')
     arts: Article[] = []
     categories: Category[] = []
+    rates: IRate[] = []
 
     constructor(private readonly userDatabaseAccess: UserDatabaseAccess) {
         this.initArts()
         this.initCategories()
-
+        this.initRates()
     }
 
 
@@ -41,6 +44,17 @@ class ArtDatabaseAccess implements IArtiQuest {
 
         for (const a of catsList) {
             this.categories.push(a)
+        }
+    }
+
+    initRates() {
+        const path = join(__dirname, '../../../data/rates.data.json')
+
+        const file = fs.readFileSync(path, 'utf-8')
+        const ratesList = JSON.parse(file)
+
+        for (const a of ratesList) {
+            this.rates.push(a)
         }
     }
 
@@ -160,8 +174,28 @@ class ArtDatabaseAccess implements IArtiQuest {
         return updatedItem
     }
 
-    rate(id: string): Promise<Article<string | Category>> {
-        throw new Error("Method not implemented.")
+    rate(id: string, rate: number, user: any): Promise<void> {
+        const rank: IRate = {
+            user_id: user.userId,
+            id,
+            rate
+        }
+
+        this.rates.push(rank)
+
+        fs.writeFile(this.ratePath, JSON.stringify(this.rates), 'utf-8', (err) => {
+
+            if (err)
+                this.logger.error(`cannot update rating to article with given id [${id}]`)
+
+            else this.logger.log('article rated successfully')
+        })
+
+        return
+    }
+
+    getRates() {
+        return this.rates
     }
 
     async remove(id: string): Promise<string> {
@@ -177,15 +211,6 @@ class ArtDatabaseAccess implements IArtiQuest {
         })
 
         return id
-    }
-
-
-    async rankArt(_id: string, rank: number) {
-        // 3
-        // 4
-        // 5
-
-
     }
 }
 export default ArtDatabaseAccess
