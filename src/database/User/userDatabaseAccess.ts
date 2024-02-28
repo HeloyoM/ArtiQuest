@@ -30,7 +30,14 @@ class UserDatabaseAccess implements IUserQuery {
     }
 
     async findAll(): Promise<User[]> {
-        return this.users
+        const usersList = []
+        for(const u of this.users){
+            
+            const {password, ...result} = u
+            
+            usersList.push(result)
+        }
+        return usersList
     }
 
     async create(user: User): Promise<User> {
