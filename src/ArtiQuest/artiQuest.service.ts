@@ -4,6 +4,7 @@ import { Article } from 'src/interface/Article.interface'
 import { Category } from 'src/interface/category.interface'
 import UserDatabaseAccess from 'src/database/User/userDatabaseAccess'
 import { EditPayloadDto } from './dto/editPayload.dto'
+import { IRate } from 'src/database/ArtiQuest/interface/IRate.interface'
 
 @Injectable()
 export class ArtiQuestService {
@@ -17,7 +18,6 @@ export class ArtiQuestService {
     async getAllArticles(): Promise<Article[]> {
         const articles = await this.artDatabaseAccess.getAllArticles()
 
-        articles.map(a => console.log(a.cat))
         const articlesAssignedCategories = this.assignCategories(articles)
 
         const articlesAssignedAuthors = await this.assignAuthors(articlesAssignedCategories)
@@ -35,7 +35,6 @@ export class ArtiQuestService {
         const articlesArr: Article<Category>[] = []
         articles.forEach((art: Article) => {
             let categoryId = art.cat as string
-            console.log(art.cat, art.id, art.id === '2bbb8f3f-0225-4440-a2ef-eccbbf4165ce')
 
             if (categoriesMap.has(categoryId)) {
                 articlesArr.push({ ...art, cat: categoriesMap.get(categoryId) })
@@ -75,18 +74,7 @@ export class ArtiQuestService {
             if (!artRates) return
 
             else {
-                let sum = 0
-                let voters = []
-                for (let i = 0; i < artRates.length; i++) {
-                    sum += artRates[i].rate
-                    voters.push(artRates[i].user_id)
-                }
-                const rank = sum ? (Math.round(sum / artRates.length)) : sum
-
-                a.rank = {
-                    total: rank,
-                    voters
-                }
+                a.rank = this.rateCalc(artRates)
 
                 articlesArr.push(a)
             }
@@ -95,9 +83,7 @@ export class ArtiQuestService {
         return articlesArr
     }
 
-    async getArticleRank(id: string) {
-        const rates = this.artDatabaseAccess.getRates().filter(r => r.id === id)
-
+    rateCalc(rates: IRate[]) {
         let sum = 0
         let voters: string[] = []
         for (let i = 0; i < rates.length; i++) {
@@ -109,13 +95,18 @@ export class ArtiQuestService {
         return { total: rank, voters }
     }
 
+    async getArticleRank(id: string) {
+        const rates = this.artDatabaseAccess.getRates().filter(r => r.id === id)
+
+        return this.rateCalc(rates)
+    }
+
     async getArticlesByCategoryId(id: string) {
         const articlesWithCat = await this.getAllArticles()
         const byCatId = articlesWithCat.filter((a: Article<Category>) => a.cat.id.toString() === id.toString())
 
         return byCatId
     }
-
 
 
     async getArticleById(id: string): Promise<Article> {
@@ -133,7 +124,6 @@ export class ArtiQuestService {
 
         return articleAssignRates
     }
-
 
 
     async getAllCategories() {
@@ -170,9 +160,9 @@ export class ArtiQuestService {
         try {
             await this.artDatabaseAccess.rate(id, rate, user)
 
-            return  this.getArticleRank(id)
+            return this.getArticleRank(id)
         } catch (error) {
-
+            throw Error('unable to rate article')
         }
     }
 

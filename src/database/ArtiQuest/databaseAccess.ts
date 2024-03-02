@@ -59,19 +59,32 @@ class ArtDatabaseAccess implements IArtiQuest {
     }
 
     async getAllArticles(): Promise<Article[]> {
+        if (!this.arts.length)
+            this.initRates()
+
         return this.arts
     }
 
     getArticleById(id: string): Article {
-        return this.arts.find(a => a.id.toString() === id.toString())
+        const art = this.arts.find((a: Article) => a.id.toString() === id.toString())
+
+        if (!art)
+            throw Error(`Not found article with given id ${id}`)
+
+        return art
     }
 
     getAllCategories(): Category[] {
+        if (!this.categories.length)
+            this.initCategories()
+
         return this.categories
     }
 
     async getArticlesByCategoryId(id: string): Promise<Article[]> {
-        return this.arts.filter(a => a.cat.toString() == id.toString())
+        const arts = this.arts.filter(a => a.cat.toString() == id.toString())
+
+        return arts
     }
 
     getCategoryById(id: string): Category {
@@ -140,8 +153,6 @@ class ArtDatabaseAccess implements IArtiQuest {
 
         const { body } = currentArt
         const paragraphs = body.split(/[\n\r]+/)
-
-
 
         const updatedBody: string[] = paragraphs
         for (let i = 0; i < location.length; i++) {
