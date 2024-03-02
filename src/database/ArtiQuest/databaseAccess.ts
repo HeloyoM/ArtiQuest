@@ -26,6 +26,18 @@ class ArtDatabaseAccess implements IArtiQuest {
         this.initRates()
     }
 
+    getRates() {
+        return this.rates
+    }
+
+
+    async getAllArticles(): Promise<Article[]> {
+        if (!this.arts.length)
+            this.initRates()
+
+        return this.arts
+    }
+
 
     initArts() {
         const file = fs.readFileSync(this.path, 'utf-8')
@@ -58,12 +70,6 @@ class ArtDatabaseAccess implements IArtiQuest {
         }
     }
 
-    async getAllArticles(): Promise<Article[]> {
-        if (!this.arts.length)
-            this.initRates()
-
-        return this.arts
-    }
 
     getArticleById(id: string): Article {
         const art = this.arts.find((a: Article) => a.id.toString() === id.toString())
@@ -202,9 +208,30 @@ class ArtDatabaseAccess implements IArtiQuest {
         })
     }
 
-    getRates() {
-        return this.rates
+    incViewers(id: string, user: any): void {
+        const art = this.arts.find(a => a.id.toString() === id.toString())
+
+        if (!art)
+            throw Error(`Unable to find art with given id: ${id}`)
+
+        const newArtsArray = this.arts.map((a: Article) => {
+            if (a.id.toString() === id.toString()) return { ...art, viewers: [user.userId, ...art.viewers] }
+
+            else return a
+        })
+
+        this.arts = newArtsArray
+
+        //query will replace it
+        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
+
+            if (err)
+                this.logger.error(`Something went wrong whild updating article with given id ${art.id}`)
+
+            else this.logger.log(`article viewed by user with given id [${user.userId}]`)
+        })
     }
+
 
     async remove(id: string): Promise<string> {
         this.arts = this.arts.filter(a => a.id !== id)

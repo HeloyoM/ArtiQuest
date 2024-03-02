@@ -19,4 +19,5 @@ export interface IArtiQuest {
 
     editArticle(id: string, payload: EditPayloadDto): Promise<Article>
     rate(id: string, rate: number, user: any): void
+    incViewers(id: string, user: any): void
 }

@@ -62,6 +62,15 @@ export class ArtiQuestController {
         return await this.artService.rate(id, payload.rate, req.user)
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Patch('view/:id')
+    async increasArticleViewers(
+        @Param('id') id: string,
+        @Request() req
+    ) {
+        return await this.artService.incArtViewers(id, req.user)
+    }
+
 
     @Delete(':id')
     async delete(@Param('id') id: string): Promise<string> {

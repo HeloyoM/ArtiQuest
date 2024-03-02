@@ -166,6 +166,14 @@ export class ArtiQuestService {
         }
     }
 
+    async incArtViewers(id: string, user: any) {
+        try {
+            await this.artDatabaseAccess.incViewers(id, user)
+        } catch (error) {
+            throw Error('unable to rate article')
+        }
+    }
+
     async updateArt(id: string, art: Article): Promise<Article> {
         return await this.artDatabaseAccess.update(id, art)
     }

@@ -11,5 +11,6 @@ export interface Article<T = string | Category> {
     author: Partial<User> | string
     body: string
     rank: IArticleRank
+    viewers: string[]
     // views: number
 }
