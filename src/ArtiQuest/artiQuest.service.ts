@@ -17,6 +17,7 @@ export class ArtiQuestService {
     async getAllArticles(): Promise<Article[]> {
         const articles = await this.artDatabaseAccess.getAllArticles()
 
+        articles.map(a => console.log(a.cat))
         const articlesAssignedCategories = this.assignCategories(articles)
 
         const articlesAssignedAuthors = await this.assignAuthors(articlesAssignedCategories)
@@ -32,9 +33,9 @@ export class ArtiQuestService {
         let categoriesMap = new Map(categories.map(category => [category.id, category]))
 
         const articlesArr: Article<Category>[] = []
-
         articles.forEach((art: Article) => {
             let categoryId = art.cat as string
+            console.log(art.cat, art.id, art.id === '2bbb8f3f-0225-4440-a2ef-eccbbf4165ce')
 
             if (categoriesMap.has(categoryId)) {
                 articlesArr.push({ ...art, cat: categoriesMap.get(categoryId) })
@@ -53,16 +54,10 @@ export class ArtiQuestService {
 
         articles.forEach((art: Article) => {
             let authorId = art.author as string
-            let category
-            if (typeof art.cat == 'string') {
-                category = art.cat as string
-            } else {
-                category = art.cat as Category
-            }
 
             if (authorsMap.has(authorId)) {
                 const { password, ...result } = authorsMap.get(authorId)
-                articlesArr.push({ ...art, cat: category, author: result })
+                articlesArr.push({ ...art, author: result })
             }
         })
 
@@ -100,6 +95,19 @@ export class ArtiQuestService {
         return articlesArr
     }
 
+    async getArticleRank(id: string) {
+        const rates = this.artDatabaseAccess.getRates().filter(r => r.id === id)
+
+        let sum = 0
+        let voters: string[] = []
+        for (let i = 0; i < rates.length; i++) {
+            sum += rates[i].rate
+            voters.push(rates[i].user_id)
+        }
+        const rank = sum ? (Math.round(sum / rates.length)) : sum
+
+        return { total: rank, voters }
+    }
 
     async getArticlesByCategoryId(id: string) {
         const articlesWithCat = await this.getAllArticles()
@@ -121,7 +129,9 @@ export class ArtiQuestService {
 
         const [articlesAssignedAuthors] = await this.assignAuthors([art])
 
-        return articlesAssignedAuthors
+        const [articleAssignRates] = await this.assignRates([articlesAssignedAuthors])
+
+        return articleAssignRates
     }
 
 
@@ -157,8 +167,15 @@ export class ArtiQuestService {
     }
 
     async rate(id: string, rate: number, user: any) {
-        return await this.artDatabaseAccess.rate(id, rate, user)
+        try {
+            await this.artDatabaseAccess.rate(id, rate, user)
+
+            return  this.getArticleRank(id)
+        } catch (error) {
+
+        }
     }
+
     async updateArt(id: string, art: Article): Promise<Article> {
         return await this.artDatabaseAccess.update(id, art)
     }

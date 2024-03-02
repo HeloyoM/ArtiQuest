@@ -174,7 +174,7 @@ class ArtDatabaseAccess implements IArtiQuest {
         return updatedItem
     }
 
-    rate(id: string, rate: number, user: any): Promise<void> {
+    async rate(id: string, rate: number, user: any): Promise<void> {
         const rank: IRate = {
             user_id: user.userId,
             id,
@@ -182,7 +182,6 @@ class ArtDatabaseAccess implements IArtiQuest {
         }
 
         this.rates.push(rank)
-
         fs.writeFile(this.ratePath, JSON.stringify(this.rates), 'utf-8', (err) => {
 
             if (err)
@@ -190,8 +189,6 @@ class ArtDatabaseAccess implements IArtiQuest {
 
             else this.logger.log('article rated successfully')
         })
-
-        return
     }
 
     getRates() {

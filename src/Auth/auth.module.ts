@@ -15,7 +15,7 @@ import { JwtStrategy } from './jwt/jwt.strategy'
         JwtModule.register({
             global: true,
             secret: jwtConstants.secret,
-            signOptions: { expiresIn: '1800s' }, // too short
+            signOptions: { expiresIn: '14400s' }, // too short
         }),
     ],
     controllers: [AuthController, UserController],
