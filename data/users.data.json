@@ -1500,13 +1500,13 @@
         "password": "$2a$04$a7uezrkR8D3INqlj6NL70u8CPBM2OWEJwhoQVldVMDniz8ruJkKge"
     },
     {
-        "first_name": "meir",
+        "id": "a0f25cf7-56e1-4de4-b184-c91f9d76e235",
+        "first_name": "Meir",
         "last_name": "Juli",
         "email": "mybs2323@gmail.com",
         "phone_number": "0587769313",
-        "password": "$2a$12$/riZH5CIudfuy92yvxLl4ehr7Ls9IPC.4HRYLWqVCUPG0o59dDiiO",
-        "id": "2473ada9-8c30-4444-853d-a571fda706a2",
+        "password": "$2a$12$0iGMClKQifnfWCPsiubTPuJTnseTQF9/r1AtUEG79jZbVD2.XwwO6",
         "active": true,
-        "joined": "2024-01-28T13:02:02.213Z"
+        "joined": "2024-03-05T12:47:00.842Z"
     }
 ]

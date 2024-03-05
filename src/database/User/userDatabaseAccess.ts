@@ -5,6 +5,9 @@ import { IUserQuery } from "./interface/UserQuery.interface"
 import * as bcrypt from 'bcryptjs'
 import { User } from "src/interface/user.interface"
 import { randomUUID } from "crypto"
+import { UpdateUserDto } from "src/Auth/dto/UpdateUser.dto"
+import { updateUserFields } from '../../utils/updateUserUtil'
+import { hashingPassword } from "src/utils/hashingPassword"
 
 @Injectable()
 class UserDatabaseAccess implements IUserQuery {
@@ -31,17 +34,17 @@ class UserDatabaseAccess implements IUserQuery {
 
     async findAll(): Promise<User[]> {
         const usersList = []
-        for(const u of this.users){
-            
-            const {password, ...result} = u
-            
+        for (const u of this.users) {
+
+            const { password, ...result } = u
+
             usersList.push(result)
         }
         return usersList
     }
 
     async create(user: User): Promise<User> {
-        user.password = await bcrypt.hash(user.password, 12)
+        user.password = await hashingPassword(user.password)
         user.active = true
         user.id = randomUUID()
         user.joined = new Date()
@@ -59,16 +62,16 @@ class UserDatabaseAccess implements IUserQuery {
         return user
     }
 
-    async update(id: string, user: User): Promise<User> {
+    async update(id: string, user: UpdateUserDto): Promise<User> {
         const userToUpdate = this.users.find(a => a.id.toString() === id.toString())
 
         if (!userToUpdate)
             throw Error(`Unable to find user with given id: ${id}`)
 
-        user.password = await bcrypt.hash(user.password, 12)
+        const updatedUser = await updateUserFields(userToUpdate, user)
 
         const newUsersArray = this.users.map((u: User) => {
-            if (u.id.toString() === id.toString()) return user
+            if (u.id.toString() === id.toString()) return updatedUser
 
             else return u
         })
@@ -79,12 +82,12 @@ class UserDatabaseAccess implements IUserQuery {
         fs.writeFile(this.path, JSON.stringify(this.users), 'utf-8', (err) => {
 
             if (err)
-                throw Error(`Something went wrong whild updating user details, given id ${user.id}`)
+                throw Error(`Something went wrong whild updating user details, given id ${id}`)
 
             else return 'user updated successfully'
         })
 
-        return user
+        return updatedUser
     }
 
     async remove(id: string): Promise<string> {

@@ -1,6 +1,8 @@
 import { Controller, Request, Get, Post, Delete, Put, Body, Param, UseGuards } from '@nestjs/common'
 import { UserService } from './user.service'
 import { User } from 'src/interface/user.interface'
+import { JwtAuthGuard } from '../jwt/jwt-auth.guard'
+import { UpdateUserDto } from '../dto/UpdateUser.dto'
 
 @Controller('user')
 export class UserController {
@@ -17,12 +19,13 @@ export class UserController {
         return await this.userService.createUser(user)
     }
 
-    @Put(':id')
+    @UseGuards(JwtAuthGuard)
+    @Put()
     async put(
-        @Param('id') id: string,
-        @Body() user: User
+        @Body() user: UpdateUserDto,
+        @Request() req,
     ) {
-        return await this.userService.updateUser(id, user)
+        return await this.userService.updateUser(req.user.userId, user)
     }
 
     @Delete(':id')
