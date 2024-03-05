@@ -174,6 +174,9 @@ export class ArtiQuestService {
         }
     }
 
+    async getUserCategoryInterest(user_id: string) {
+        return this.artDatabaseAccess.getUserCategoryInterest(user_id)
+    }
     async updateArt(id: string, art: Article): Promise<Article> {
         return await this.artDatabaseAccess.update(id, art)
     }

@@ -15,6 +15,12 @@ export class ArtiQuestController {
         return await this.artService.getAllArticles()
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Get('interest')
+    async getUserCategoryInterest(@Request() req) {
+        return this.artService.getUserCategoryInterest(req.user.userId)
+    }
+
     @Get('/findBy/:cat')
     async getArticlesByCategoryId(@Param('cat') id: string) {
         return await this.artService.getArticlesByCategoryId(id)

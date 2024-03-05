@@ -231,7 +231,33 @@ class ArtDatabaseAccess implements IArtiQuest {
             else this.logger.log(`article viewed by user with given id [${user.userId}]`)
         })
     }
+    async getUserCategoryInterest(user_id: string): Promise<any> {
+        const articlesReadByUser = this.arts.filter(a => a.viewers.includes(user_id.toString()))
 
+        articlesReadByUser.map(a => a.cat)
+
+        const array = this.getAllCategories().map(c => c.id)
+
+        let frequencyMap = {}
+        let maxFrequency = 0
+        let mostFrequentCategory = null
+
+        for (let i = 0; i < array.length; i++) {
+            let currentCategory = array[i]
+            if (frequencyMap[currentCategory] === undefined) {
+                frequencyMap[currentCategory] = 1
+            } else {
+                frequencyMap[currentCategory]++
+            }
+
+            if (frequencyMap[currentCategory] > maxFrequency) {
+                maxFrequency = frequencyMap[currentCategory]
+                mostFrequentCategory = currentCategory
+            }
+        }
+
+        return mostFrequentCategory
+    }
 
     async remove(id: string): Promise<string> {
         this.arts = this.arts.filter(a => a.id !== id)

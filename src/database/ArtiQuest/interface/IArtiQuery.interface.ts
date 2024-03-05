@@ -6,7 +6,7 @@ export interface IArtiQuest {
     getAllArticles(): Promise<Article[]>
     getArticleById(id: string): Article
     getArticlesByCategoryId(id: string): Promise<Article[]>
-
+    getUserCategoryInterest(user_id: string): Promise<void>
     getAllCategories(): Category[]
     getCategoryById(id: string): Category
 
