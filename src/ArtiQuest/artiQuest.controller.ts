@@ -1,13 +1,16 @@
-import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGuards } from '@nestjs/common'
+import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGuards, Inject } from '@nestjs/common'
 import { ArtiQuestService } from './artiQuest.service'
 import { Article } from 'src/interface/Article.interface'
 import { EditPayloadDto } from './dto/editPayload.dto'
 import { JwtAuthGuard } from 'src/Auth/jwt/jwt-auth.guard'
+import { Cache } from 'cache-manager'
+import { CACHE_MANAGER } from '@nestjs/cache-manager'
 
 @Controller('art')
 export class ArtiQuestController {
     constructor(
-        private artService: ArtiQuestService
+        private artService: ArtiQuestService,
+        @Inject(CACHE_MANAGER) private cacheManager: Cache
     ) { }
 
     @Get()
@@ -23,12 +26,32 @@ export class ArtiQuestController {
 
     @Get('/findBy/:cat')
     async getArticlesByCategoryId(@Param('cat') id: string) {
-        return await this.artService.getArticlesByCategoryId(id)
+        const key = `category_${id}`
+
+        let categoryContent = await this.cacheManager.get(key)
+
+        if (categoryContent == null) {
+            categoryContent = await this.artService.getArticlesByCategoryId(id)
+
+            await this.cacheManager.set(key, categoryContent, 24 * 3600 /* hour */)
+        }
+
+        return categoryContent
     }
 
     @Get('/findOne/:id')
     async getArticleById(@Param('id') id: string) {
-        return await this.artService.getArticleById(id)
+        const key = `article_${id}`
+
+        let articleContent = await this.cacheManager.get(key)
+
+        if (articleContent == null) {
+            articleContent = await this.artService.getArticleById(id)
+
+            await this.cacheManager.set(key, articleContent, 24 * 3600 /* hour */)
+        }
+
+        return articleContent
     }
 
     @Get('/cat')

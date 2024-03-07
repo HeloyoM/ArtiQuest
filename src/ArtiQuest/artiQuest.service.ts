@@ -5,6 +5,7 @@ import { Category } from 'src/interface/category.interface'
 import UserDatabaseAccess from 'src/database/User/userDatabaseAccess'
 import { EditPayloadDto } from './dto/editPayload.dto'
 import { IRate } from 'src/database/ArtiQuest/interface/IRate.interface'
+import { User } from 'src/interface/user.interface'
 
 @Injectable()
 export class ArtiQuestService {
@@ -103,7 +104,16 @@ export class ArtiQuestService {
 
     async getArticlesByCategoryId(id: string) {
         const articlesWithCat = await this.getAllArticles()
-        const byCatId = articlesWithCat.filter((a: Article<Category>) => a.cat.id.toString() === id.toString())
+        let byCatId = articlesWithCat.filter((a: Article<Category>) => a.cat.id.toString() === id.toString())
+
+        if (!byCatId.length) {
+            articlesWithCat.map(a => console.log(a.author))
+            byCatId = articlesWithCat.filter((a: Article<Category>) => {
+                const authorObj = a.author as User
+
+                return authorObj.id.toString() === id.toString()
+            })
+        }
 
         return byCatId
     }

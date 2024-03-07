@@ -3,6 +3,7 @@ import { ArtiQuestModule } from './artiQuest/artiQuest.module'
 import { ProductModule } from './product/product.module'
 import { AuthModule } from './Auth/auth.module'
 import { AboutModule } from './about/about.module'
+import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager'
 
 @Module({
   imports: [
@@ -12,7 +13,11 @@ import { AboutModule } from './about/about.module'
 
     AuthModule,
 
-    AboutModule
+    AboutModule,
+
+    CacheModule.register({
+      isGlobal: true
+    }),
   ],
   controllers: [],
   providers: [],
