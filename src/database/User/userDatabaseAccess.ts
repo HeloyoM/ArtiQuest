@@ -2,7 +2,6 @@ import { join } from "path"
 import * as fs from 'fs'
 import { Injectable } from "@nestjs/common"
 import { IUserQuery } from "./interface/UserQuery.interface"
-import * as bcrypt from 'bcryptjs'
 import { User } from "src/interface/user.interface"
 import { randomUUID } from "crypto"
 import { UpdateUserDto } from "src/Auth/dto/UpdateUser.dto"
@@ -62,7 +61,7 @@ class UserDatabaseAccess implements IUserQuery {
         return user
     }
 
-    async update(id: string, user: UpdateUserDto): Promise<User> {
+    async update(id: string, user: UpdateUserDto): Promise<User | string> {
         const userToUpdate = this.users.find(a => a.id.toString() === id.toString())
 
         if (!userToUpdate)
@@ -70,24 +69,31 @@ class UserDatabaseAccess implements IUserQuery {
 
         const updatedUser = await updateUserFields(userToUpdate, user)
 
-        const newUsersArray = this.users.map((u: User) => {
-            if (u.id.toString() === id.toString()) return updatedUser
+        if (updatedUser) {
 
-            else return u
-        })
 
-        this.users = newUsersArray
 
-        //query will replace it
-        fs.writeFile(this.path, JSON.stringify(this.users), 'utf-8', (err) => {
+            const newUsersArray = this.users.map((u: User) => {
+                if (u.id.toString() === id.toString()) return updatedUser
 
-            if (err)
-                throw Error(`Something went wrong whild updating user details, given id ${id}`)
+                else return u
+            })
 
-            else return 'user updated successfully'
-        })
+            this.users = newUsersArray
 
-        return updatedUser
+            //query will replace it
+            fs.writeFile(this.path, JSON.stringify(this.users), 'utf-8', (err) => {
+
+                if (err)
+                    throw Error(`Something went wrong whild updating user details, given id ${id}`)
+
+                else return 'user updated successfully'
+            })
+
+            return updatedUser
+        } else {
+            return 'The new password is similar to your correctly password'
+        }
     }
 
     async remove(id: string): Promise<string> {

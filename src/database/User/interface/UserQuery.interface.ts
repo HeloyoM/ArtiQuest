@@ -6,5 +6,5 @@ export interface IUserQuery {
     getUserById(id: string): Promise<User>
     create(user: User): Promise<User>
     remove(id: string): void
-    update(id: string, user: UpdateUserDto): Promise<User>
+    update(id: string, user: UpdateUserDto): Promise<User | string>
 }

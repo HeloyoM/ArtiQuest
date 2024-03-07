@@ -20,7 +20,7 @@ export class UserService {
         return await this.userDatabaseAccess.create(user)
     }
 
-    async updateUser(id: string, user: UpdateUserDto): Promise<User> {
+    async updateUser(id: string, user: UpdateUserDto): Promise<User | string> {
         return await this.userDatabaseAccess.update(id, user)
     }
 
