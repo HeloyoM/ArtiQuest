@@ -9,6 +9,7 @@ import { jwtConstants } from './secret'
 import { PassportModule } from '@nestjs/passport'
 import { LocalStrategy } from './local/local.strategy'
 import { JwtStrategy } from './jwt/jwt.strategy'
+import AuthDatabaseAccess from 'src/database/Auth/databaseAccess'
 
 @Module({
     imports: [
@@ -20,6 +21,6 @@ import { JwtStrategy } from './jwt/jwt.strategy'
         }),
     ],
     controllers: [AuthController, UserController],
-    providers: [UserService, AuthService, userDatabaseAccess, LocalStrategy, JwtStrategy],
+    providers: [UserService, AuthService, userDatabaseAccess, AuthDatabaseAccess, LocalStrategy, JwtStrategy],
 })
 export class AuthModule { }
