@@ -10,7 +10,7 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(@Request() req) {
-        return this.authService.login(req.user)
+        return await this.authService.login(req.user)
     }
 
     @UseGuards(JwtAuthGuard)
@@ -18,5 +18,13 @@ export class AuthController {
     async logout(@Request() req) {
         console.log({ req })
         await this.authService.logout(req.user.userId)
+    }
+
+    @Post('refresh-token')
+    async refreshToken(
+        @Request() req
+    ) {
+        if (req.headers.authorization)
+            return await this.authService.refreshToken(req.headers.authorization)
     }
 }

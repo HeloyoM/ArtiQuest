@@ -17,7 +17,7 @@ import AuthDatabaseAccess from 'src/database/Auth/databaseAccess'
         JwtModule.register({
             global: true,
             secret: jwtConstants.secret,
-            signOptions: { expiresIn: '16600s' },
+            signOptions: { expiresIn: '900000s' },
         }),
     ],
     controllers: [AuthController, UserController],

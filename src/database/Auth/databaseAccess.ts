@@ -26,15 +26,27 @@ class AuthDatabaseAccess implements IUserSessionQuery {
 
     async save(session: IUserSession): Promise<void> {
 
-        this.sessions.push(session)
+        const existsSession = this.sessions.filter((us: IUserSession) => (us.session_id === session.session_id && us.user_id === session.user_id))
+        console.log({ existsSession })
+        if (existsSession.length) {
+            this.updateSession(session)
 
-        fs.writeFile(this.path, JSON.stringify(this.sessions), 'utf-8', (err) => {
+            return
+        } else {
+            this.sessions.push(session)
 
-            if (err)
-                this.logger.error(`Something went wrong while creating new session with given id ${session.user_id}`)
+            fs.writeFile(this.path, JSON.stringify(this.sessions), 'utf-8', (err) => {
 
-            else this.logger.log('new sessions created successfully')
-        })
+                if (err)
+                    this.logger.error(`Something went wrong while creating new session with given id ${session.user_id}`)
+
+                else this.logger.log('new sessions created successfully')
+            })
+        }
+
+
+
+
     }
 
     async remove(user_id: string): Promise<void> {
@@ -57,6 +69,28 @@ class AuthDatabaseAccess implements IUserSessionQuery {
 
         else false
     }
+
+    async updateSession(session: IUserSession) {
+
+        const newSessionsArray = this.sessions.map((us: IUserSession) => {
+            if (us.user_id.toString() === session.user_id.toString()) return session
+
+            else return us
+        })
+
+        this.sessions = newSessionsArray
+
+
+        fs.writeFile(this.path, JSON.stringify(this.sessions), 'utf-8', (err) => {
+
+            if (err)
+                this.logger.error(`Cannot update session with given user_id [${session.user_id}]`)
+
+            else this.logger.log('new sessions updated successfully')
+        })
+
+    }
+
 
     async logout(user_id: string): Promise<void> {
         throw new Error("Method not implemented.")

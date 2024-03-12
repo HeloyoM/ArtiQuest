@@ -35,16 +35,6 @@ export class AuthService {
 
         const token = await this.generateAccessToken(payload)
 
-        const expTime = this.jwtService.verify(token).exp
-
-        const session: IUserSession = {
-            user_id: user.id,
-            session_id: token,
-            expires_at: expTime
-        }
-
-        this.authDatabaseAccess.save(session)
-
         return new LoginResultDto(token)
     }
 
@@ -54,13 +44,50 @@ export class AuthService {
 
 
     async generateAccessToken(payload: AceessTokenPayload): Promise<string> {
-        return this.jwtService.signAsync(payload)
+        const token = await this.jwtService.signAsync(payload)
+        console.log({ token })
+        if (token) {
+            const { exp } = this.jwtService.decode(token)
+            console.log({ exp })
+            const session: IUserSession = {
+                expires_at: exp,
+                session_id: token,
+                user_id: payload.sub
+            }
+            console.log({ session })
+            await this.authDatabaseAccess.save(session)
+        }
+
+        return token
     }
 
     async getAllUsers(): Promise<User[]> {
         return [] as User[]
     }
 
+    async refreshToken(token: string) {
+        const accessToken = token.split(' ')[1]
+        // if (!this.jwtService.verify(token.split(' ')[1])) {
+        const decoded = await this.jwtService.decode(accessToken)
+        console.log(decoded)
+        if (decoded) {
+            const userSession = await this.authDatabaseAccess.findSessionByUserIdAndSessionId(decoded.sub, accessToken)
+
+            const currentTime = Math.floor(Date.now() / 1000)
+
+            const expirationTime = userSession.expires_at || 0
+
+            if (currentTime >= expirationTime) {
+
+                const payload = { sub: decoded.sub }
+
+                const accessToken = await this.generateAccessToken(payload)
+
+                return accessToken
+            } else return
+        }
+
+    }
     async getUserById(id: string) {
 
     }
