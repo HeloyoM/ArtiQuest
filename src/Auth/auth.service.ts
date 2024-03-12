@@ -1,11 +1,10 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import * as bcrypt from 'bcryptjs'
 
 import { UserService } from './user/user.service'
 import { AceessTokenPayload } from './models/token.model'
 
-import { User } from 'src/interface/user.interface'
 import { LoginResultDto } from './dto/loginResult.dto'
 import AuthDatabaseAccess from 'src/database/Auth/databaseAccess'
 import { IUserSession } from 'src/database/Auth/interface/IUserSession.interface'
@@ -42,34 +41,32 @@ export class AuthService {
         await this.authDatabaseAccess.remove(user_id)
     }
 
-
     async generateAccessToken(payload: AceessTokenPayload): Promise<string> {
-        const token = await this.jwtService.signAsync(payload)
-        console.log({ token })
-        if (token) {
-            const { exp } = this.jwtService.decode(token)
-            console.log({ exp })
-            const session: IUserSession = {
-                expires_at: exp,
-                session_id: token,
-                user_id: payload.sub
-            }
-            console.log({ session })
-            await this.authDatabaseAccess.save(session)
-        }
+        const token = await this.jwtService.signAsync(payload, { expiresIn: '5s' })
+
+        if (token)
+            await this.updateUsersSession(token)
 
         return token
     }
 
-    async getAllUsers(): Promise<User[]> {
-        return [] as User[]
+    async updateUsersSession(token: string) {
+        const decoded = this.jwtService.decode(token)
+
+        const session: IUserSession = {
+            expires_at: decoded.exp,
+            session_id: token,
+            user_id: decoded.sub
+        }
+
+        await this.authDatabaseAccess.save(session)
     }
 
     async refreshToken(token: string) {
         const accessToken = token.split(' ')[1]
-        // if (!this.jwtService.verify(token.split(' ')[1])) {
+
         const decoded = await this.jwtService.decode(accessToken)
-        console.log(decoded)
+
         if (decoded) {
             const userSession = await this.authDatabaseAccess.findSessionByUserIdAndSessionId(decoded.sub, accessToken)
 
@@ -84,16 +81,8 @@ export class AuthService {
                 const accessToken = await this.generateAccessToken(payload)
 
                 return accessToken
-            } else return
+            }
         }
 
     }
-    async getUserById(id: string) {
-
-    }
-
-    async createUser() {
-
-    }
-
 }

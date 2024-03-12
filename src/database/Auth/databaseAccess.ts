@@ -25,9 +25,8 @@ class AuthDatabaseAccess implements IUserSessionQuery {
     }
 
     async save(session: IUserSession): Promise<void> {
+        const existsSession = this.sessions.filter((us: IUserSession) => (us.user_id === session.user_id))
 
-        const existsSession = this.sessions.filter((us: IUserSession) => (us.session_id === session.session_id && us.user_id === session.user_id))
-        console.log({ existsSession })
         if (existsSession.length) {
             this.updateSession(session)
 
@@ -43,10 +42,6 @@ class AuthDatabaseAccess implements IUserSessionQuery {
                 else this.logger.log('new sessions created successfully')
             })
         }
-
-
-
-
     }
 
     async remove(user_id: string): Promise<void> {
@@ -62,7 +57,7 @@ class AuthDatabaseAccess implements IUserSessionQuery {
     }
 
     async findSessionByUserIdAndSessionId(user_id: string, session_id: string): Promise<IUserSession> {
-        const session = this.sessions.find((s: IUserSession) => s.user_id === user_id && s.session_id === session_id)
+        const session = this.sessions.find((s: IUserSession) => s.user_id === user_id)
 
         if (session)
             return session
@@ -80,7 +75,6 @@ class AuthDatabaseAccess implements IUserSessionQuery {
 
         this.sessions = newSessionsArray
 
-
         fs.writeFile(this.path, JSON.stringify(this.sessions), 'utf-8', (err) => {
 
             if (err)
@@ -89,11 +83,6 @@ class AuthDatabaseAccess implements IUserSessionQuery {
             else this.logger.log('new sessions updated successfully')
         })
 
-    }
-
-
-    async logout(user_id: string): Promise<void> {
-        throw new Error("Method not implemented.")
     }
 }
 
