@@ -68,26 +68,28 @@ export class AuthService {
 
         const decoded = await this.jwtService.decode(accessToken)
 
-        if (decoded.rememberMe) {
-            const userSession = await this.authDatabaseAccess.findSessionByUserIdAndSessionId(decoded.sub, accessToken)
+        const userSession = await this.authDatabaseAccess.findSessionByUserIdAndSessionId(decoded.sub, accessToken)
 
-            const currentTime = Math.floor(Date.now() / 1000)
+        const currentTime = Math.floor(Date.now() / 1000)
 
-            const expirationTime = userSession.expires_at || 0
+        const expirationTime = userSession.expires_at || 0
 
-            if (currentTime >= expirationTime) {
+        if (currentTime >= expirationTime) {
+
+            if (decoded.rememberMe) {
 
                 const payload = { sub: decoded.sub, rememberMe: decoded.rememberMe }
 
                 const accessToken = await this.generateAccessToken(payload)
 
                 return accessToken
-            }
-        } else {
-            await this.logout(decoded.sub)
 
-            return null
-        }
+            } else {
+                await this.logout(decoded.sub)
+
+                return null
+            }
+        } else return userSession.session_id
     }
 
 }
