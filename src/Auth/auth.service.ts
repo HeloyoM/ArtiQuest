@@ -8,6 +8,7 @@ import { AceessTokenPayload } from './models/token.model'
 import { LoginResultDto } from './dto/loginResult.dto'
 import AuthDatabaseAccess from 'src/database/Auth/databaseAccess'
 import { IUserSession } from 'src/database/Auth/interface/IUserSession.interface'
+import { LoginDto } from './dto/login.dto'
 
 @Injectable()
 export class AuthService {
@@ -29,8 +30,8 @@ export class AuthService {
         return null
     }
 
-    async login(user: any) {
-        const payload = { sub: user.id }
+    async login(user: any, loginPayload: LoginDto) {
+        const payload = { sub: user.id, rememberMe: loginPayload.rememberUser }
 
         const token = await this.generateAccessToken(payload)
 
@@ -67,7 +68,7 @@ export class AuthService {
 
         const decoded = await this.jwtService.decode(accessToken)
 
-        if (decoded) {
+        if (decoded.rememberMe) {
             const userSession = await this.authDatabaseAccess.findSessionByUserIdAndSessionId(decoded.sub, accessToken)
 
             const currentTime = Math.floor(Date.now() / 1000)
@@ -76,13 +77,17 @@ export class AuthService {
 
             if (currentTime >= expirationTime) {
 
-                const payload = { sub: decoded.sub }
+                const payload = { sub: decoded.sub, rememberMe: decoded.rememberMe }
 
                 const accessToken = await this.generateAccessToken(payload)
 
                 return accessToken
             }
-        }
+        } else {
+            await this.logout(decoded.sub)
 
+            return null
+        }
     }
+
 }

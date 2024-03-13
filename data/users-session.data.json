@@ -1,7 +1,1 @@
-[
-    {
-        "expires_at": 1710275381,
-        "session_id": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3YjU0ZjdiNi02ZTkxLTRhMGItYWE1Ni0wOGY3MDU2NmU5MmMiLCJpYXQiOjE3MTAyNzUzNzYsImV4cCI6MTcxMDI3NTM4MX0.-mcVPb8H9yIckzfyHCF-Ktj8BA0NwBXC0-nTOtLhOeU",
-        "user_id": "7b54f7b6-6e91-4a0b-aa56-08f70566e92c"
-    }
-]
+[{"expires_at":1710333171,"session_id":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3YjU0ZjdiNi02ZTkxLTRhMGItYWE1Ni0wOGY3MDU2NmU5MmMiLCJyZW1lbWJlck1lIjp0cnVlLCJpYXQiOjE3MTAzMzMxNjYsImV4cCI6MTcxMDMzMzE3MX0.wm-8TvKEgmistgRCjVDdTTCd9obUNd5_xCJFGMTRDNg","user_id":"7b54f7b6-6e91-4a0b-aa56-08f70566e92c"}]
