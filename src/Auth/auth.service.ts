@@ -63,6 +63,12 @@ export class AuthService {
         await this.authDatabaseAccess.save(session)
     }
 
+    /**
+        3 @conditions  
+        - refresh token - issue new token
+        - logout - null
+        - not expires - current token
+    */
     async refreshToken(token: string) {
         const accessToken = token.split(' ')[1]
 

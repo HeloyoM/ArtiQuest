@@ -13,6 +13,7 @@ export class ArtiQuestController {
         @Inject(CACHE_MANAGER) private cacheManager: Cache
     ) { }
 
+    //arts
     @Get()
     async getAllArticles() {
         return await this.artService.getAllArticles()
@@ -24,6 +25,49 @@ export class ArtiQuestController {
         return this.artService.getUserCategoryInterest(req.user.userId)
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Post()
+    async createArt(@Body() art: Article) {
+        await this.artService.createArt(art)
+    }
+
+    @Put(':id')
+    async put(
+        @Param('id') id: string,
+        @Body() art: Article
+    ) {
+        return await this.artService.updateArt(id, art)
+    }
+
+    @Patch(':id')
+    async editArticle(@Param('id') id: string, @Body() payload: EditPayloadDto) {
+        return await this.artService.editArticle(id, payload)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Patch('rate/:id')
+    async rateArticle(
+        @Param('id') id: string,
+        @Body() payload,
+        @Request() req) {
+        return await this.artService.rate(id, payload.rate, req.user)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Patch('view/:id')
+    async increasArticleViewers(
+        @Param('id') id: string,
+        @Request() req
+    ) {
+        return await this.artService.incArtViewers(id, req.user)
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id: string): Promise<string> {
+        return await this.artService.remove(id)
+    }
+
+    //category
     @Get('/findBy/:cat')
     async getArticlesByCategoryId(@Param('cat') id: string) {
         const key = `category_${id}`
@@ -64,45 +108,9 @@ export class ArtiQuestController {
         return this.artService.getCategoryById(id)
     }
 
-    @Post()
-    async post(@Body() art: Article) {
-        await this.artService.createArt(art)
-    }
-
-    @Put(':id')
-    async put(
-        @Param('id') id: string,
-        @Body() art: Article
-    ) {
-        return await this.artService.updateArt(id, art)
-    }
-
-    @Patch(':id')
-    async editArticle(@Param('id') id: string, @Body() payload: EditPayloadDto) {
-        return await this.artService.editArticle(id, payload)
-    }
-
     @UseGuards(JwtAuthGuard)
-    @Patch('rate/:id')
-    async rateArticle(
-        @Param('id') id: string,
-        @Body() payload,
-        @Request() req) {
-        return await this.artService.rate(id, payload.rate, req.user)
-    }
-
-    @UseGuards(JwtAuthGuard)
-    @Patch('view/:id')
-    async increasArticleViewers(
-        @Param('id') id: string,
-        @Request() req
-    ) {
-        return await this.artService.incArtViewers(id, req.user)
-    }
-
-
-    @Delete(':id')
-    async delete(@Param('id') id: string): Promise<string> {
-        return await this.artService.remove(id)
+    @Post('/cat')
+    async createCategory(@Body() cat: any) {
+        return await this.artService.createCategory(cat)
     }
 }

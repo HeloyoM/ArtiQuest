@@ -16,6 +16,7 @@ class ArtDatabaseAccess implements IArtiQuest {
     private readonly logger = new Logger(ArtDatabaseAccess.name)
     path = join(__dirname, '../../../data/articles.data.json')
     ratePath = join(__dirname, '../../../data/rates.data.json')
+    categoriesPath = join(__dirname, '../../../data/categories.data.json')
     arts: Article[] = []
     categories: Category[] = []
     rates: IRate[] = []
@@ -49,9 +50,7 @@ class ArtDatabaseAccess implements IArtiQuest {
     }
 
     initCategories() {
-        const path = join(__dirname, '../../../data/categories.data.json')
-
-        const file = fs.readFileSync(path, 'utf-8')
+        const file = fs.readFileSync(this.categoriesPath, 'utf-8')
         const catsList = JSON.parse(file)
 
         for (const a of catsList) {
@@ -95,6 +94,24 @@ class ArtDatabaseAccess implements IArtiQuest {
 
     getCategoryById(id: string): Category {
         return this.categories.find(c => c.id.toString() === id.toString())
+    }
+
+    createCategory(cat: any): Promise<any> {
+        cat.id = randomUUID()
+
+        this.categories.push(cat)
+
+        fs.writeFile(this.categoriesPath, JSON.stringify(this.categories), 'utf-8', (err) => {
+            if (err) {
+                this.logger.error(
+                    `Something went wrong whild inserting new article: ${err}`,
+                )
+            }
+
+            else this.logger.log('article inserted successfully')
+        })
+
+        return cat
     }
 
     async create(art: Article): Promise<any> {

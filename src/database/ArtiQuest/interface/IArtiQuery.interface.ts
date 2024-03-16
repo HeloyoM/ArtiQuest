@@ -10,6 +10,7 @@ export interface IArtiQuest {
     getAllCategories(): Category[]
     getCategoryById(id: string): Category
 
+    createCategory(cat: any): Promise<any>
 
     create(art: Article): Promise<Article>
 

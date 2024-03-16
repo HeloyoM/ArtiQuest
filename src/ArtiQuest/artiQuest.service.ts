@@ -158,6 +158,10 @@ export class ArtiQuestService {
         return this.artDatabaseAccess.getCategoryById(id)
     }
 
+    async createCategory(cat){
+        return this.artDatabaseAccess.createCategory(cat)
+    }
+
     async createArt(art: Article): Promise<void> {
         await this.artDatabaseAccess.create(art)
     }
