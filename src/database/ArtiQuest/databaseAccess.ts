@@ -117,13 +117,9 @@ class ArtDatabaseAccess implements IArtiQuest {
     async create(art: Article): Promise<any> {
         art.id = randomUUID()
         art.created = new Date().toLocaleDateString()
+        art.active = true
 
         this.arts.push(art)
-
-
-
-
-
 
         //query will replace it
         // fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
@@ -206,6 +202,26 @@ class ArtDatabaseAccess implements IArtiQuest {
         })
 
         return updatedItem
+    }
+
+    async disabledArticle(id: string): Promise<void> {
+        const artToDisabled = this.arts.find((a: Article) => a.id.toString() === id.toString())
+
+        if (!artToDisabled)
+            throw Error(`Couldn't find article with given id ${id}`)
+
+        this.arts = this.arts.map((a: Article) => {
+            if (a.id.toString() === id.toString()) return { ...a, active: false }
+
+            else return a
+        })
+
+        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
+            if (err)
+                this.logger.error(`cannot disabled article with given id [${id}]`)
+
+            else this.logger.log('article rated successfully')
+        })
     }
 
     async rate(id: string, rate: number, user: any): Promise<void> {

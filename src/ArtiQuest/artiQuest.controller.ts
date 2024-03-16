@@ -45,6 +45,12 @@ export class ArtiQuestController {
     }
 
     @UseGuards(JwtAuthGuard)
+    @Patch('disabled/:id')
+    async disabledArticle(@Param('id') id: string){
+        return this.artService.disabledArticle(id)
+    }
+
+    @UseGuards(JwtAuthGuard)
     @Patch('rate/:id')
     async rateArticle(
         @Param('id') id: string,

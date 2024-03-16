@@ -158,7 +158,7 @@ export class ArtiQuestService {
         return this.artDatabaseAccess.getCategoryById(id)
     }
 
-    async createCategory(cat){
+    async createCategory(cat) {
         return this.artDatabaseAccess.createCategory(cat)
     }
 
@@ -168,6 +168,10 @@ export class ArtiQuestService {
 
     async editArticle(id: string, payload: EditPayloadDto) {
         return await this.artDatabaseAccess.editArticle(id, payload)
+    }
+
+    async disabledArticle(id: string) {
+        return await this.artDatabaseAccess.disabledArticle(id)
     }
 
     async rate(id: string, rate: number, user: any) {
