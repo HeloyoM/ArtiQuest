@@ -3,7 +3,8 @@ import { ArtiQuestModule } from './artiQuest/artiQuest.module'
 import { ProductModule } from './product/product.module'
 import { AuthModule } from './Auth/auth.module'
 import { AboutModule } from './about/about.module'
-import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager'
+import { CacheModule } from '@nestjs/cache-manager'
+import { PostModule } from './posts/post.module'
 
 @Module({
   imports: [
@@ -14,6 +15,8 @@ import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager'
     AuthModule,
 
     AboutModule,
+
+    PostModule,
 
     CacheModule.register({
       isGlobal: true
