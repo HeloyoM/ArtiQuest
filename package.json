@@ -26,6 +26,7 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/swagger": "^7.3.0",
     "@pdftron/pdfnet-node": "^10.7.0",
     "bcryptjs": "^2.4.3",
     "cache-manager": "^5.4.0",

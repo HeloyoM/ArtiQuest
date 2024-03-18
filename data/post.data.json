@@ -150,5 +150,13 @@
         "createdAt": "4/16/2023",
         "sender": "id",
         "category": "208bb572-447b-4fe5-ac52-b670d77ed116"
+    },
+    {
+        "id": "f32c32c6-9b7f-4f73-94e7-37ec1a2a53ab",
+        "createdAt": "18.3.2024",
+        "art_id": "4a6a2cf3-219f-4771-9ab4-16a7da705ead",
+        "body": "Great Article!",
+        "sender": "008bbb1f-5996-487c-bf16-b72bf7a34344",
+        "category": "9f7f9a8c-38dd-48b1-912d-8ac609ecf91e"
     }
 ]
