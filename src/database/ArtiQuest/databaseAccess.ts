@@ -10,7 +10,6 @@ import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
 import { IRate } from "./interface/IRate.interface"
 
 
-
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
     private readonly logger = new Logger(ArtDatabaseAccess.name)
@@ -20,6 +19,7 @@ class ArtDatabaseAccess implements IArtiQuest {
     arts: Article[] = []
     categories: Category[] = []
     rates: IRate[] = []
+
 
     constructor(private readonly userDatabaseAccess: UserDatabaseAccess) {
         this.initArts()
@@ -118,21 +118,25 @@ class ArtDatabaseAccess implements IArtiQuest {
         art.id = randomUUID()
         art.created = new Date().toLocaleDateString()
         art.active = true
+        art.viewers = []
+        art.rank = { total: 0, voters: [] }
 
         this.arts.push(art)
 
+        console.log({ art })
+
         //query will replace it
-        // fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
-        //     if (err) {
-        //         this.logger.error(
-        //             `Something went wrong whild inserting new article: ${err}`,
-        //         )
-        //     }
+        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
+            if (err) {
+                this.logger.error(
+                    `Something went wrong whild inserting new article: ${err}`,
+                )
+            }
 
-        //     else this.logger.log('article inserted successfully')
-        // })
+            else this.logger.log('article inserted successfully')
+        })
 
-        // return art
+        return art
 
     }
 

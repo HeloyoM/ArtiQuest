@@ -9,13 +9,11 @@ import { User } from 'src/interface/user.interface'
 
 @Injectable()
 export class ArtiQuestService {
-
     constructor(
         private readonly artDatabaseAccess: ArtDatabaseAccess,
         private readonly userDatabaseAccess: UserDatabaseAccess
-
     ) { }
-
+    
     async getAllArticles(): Promise<Article[]> {
         const articles = await this.artDatabaseAccess.getAllArticles()
 
@@ -30,7 +28,7 @@ export class ArtiQuestService {
 
     assignCategories(articles: Article[]): Article<Category>[] {
         const categories = this.artDatabaseAccess.getAllCategories()
-
+        
         let categoriesMap = new Map(categories.map(category => [category.id, category]))
 
         const articlesArr: Article<Category>[] = []

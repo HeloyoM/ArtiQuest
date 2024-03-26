@@ -1,13 +1,21 @@
-import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGuards, Inject } from '@nestjs/common'
+import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGuards, Inject, UseInterceptors, UploadedFile } from '@nestjs/common'
 import { ArtiQuestService } from './artiQuest.service'
 import { Article } from 'src/interface/Article.interface'
 import { EditPayloadDto } from './dto/editPayload.dto'
 import { JwtAuthGuard } from 'src/Auth/jwt/jwt-auth.guard'
 import { Cache } from 'cache-manager'
 import { CACHE_MANAGER } from '@nestjs/cache-manager'
+import { FileInterceptor } from '@nestjs/platform-express'
+import { PDFExtract, PDFExtractPage, PDFExtractText } from 'pdf.js-extract'
+
+/*
+Multer may not compatible with
+third party cloud providers
+like Google Firebase */
 
 @Controller('art')
 export class ArtiQuestController {
+    pdfExtract = new PDFExtract()
     constructor(
         private artService: ArtiQuestService,
         @Inject(CACHE_MANAGER) private cacheManager: Cache
@@ -27,8 +35,23 @@ export class ArtiQuestController {
 
     @UseGuards(JwtAuthGuard)
     @Post()
-    async createArt(@Body() art: Article) {
-        await this.artService.createArt(art)
+    @UseInterceptors(FileInterceptor('file'))
+    async createArt(
+        @Request() req,
+        @Body() art: Article,
+        @UploadedFile() file: Express.Multer.File
+    ) {
+        const data = this.pdfExtract.extractBuffer(file.buffer)
+
+        const content = (await data).pages.reduce((acc, page) => {
+            const contentStrings = page.content.map(item => item.str.trim()).filter(str => str !== '');
+            return acc.concat(contentStrings);
+        }, []).join(' ')
+
+        art.body = content
+        art.author = req.user.userId
+
+        return await this.artService.createArt(art)
     }
 
     @Put(':id')
@@ -46,7 +69,7 @@ export class ArtiQuestController {
 
     @UseGuards(JwtAuthGuard)
     @Patch('disabled/:id')
-    async disabledArticle(@Param('id') id: string){
+    async disabledArticle(@Param('id') id: string) {
         return this.artService.disabledArticle(id)
     }
 
@@ -76,17 +99,17 @@ export class ArtiQuestController {
     //category
     @Get('/findBy/:cat')
     async getArticlesByCategoryId(@Param('cat') id: string) {
-        const key = `category_${id}`
+        // const key = `category_${id}`
 
-        let categoryContent = await this.cacheManager.get(key)
+        // let categoryContent = await this.cacheManager.get(key)
 
-        if (categoryContent == null) {
-            categoryContent = await this.artService.getArticlesByCategoryId(id)
+        // if (categoryContent == null) {
+            return await this.artService.getArticlesByCategoryId(id)
 
-            await this.cacheManager.set(key, categoryContent, 24 * 3600 /* hour */)
-        }
+        //     await this.cacheManager.set(key, categoryContent, 24 * 3600 /* hour */)
+        // }
 
-        return categoryContent
+        // return categoryContent
     }
 
     @Get('/findOne/:id')
