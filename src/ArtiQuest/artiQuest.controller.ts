@@ -99,17 +99,17 @@ export class ArtiQuestController {
     //category
     @Get('/findBy/:cat')
     async getArticlesByCategoryId(@Param('cat') id: string) {
-        // const key = `category_${id}`
+        const key = `category_${id}`
 
-        // let categoryContent = await this.cacheManager.get(key)
+        let categoryContent = await this.cacheManager.get(key)
 
-        // if (categoryContent == null) {
-            return await this.artService.getArticlesByCategoryId(id)
+        if (categoryContent == null) {
+            categoryContent = await this.artService.getArticlesByCategoryId(id)
 
-        //     await this.cacheManager.set(key, categoryContent, 24 * 3600 /* hour */)
-        // }
+            await this.cacheManager.set(key, categoryContent, 24 * 3600 /* hour */)
+        }
 
-        // return categoryContent
+        return categoryContent
     }
 
     @Get('/findOne/:id')
