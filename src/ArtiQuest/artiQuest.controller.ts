@@ -74,14 +74,7 @@ export class ArtiQuestController {
     @UseGuards(JwtAuthGuard)
     @Patch('active/:id')
     async activeArticle(@Request() req, @Param('id') id: string) {
-        
-        return await this.artService.activeArt(id)
-    }
-
-    @UseGuards(JwtAuthGuard)
-    @Patch('disabled/:id')
-    async disabledArticle(@Param('id') id: string) {
-        return this.artService.disabledArticle(id)
+        return await this.artService.toggleArticleActivity(id)
     }
 
     @UseGuards(JwtAuthGuard)

@@ -168,12 +168,8 @@ export class ArtiQuestService {
         return await this.artDatabaseAccess.editArticle(id, payload)
     }
 
-    async activeArt(id: string) {
-        return await this.artDatabaseAccess.activeArt(id)
-    }
-
-    async disabledArticle(id: string) {
-        return await this.artDatabaseAccess.disabledArticle(id)
+    async toggleArticleActivity(id: string) {
+        return await this.artDatabaseAccess.toggleArticleActivity(id)
     }
 
     async rate(id: string, rate: number, user: any) {

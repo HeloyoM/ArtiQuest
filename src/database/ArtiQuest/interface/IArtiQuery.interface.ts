@@ -19,8 +19,7 @@ export interface IArtiQuest {
     update(id: string, art: Article): Promise<Article>
 
     editArticle(id: string, payload: EditPayloadDto): Promise<Article>
-    activeArt(id: string): Promise<string> 
-    disabledArticle(id: string): Promise<void>
+    toggleArticleActivity(id: string): Promise<string> 
     rate(id: string, rate: number, user: any): void
     incViewers(id: string, user: any): void
     

@@ -213,10 +213,10 @@ class ArtDatabaseAccess implements IArtiQuest {
         }
     }
 
-    async activeArt(id: string) {
+    async toggleArticleActivity(id: string) {
         try {
             const newArtsArray = this.arts.map((a: Article) => {
-                if (a.id.toString() === id.toString()) return { ...a, active: true }
+                if (a.id.toString() === id.toString()) return { ...a, active: !a.active }
 
                 else return a
             })
@@ -236,26 +236,6 @@ class ArtDatabaseAccess implements IArtiQuest {
         } catch (error) {
 
         }
-    }
-
-    async disabledArticle(id: string): Promise<void> {
-        const artToDisabled = this.arts.find((a: Article) => a.id.toString() === id.toString())
-
-        if (!artToDisabled)
-            throw Error(`Couldn't find article with given id ${id}`)
-
-        this.arts = this.arts.map((a: Article) => {
-            if (a.id.toString() === id.toString()) return { ...a, active: false }
-
-            else return a
-        })
-
-        fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
-            if (err)
-                this.logger.error(`cannot disabled article with given id [${id}]`)
-
-            else this.logger.log('article rated successfully')
-        })
     }
 
     async rate(id: string, rate: number, user: any): Promise<void> {
