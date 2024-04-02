@@ -38,21 +38,24 @@ export class ArtiQuestController {
     @UseInterceptors(FileInterceptor('file'))
     async createArt(
         @Request() req,
-        @Body() art: Article,
-        @UploadedFile() file: Express.Multer.File
+        @Body() art: { art: string },
+        @UploadedFile() file: Express.Multer.File,
     ) {
-        console.log({ file })
         const data = this.pdfExtract.extractBuffer(file.buffer)
-
+        const contents = (await data).pages.map(p => p.content)
+        contents.map(c => console.log({ c }))
         const content = (await data).pages.reduce((acc, page) => {
             const contentStrings = page.content.map(item => item.str.trim()).filter(str => str !== '');
-            return acc.concat(contentStrings);
+
+            return acc.concat(contentStrings)
         }, []).join(' ')
 
-        art.body = content
-        art.author = req.user.userId
+        const parsedArticle = JSON.parse(art.art)
 
-        return await this.artService.createArt(art)
+        parsedArticle.body = content
+        parsedArticle.author = req.user.userId
+
+        return await this.artService.createArt(parsedArticle)
     }
 
     @Put(':id')
@@ -66,6 +69,13 @@ export class ArtiQuestController {
     @Patch(':id')
     async editArticle(@Param('id') id: string, @Body() payload: EditPayloadDto) {
         return await this.artService.editArticle(id, payload)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Patch('active/:id')
+    async activeArticle(@Request() req, @Param('id') id: string) {
+        
+        return await this.artService.activeArt(id)
     }
 
     @UseGuards(JwtAuthGuard)

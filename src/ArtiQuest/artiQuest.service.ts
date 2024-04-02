@@ -13,7 +13,7 @@ export class ArtiQuestService {
         private readonly artDatabaseAccess: ArtDatabaseAccess,
         private readonly userDatabaseAccess: UserDatabaseAccess
     ) { }
-    
+
     async getAllArticles(): Promise<Article[]> {
         const articles = await this.artDatabaseAccess.getAllArticles()
 
@@ -28,7 +28,7 @@ export class ArtiQuestService {
 
     assignCategories(articles: Article[]): Article<Category>[] {
         const categories = this.artDatabaseAccess.getAllCategories()
-        
+
         let categoriesMap = new Map(categories.map(category => [category.id, category]))
 
         const articlesArr: Article<Category>[] = []
@@ -166,6 +166,10 @@ export class ArtiQuestService {
 
     async editArticle(id: string, payload: EditPayloadDto) {
         return await this.artDatabaseAccess.editArticle(id, payload)
+    }
+
+    async activeArt(id: string) {
+        return await this.artDatabaseAccess.activeArt(id)
     }
 
     async disabledArticle(id: string) {
