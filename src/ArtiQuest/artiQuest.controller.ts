@@ -41,6 +41,7 @@ export class ArtiQuestController {
         @Body() art: Article,
         @UploadedFile() file: Express.Multer.File
     ) {
+        console.log({ file })
         const data = this.pdfExtract.extractBuffer(file.buffer)
 
         const content = (await data).pages.reduce((acc, page) => {
