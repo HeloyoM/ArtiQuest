@@ -1,4 +1,4 @@
-import { UpdateUserDto } from "../Auth/dto/UpdateUser.dto"
+import { UpdateUserDto } from "../auth/dto/UpdateUser.dto"
 import { User } from "../interface/user.interface"
 import { comparingPasswords, hashingPassword } from "./hashingPassword"
 
@@ -7,7 +7,7 @@ export async function updateUserFields(user: User, updatedFields: UpdateUserDto)
     for (let key in updatedFields) {
         if (updatedFields[key] !== "") {
             if (key === 'password') {
-                
+
                 if (await comparingPasswords(updatedFields.password, user[key])) {
                     return false
                 }

@@ -1,4 +1,4 @@
-import { UpdateUserDto } from "../../../Auth/dto/UpdateUser.dto"
+import { UpdateUserDto } from "../../../auth/dto/UpdateUser.dto"
 import { User } from "../../../interface/user.interface"
 
 export interface IUserQuery {

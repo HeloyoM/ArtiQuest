@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { ArtiQuestModule } from './artiQuest/artiQuest.module'
-import { AuthModule } from './Auth/auth.module'
+import { AuthModule } from './auth/auth.module'
 import { AboutModule } from './about/about.module'
 import { CacheModule } from '@nestjs/cache-manager'
 import { PostModule } from './posts/post.module'

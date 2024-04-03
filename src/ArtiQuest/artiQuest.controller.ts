@@ -2,7 +2,7 @@ import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGua
 import { ArtiQuestService } from './artiQuest.service'
 import { Article } from '../interface/Article.interface'
 import { EditPayloadDto } from './dto/editPayload.dto'
-import { JwtAuthGuard } from '../Auth/jwt/jwt-auth.guard'
+import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard'
 import { Cache } from 'cache-manager'
 import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { FileInterceptor } from '@nestjs/platform-express'

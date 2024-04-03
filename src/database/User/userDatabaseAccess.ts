@@ -4,7 +4,7 @@ import { Injectable } from "@nestjs/common"
 import { IUserQuery } from "./interface/UserQuery.interface"
 import { User } from "../../interface/user.interface"
 import { randomUUID } from "crypto"
-import { UpdateUserDto } from "../../Auth/dto/UpdateUser.dto"
+import { UpdateUserDto } from "../../auth/dto/UpdateUser.dto"
 import { updateUserFields } from '../../utils/updateUserUtil'
 import { hashingPassword } from "../../utils/hashingPassword"
 
