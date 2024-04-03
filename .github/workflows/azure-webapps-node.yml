@@ -35,6 +35,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+      
+    - name: Install Azure CLI 
+      uses: elstudio/action-install-azure-cli@v1
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
