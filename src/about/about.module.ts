@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { AboutController } from './about.controller'
 import { AboutService } from './about.service'
-import AboutDatabaseAccess from 'src/database/About/databaseAccess'
+import AboutDatabaseAccess from '../database/About/databaseAccess'
 
 @Module({
     imports: [],

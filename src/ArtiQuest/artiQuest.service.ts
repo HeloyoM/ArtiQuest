@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import ArtDatabaseAccess from '../database/ArtiQuest/databaseAccess'
-import { Article } from 'src/interface/Article.interface'
-import { Category } from 'src/interface/category.interface'
-import UserDatabaseAccess from 'src/database/User/userDatabaseAccess'
+import { Article } from '../interface/Article.interface'
+import { Category } from '../interface/category.interface'
+import UserDatabaseAccess from '../database/User/userDatabaseAccess'
 import { EditPayloadDto } from './dto/editPayload.dto'
-import { IRate } from 'src/database/ArtiQuest/interface/IRate.interface'
-import { User } from 'src/interface/user.interface'
+import { IRate } from '../database/ArtiQuest/interface/IRate.interface'
+import { User } from '../interface/user.interface'
 
 @Injectable()
 export class ArtiQuestService {

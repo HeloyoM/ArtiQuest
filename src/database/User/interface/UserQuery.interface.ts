@@ -1,5 +1,5 @@
-import { UpdateUserDto } from "src/Auth/dto/UpdateUser.dto"
-import { User } from "src/interface/user.interface"
+import { UpdateUserDto } from "../../../Auth/dto/UpdateUser.dto"
+import { User } from "../../../interface/user.interface"
 
 export interface IUserQuery {
     findAll(): Promise<User[]>

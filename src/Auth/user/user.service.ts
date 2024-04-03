@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import UserDatabaseAccess from 'src/database/User/userDatabaseAccess'
-import { User } from 'src/interface/user.interface'
+import UserDatabaseAccess from '../../database/User/userDatabaseAccess'
+import { User } from '../../interface/user.interface'
 import { UpdateUserDto } from '../dto/UpdateUser.dto'
 
 @Injectable()

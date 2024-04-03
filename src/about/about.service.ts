@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import AboutDatabaseAccess from 'src/database/About/databaseAccess';
+import AboutDatabaseAccess from '../database/About/databaseAccess';
 
 @Injectable()
 export class AboutService {

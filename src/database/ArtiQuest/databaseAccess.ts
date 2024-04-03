@@ -1,12 +1,12 @@
 import { join } from "path"
-import { Article } from "src/interface/Article.interface"
+import { Article } from "../../interface/Article.interface"
 import * as fs from 'fs'
 import { Injectable, Logger } from "@nestjs/common"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import { randomUUID } from "crypto"
 import UserDatabaseAccess from "../User/userDatabaseAccess"
-import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
+import { EditPayloadDto } from "../../artiQuest/dto/editPayload.dto"
 import { IRate } from "./interface/IRate.interface"
 
 

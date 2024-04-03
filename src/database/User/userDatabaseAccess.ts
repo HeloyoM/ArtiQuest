@@ -2,11 +2,11 @@ import { join } from "path"
 import * as fs from 'fs'
 import { Injectable } from "@nestjs/common"
 import { IUserQuery } from "./interface/UserQuery.interface"
-import { User } from "src/interface/user.interface"
+import { User } from "../../interface/user.interface"
 import { randomUUID } from "crypto"
-import { UpdateUserDto } from "src/Auth/dto/UpdateUser.dto"
+import { UpdateUserDto } from "../../Auth/dto/UpdateUser.dto"
 import { updateUserFields } from '../../utils/updateUserUtil'
-import { hashingPassword } from "src/utils/hashingPassword"
+import { hashingPassword } from "../../utils/hashingPassword"
 
 @Injectable()
 class UserDatabaseAccess implements IUserQuery {

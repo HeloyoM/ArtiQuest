@@ -6,8 +6,8 @@ import { UserService } from './user/user.service'
 import { AceessTokenPayload } from './models/token.model'
 
 import { LoginResultDto } from './dto/loginResult.dto'
-import AuthDatabaseAccess from 'src/database/Auth/databaseAccess'
-import { IUserSession } from 'src/database/Auth/interface/IUserSession.interface'
+import AuthDatabaseAccess from '../database/Auth/databaseAccess'
+import { IUserSession } from '../database/Auth/interface/IUserSession.interface'
 import { LoginDto } from './dto/login.dto'
 
 @Injectable()

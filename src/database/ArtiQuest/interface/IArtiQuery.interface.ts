@@ -1,6 +1,6 @@
-import { EditPayloadDto } from "src/artiQuest/dto/editPayload.dto"
-import { Article } from "src/interface/Article.interface"
-import { Category } from "src/interface/category.interface"
+import { EditPayloadDto } from "../../../artiQuest/dto/editPayload.dto"
+import { Article } from "../../../interface/Article.interface"
+import { Category } from "../../../interface/category.interface"
 
 export interface IArtiQuest {
     getAllArticles(): Promise<Article[]>
@@ -19,8 +19,8 @@ export interface IArtiQuest {
     update(id: string, art: Article): Promise<Article>
 
     editArticle(id: string, payload: EditPayloadDto): Promise<Article>
-    toggleArticleActivity(id: string): Promise<string> 
+    toggleArticleActivity(id: string): Promise<string>
     rate(id: string, rate: number, user: any): void
     incViewers(id: string, user: any): void
-    
+
 }

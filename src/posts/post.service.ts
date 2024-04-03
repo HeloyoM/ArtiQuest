@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
-import PostDatabaseAccess from 'src/database/Post/databaseAccess'
+import PostDatabaseAccess from '../database/Post/databaseAccess'
 import { CreatePostDto } from './dto/CreatePost.dto'
-import { ArtiQuestService } from 'src/artiQuest/artiQuest.service'
-import bindPostsAndArticles from 'src/utils/bindPostsAndArticles'
+import { ArtiQuestService } from '../artiQuest/artiQuest.service'
+import bindPostsAndArticles from '../utils/bindPostsAndArticles'
 
 @Injectable()
 export class PostService {

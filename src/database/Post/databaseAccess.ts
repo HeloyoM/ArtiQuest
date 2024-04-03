@@ -2,8 +2,8 @@ import { join } from "path"
 import * as fs from 'fs'
 import { Injectable, Logger } from "@nestjs/common"
 import { IPostQuery } from "./interface/IPostQuery.interface"
-import { IPost } from "src/interface/Post.interface"
-import { CreatePostDto } from "src/posts/dto/CreatePost.dto"
+import { IPost } from "../../interface/Post.interface"
+import { CreatePostDto } from "../../posts/dto/CreatePost.dto"
 import { randomUUID } from "crypto"
 
 

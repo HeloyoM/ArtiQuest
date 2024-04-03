@@ -1,5 +1,5 @@
-import { Article } from "src/interface/Article.interface"
-import { IPost } from "src/interface/Post.interface"
+import { Article } from "../interface/Article.interface"
+import { IPost } from "../interface/Post.interface"
 
 export default function bindPostsAndArticles(articles: Article[], posts: IPost[]) {
     const articlesWithPosts = []
