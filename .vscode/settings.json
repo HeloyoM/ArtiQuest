@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/aa4b13b0-325d-4ef6-9f0d-210644ce32ff/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/artiquetwebapp",
+    "appService.deploySubpath": "."
+}
