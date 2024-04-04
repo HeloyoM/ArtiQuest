@@ -35,8 +35,8 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: 'read' 
-      id-token: 'write'
+      id-token: write
+      contents: read
 
     steps:
     - uses: actions/checkout@v3
@@ -44,13 +44,21 @@ jobs:
     - name: Install Azure CLI 
       uses: elstudio/action-install-azure-cli@v1
 
-    - name: Login to Azure
-      uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+
+    - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az account show
+            
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
