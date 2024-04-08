@@ -7,6 +7,7 @@ import { Cache } from 'cache-manager'
 import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { PDFExtract, PDFExtractPage, PDFExtractText } from 'pdf.js-extract'
+import { randomUUID } from 'crypto'
 
 /*
 Multer may not compatible with
@@ -25,6 +26,33 @@ export class ArtiQuestController {
     @Get()
     async getAllArticles() {
         return await this.artService.getAllArticles()
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('init-art')
+    @UseInterceptors(FileInterceptor('file'))
+    async initalArticleBeforeUpload(
+        @Body() art: { art: string },
+        @UploadedFile() file: Express.Multer.File,
+    ) {
+        const data = this.pdfExtract.extractBuffer(file.buffer)
+
+        const content = (await data).pages.reduce((acc, page) => {
+            const contentStrings = page.content.map(item => item.str.trim()).filter(str => str !== '');
+
+            return acc.concat(contentStrings)
+        }, []).join(' ')
+
+        const parsedArticle = JSON.parse(art.art)
+
+        parsedArticle.id = randomUUID()
+        parsedArticle.created = new Date().toLocaleDateString()
+        parsedArticle.active = false
+        parsedArticle.viewers = []
+        parsedArticle.rank = { total: 0, voters: [] }
+        parsedArticle.body = content
+        
+        return parsedArticle
     }
 
     @UseGuards(JwtAuthGuard)
