@@ -32,6 +32,7 @@ export class ArtiQuestController {
     @Post('init-art')
     @UseInterceptors(FileInterceptor('file'))
     async initalArticleBeforeUpload(
+        @Request() req,
         @Body() art: { art: string },
         @UploadedFile() file: Express.Multer.File,
     ) {
@@ -45,14 +46,18 @@ export class ArtiQuestController {
 
         const parsedArticle = JSON.parse(art.art)
 
-        parsedArticle.id = randomUUID()
-        parsedArticle.created = new Date().toLocaleDateString()
-        parsedArticle.active = false
-        parsedArticle.viewers = []
-        parsedArticle.rank = { total: 0, voters: [] }
-        parsedArticle.body = content
-        
-        return parsedArticle
+        const [assignedCategory] = this.artService.assignCategories([parsedArticle])
+        assignedCategory.author = req.user.userId
+        const [artToReturn] = await this.artService.assignAuthors([assignedCategory])
+
+        artToReturn.id = randomUUID()
+        artToReturn.created = new Date().toLocaleDateString()
+        artToReturn.active = false
+        artToReturn.viewers = []
+        artToReturn.rank = { total: 0, voters: [] }
+        artToReturn.body = content
+
+        return artToReturn
     }
 
     @UseGuards(JwtAuthGuard)
@@ -63,27 +68,27 @@ export class ArtiQuestController {
 
     @UseGuards(JwtAuthGuard)
     @Post()
-    @UseInterceptors(FileInterceptor('file'))
+    // @UseInterceptors(FileInterceptor('file'))
     async createArt(
         @Request() req,
-        @Body() art: { art: string },
-        @UploadedFile() file: Express.Multer.File,
+        @Body() art: Article,
+        // @UploadedFile() file: Express.Multer.File,
     ) {
-        const data = this.pdfExtract.extractBuffer(file.buffer)
-        const contents = (await data).pages.map(p => p.content)
-        contents.map(c => console.log({ c }))
-        const content = (await data).pages.reduce((acc, page) => {
-            const contentStrings = page.content.map(item => item.str.trim()).filter(str => str !== '');
+        // const data = this.pdfExtract.extractBuffer(file.buffer)
+        // const contents = (await data).pages.map(p => p.content)
+        // const content = (await data).pages.reduce((acc, page) => {
+        //     const contentStrings = page.content.map(item => item.str.trim()).filter(str => str !== '');
 
-            return acc.concat(contentStrings)
-        }, []).join(' ')
+        //     return acc.concat(contentStrings)
+        // }, []).join(' ')
 
-        const parsedArticle = JSON.parse(art.art)
+        // const parsedArticle = JSON.parse(art.art)
 
-        parsedArticle.body = content
-        parsedArticle.author = req.user.userId
+        // parsedArticle.body = content
+        // parsedArticle.author = req.user.userId
+        console.log({art})
 
-        return await this.artService.createArt(parsedArticle)
+        return await this.artService.createArt(art)
     }
 
     @Put(':id')
