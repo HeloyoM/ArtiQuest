@@ -68,25 +68,9 @@ export class ArtiQuestController {
 
     @UseGuards(JwtAuthGuard)
     @Post()
-    // @UseInterceptors(FileInterceptor('file'))
-    async createArt(
-        @Request() req,
-        @Body() art: Article,
-        // @UploadedFile() file: Express.Multer.File,
-    ) {
-        // const data = this.pdfExtract.extractBuffer(file.buffer)
-        // const contents = (await data).pages.map(p => p.content)
-        // const content = (await data).pages.reduce((acc, page) => {
-        //     const contentStrings = page.content.map(item => item.str.trim()).filter(str => str !== '');
-
-        //     return acc.concat(contentStrings)
-        // }, []).join(' ')
-
-        // const parsedArticle = JSON.parse(art.art)
-
-        // parsedArticle.body = content
-        // parsedArticle.author = req.user.userId
-        console.log({art})
+    async createArt(@Body() art: Article) {
+        // const key = `ARTICLES_HAVE_BEEN_UPDATED`
+        // await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
 
         return await this.artService.createArt(art)
     }
@@ -106,7 +90,10 @@ export class ArtiQuestController {
 
     @UseGuards(JwtAuthGuard)
     @Patch('active/:id')
-    async activeArticle(@Request() req, @Param('id') id: string) {
+    async activeArticle(@Param('id') id: string) {
+        const key = `ARTICLES_HAVE_BEEN_UPDATED`
+        await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
+
         return await this.artService.toggleArticleActivity(id)
     }
 
@@ -140,7 +127,10 @@ export class ArtiQuestController {
 
         let categoryContent = await this.cacheManager.get(key)
 
-        if (categoryContent == null) {
+        const articlesUpdatedKey = `ARTICLES_HAVE_BEEN_UPDATED`
+        const isUpdated = await this.cacheManager.get(articlesUpdatedKey)
+        console.log({ isUpdated })
+        if (categoryContent == null || isUpdated) {
             categoryContent = await this.artService.getArticlesByCategoryId(id)
 
             await this.cacheManager.set(key, categoryContent, 24 * 3600 /* hour */)

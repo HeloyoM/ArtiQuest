@@ -123,8 +123,6 @@ class ArtDatabaseAccess implements IArtiQuest {
 
         this.arts.push(art)
 
-        console.log({ art })
-
         //query will replace it
         fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
             if (err) {
