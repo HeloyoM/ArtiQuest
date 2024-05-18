@@ -6,8 +6,11 @@ import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard'
 import { Cache } from 'cache-manager'
 import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { PDFExtract, PDFExtractPage, PDFExtractText } from 'pdf.js-extract'
+import { PDFExtract } from 'pdf.js-extract'
 import { randomUUID } from 'crypto'
+import { Roles } from 'src/auth/rbac/roles.decorator'
+import { AuthGuard } from 'src/auth/auth.guard'
+import { RolesGuard } from 'src/auth/rbac/roles.guard'
 
 /*
 Multer may not compatible with
@@ -69,8 +72,8 @@ export class ArtiQuestController {
     @UseGuards(JwtAuthGuard)
     @Post()
     async createArt(@Body() art: Article) {
-        // const key = `ARTICLES_HAVE_BEEN_UPDATED`
-        // await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
+        const key = `ARTICLES_HAVE_BEEN_UPDATED`
+        await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
 
         return await this.artService.createArt(art)
     }
@@ -88,8 +91,9 @@ export class ArtiQuestController {
         return await this.artService.editArticle(id, payload)
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(RolesGuard)
     @Patch('active/:id')
+    @Roles([100])
     async activeArticle(@Param('id') id: string) {
         const key = `ARTICLES_HAVE_BEEN_UPDATED`
         await this.cacheManager.set(key, true, 24 * 3600 /* hour */)

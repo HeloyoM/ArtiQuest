@@ -6,6 +6,7 @@
         "phone_number": "488-469-9127",
         "email": "azamboniari0@google.co.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$CsFCK/KXZN2wTwCtpTtkIuHBBZNpj4DmyPkaPUNgKvNm7fNHTViti"
     },
@@ -16,6 +17,7 @@
         "phone_number": "308-168-7791",
         "email": "ahammerich1@phoca.cz",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$4djNoega7olAZ1DlR7QOQeq7lWdwp/S1YXYYsb89KvWs.qHYULIkW"
     },
@@ -26,6 +28,7 @@
         "phone_number": "601-286-6555",
         "email": "mtackett2@usa.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$iuT6hbb6/sWuKJhvoIM.XeuAmxGgWcg8sDynf2lXGh33L34KtU5M2"
     },
@@ -36,6 +39,7 @@
         "phone_number": "810-928-6706",
         "email": "djura3@china.com.cn",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$U.J3MN8BPK7aiTrw1vlCA.K6Oh.DeZy.ju6idNeXe2itRy44Fghkq"
     },
@@ -46,6 +50,7 @@
         "phone_number": "361-248-6921",
         "email": "ehaseley4@mac.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$TX.W.w1OS8mWF1GCEwFg8OXhrurjSSUcyCxHnZntdTTr9ZUNrmPqy"
     },
@@ -56,6 +61,7 @@
         "phone_number": "912-169-5292",
         "email": "lblowfield5@shutterfly.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$WnXRuQ7Q5gn8R7pWBZw29O/GpTzKzVT1935IvmayZSHr5VJug1hRC"
     },
@@ -66,6 +72,7 @@
         "phone_number": "278-132-7438",
         "email": "mshutte6@cam.ac.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$snfS5vjljICOGwOvUGW8eu9hFTOrylN7B6d1XOD5E0KFoTJp9fU2S"
     },
@@ -76,6 +83,7 @@
         "phone_number": "805-947-2045",
         "email": "ujess7@edublogs.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$bd6AJ7NKATKtOenTUpv1IeCRsbqlySxQ0qGnRKMYIWLl0OJHH6PbC"
     },
@@ -86,6 +94,7 @@
         "phone_number": "635-504-6002",
         "email": "mhensmans8@umn.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$.I.F/0cPf9BnpNc83AZuCeDbIpeUvqGimv5EIyqIv1POB9lHiEDY6"
     },
@@ -96,6 +105,7 @@
         "phone_number": "415-647-9320",
         "email": "hliven9@google.nl",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$gntPsR/8KwaIKsvr1v9X8uuGc/QXJ2Bg7wvDZvFoXshTdf1upjNE6"
     },
@@ -106,6 +116,7 @@
         "phone_number": "300-880-6699",
         "email": "mdochona@google.ru",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$tHeRkUtKPoPAKAn67.rr4e.ZTGlZCYvY7HdtrDDPD5jtZ/fkvlrbe"
     },
@@ -116,6 +127,7 @@
         "phone_number": "233-282-7254",
         "email": "sphilpotsb@slideshare.net",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$J8vp9lCX0vSYM7CxiAVFmuodQ3gvt2giNSSxVMjeFo/ijuKonmCv6"
     },
@@ -126,6 +138,7 @@
         "phone_number": "994-932-6824",
         "email": "mweddupc@ezinearticles.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$0oULcjquB58KKufHEOp5geT5M8HfHfFzdYjeuqNilnb/./f3iuK8K"
     },
@@ -136,6 +149,7 @@
         "phone_number": "980-269-3800",
         "email": "mperreed@biblegateway.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$1MGXLoa6xIynF729PuHD2.qP6oBMPRHrvjbqpSkxwYbqnzBuI7VmC"
     },
@@ -146,6 +160,7 @@
         "phone_number": "522-317-0492",
         "email": "rissitte@nasa.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$G1./YT7MYIFBO3b8Qt61fOYIO7vIToHOMpC3.H.yB32qJ2qXHt0qO"
     },
@@ -156,6 +171,7 @@
         "phone_number": "271-484-4413",
         "email": "abeininckf@arstechnica.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$1w8tJsAOqz4wrVTS/LKbo.dmnEd6fAuLig/p42vI1mYwEjUf30/mC"
     },
@@ -166,6 +182,7 @@
         "phone_number": "182-522-6108",
         "email": "ppetog@guardian.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$lny5/sAc8wbRROiOKEqZz.XC8j7xIKOw3.34XNt.TNjhhnJt7Y6Um"
     },
@@ -176,6 +193,7 @@
         "phone_number": "892-535-6954",
         "email": "phuggenh@fema.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$ftaNbtqOwaigQxLTouXnH.e2uLdkfULQkuk8o8TqEXgKijyDLELki"
     },
@@ -186,6 +204,7 @@
         "phone_number": "919-533-5683",
         "email": "hmcanellyei@spiegel.de",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$1UZoQfJIdFzKxuLNcvRCd.qfkXJXvMpT.7UorxUIkiv7JQubuGVO2"
     },
@@ -196,6 +215,7 @@
         "phone_number": "375-451-6202",
         "email": "amawnej@craigslist.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$.E1ZoPHkKznPBnEYUS5jM.Ctn04Te7jqYGU5jsXp5MeWSi74LzSpi"
     },
@@ -206,6 +226,7 @@
         "phone_number": "257-217-4698",
         "email": "lfonek@whitehouse.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$vbSre2kLU1a.lxvPnU6/3emfrSIgGm4GU5uUnqQDLZ4YRNc5c0DTW"
     },
@@ -216,6 +237,7 @@
         "phone_number": "692-168-2381",
         "email": "brebanksl@rakuten.co.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$cyf2XUNSlVihGCytpywI6uwkze4.y15/CYa/nKxIt1ReBOwh7BOUi"
     },
@@ -226,6 +248,7 @@
         "phone_number": "712-579-4652",
         "email": "gtretterm@bloglovin.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$8cdEFiiCGxfwhoz4G2MFTuUKXtPKyXtnLb0vIUgAKf1tTHAPPevCe"
     },
@@ -236,6 +259,7 @@
         "phone_number": "453-358-5394",
         "email": "ssaltmarshen@merriam-webster.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$tsoXH8TSD9QriYq292B2Pe55fuPO7X/cAl8CPZX4ibx1FEecdKwqy"
     },
@@ -246,6 +270,7 @@
         "phone_number": "377-915-8654",
         "email": "hkemmetto@berkeley.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$XWOgyHayZyKhcXGY3KB7l.pX7oGZmYJcvW5xLTd1DahQQhG9cDFVG"
     },
@@ -256,6 +281,7 @@
         "phone_number": "327-321-2890",
         "email": "jnovellop@chicagotribune.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$7Hz2473RU4g9uabMswc5kuAk5bPx.lQsG.oG1ZnnDL7qveeDqD0KG"
     },
@@ -266,6 +292,7 @@
         "phone_number": "635-701-1426",
         "email": "jmccotterq@pen.io",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$p228MN3mUcgUxvMUhW..x.ijtm50mvVVKu5A8Cd8CzjTWBK6Ba0KW"
     },
@@ -276,6 +303,7 @@
         "phone_number": "201-854-7107",
         "email": "obowenr@indiegogo.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$qjlvHYzta.UF/m7x8x0y/Oy5UhzPq84ztfnsaIbk8JleihF5y3yY6"
     },
@@ -286,6 +314,7 @@
         "phone_number": "934-692-6099",
         "email": "dgoudas@bizjournals.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$f9y6srzAF2Tf/f3l9uDtTuJa95xkNeucurO23qPmJXWajNzOolxxa"
     },
@@ -296,6 +325,7 @@
         "phone_number": "988-532-3389",
         "email": "zphilpottt@icq.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$k8igAFOXqx1B.EnoCkRnHuP3dLVGramGKMz9frarmsuZvNntfkj6C"
     },
@@ -306,6 +336,7 @@
         "phone_number": "928-559-0563",
         "email": "mthorndycraftu@163.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$c4Mz2B0dCjoLT5MeBhzg3.GFq56TRdx7Ac0yAU6pxIEZzGgJ2nrbK"
     },
@@ -316,6 +347,7 @@
         "phone_number": "925-975-0553",
         "email": "edennehyv@seesaa.net",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$QRCuo6ms/4d50dllzhWie.XTUuJ9kH/ePU3C3hye9MZqc8rPQ7rS2"
     },
@@ -326,6 +358,7 @@
         "phone_number": "119-756-0645",
         "email": "dhanniganew@virginia.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$lMZGGELj/3HEho/YwTjnKOoQx77Ya9iBh5ejbGhYqmp/JbFRMx5YW"
     },
@@ -336,6 +369,7 @@
         "phone_number": "996-918-4601",
         "email": "bgeibelx@ca.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$3qsoivzH8yUD2r9gXPlOKO6HD2P5vhgxRbLRWylYH0RWA3n9QNzHO"
     },
@@ -346,6 +380,7 @@
         "phone_number": "161-489-1867",
         "email": "jnelesy@thetimes.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$5G9I.HlbSROScnX42SDz6uFvmdk.V3jgoIIDk2nDzLQXMFwTrAQma"
     },
@@ -356,6 +391,7 @@
         "phone_number": "612-603-1541",
         "email": "apreshousz@ucsd.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Hajt./1XC4VFt3GnlK/Hf.BXzGY0kAcfmdnl5.OavpfA8hdcgJ0/m"
     },
@@ -366,6 +402,7 @@
         "phone_number": "113-352-5208",
         "email": "sgyves10@last.fm",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$sNtdl3GMVW/w4R4O2xOs5eAI2K6SyigUnH0NincJZmmKGC10nZ1p6"
     },
@@ -376,6 +413,7 @@
         "phone_number": "371-907-5792",
         "email": "bwimes11@bbb.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$5d4BTA1xUEC1joBVoZGPZOeE8MiXUeIWqFOrY4/YIQSzy384wkZdi"
     },
@@ -386,6 +424,7 @@
         "phone_number": "984-619-3353",
         "email": "bcogley12@godaddy.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$mikrvCHojc9qizDxMwqPC.UFTSU9uIlSZFYDk7glMVQvN42bIsIXu"
     },
@@ -396,6 +435,7 @@
         "phone_number": "600-123-5657",
         "email": "ecumbridge13@nps.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$FvKCY4iK6A7Y2Gb11cdzuu9JSgph3hdAepl6JmGYtJEC4qvIZD.Ou"
     },
@@ -406,6 +446,7 @@
         "phone_number": "313-189-6695",
         "email": "tdavitt14@kickstarter.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$25XeVMLmu6xiEuTkZFOFiuaYHWKhYnns/rbVgDO2QpgmzGz0S3tgi"
     },
@@ -416,6 +457,7 @@
         "phone_number": "355-873-1189",
         "email": "dcleminshaw15@mediafire.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$sezPC6xC1S8w8jlwErfj1.vN3.GAH98DBKU.vETEH06nD.URXFu3G"
     },
@@ -426,6 +468,7 @@
         "phone_number": "352-944-8356",
         "email": "rspuner16@imgur.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$dri/igivXfDuVvw9SJlM..m4G.dBGwrqkBVx6SjAoX007tFbe9t6i"
     },
@@ -436,6 +479,7 @@
         "phone_number": "278-708-3454",
         "email": "gcapstake17@symantec.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$kwRQu19vkD5WlH9ndOI4u.bWzfKfMeExfktIr06BZdwYuNVw0nLey"
     },
@@ -446,6 +490,7 @@
         "phone_number": "586-541-3888",
         "email": "wjansson18@wikipedia.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$9pRz4Mp9HxUMggHDykR28epsRj1AdOXWcRJ8LYoSycA4TM2BRZsgK"
     },
@@ -456,6 +501,7 @@
         "phone_number": "124-314-8298",
         "email": "gvirgo19@1688.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$iufkIliR1Op6XX7z5GNXnOSPVaU29KZ3uncEnnFLQ4dG7Z5yfGwO6"
     },
@@ -466,6 +512,7 @@
         "phone_number": "832-821-1079",
         "email": "hmatis1a@webeden.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$494JUtWM0ei4Go671/oHJeY89bf99btEMBmZpraNVJ.jcP2n46L0m"
     },
@@ -476,6 +523,7 @@
         "phone_number": "196-316-3065",
         "email": "alugden1b@infoseek.co.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$/AMg0E5dCVfK.f8mOC2yseF.SKBreIlR335HY9BhEL2ZZIljq2p6G"
     },
@@ -486,6 +534,7 @@
         "phone_number": "106-900-9437",
         "email": "dfarnham1c@barnesandnoble.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$yIUvgbrH2n3zCxiKX7YPCe0ldY5LCjnmCWJC1Y7z0WpKOtyZ3ZLpu"
     },
@@ -496,6 +545,7 @@
         "phone_number": "572-864-0106",
         "email": "jmerit1d@tripod.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$jihO8XFSgfoSZyQzIueutuMh.HKhMk9NdR11Bg1swirLSVq12JbbS"
     },
@@ -506,6 +556,7 @@
         "phone_number": "625-766-3750",
         "email": "hsharkey1e@uol.com.br",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$e4Mtb.fmF4SHFzUFazBgn.rrhTikk2TcQVzA7URAZqWvqcJMnsKHq"
     },
@@ -516,6 +567,7 @@
         "phone_number": "421-480-5972",
         "email": "cpagen1f@dmoz.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$QC0KSHIqhSoZGGopGtpc6upYlsysqWRbRZqKx2E9iwhKeLiVpuHXu"
     },
@@ -526,6 +578,7 @@
         "phone_number": "924-992-1848",
         "email": "etriebner1g@bbc.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$xzwaRRvnAC6vntLUBKL5bupceZaaG8nn6tV3aMetQQst3Z1.sA9XG"
     },
@@ -536,6 +589,7 @@
         "phone_number": "305-474-0378",
         "email": "mphear1h@google.com.br",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$a3NwNVQzx9bHwZuAa98Ij.0aVc9ttOdUfxITVS/AfyWHd/3NnJIzO"
     },
@@ -546,6 +600,7 @@
         "phone_number": "525-545-4644",
         "email": "trousel1i@cornell.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$LY4Iqh/0Ck.PmRtYgp4LV.9Gyt2AIJckPCJJYyqTC/tdQ2e/xfaq."
     },
@@ -556,6 +611,7 @@
         "phone_number": "711-304-2486",
         "email": "hwoolham1j@sakura.ne.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$7SXmEPUnNzPIANTrJtA90ef6wInqqhNySsoBsNRv/IAIhMFWlk0H2"
     },
@@ -566,6 +622,7 @@
         "phone_number": "931-308-5599",
         "email": "gferrand1k@ocn.ne.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$x8nkmpCtAC.y6wQb0VnSp.Ca0vXiLBp.gLWIJ3g7vrmhrCVgTKyLm"
     },
@@ -576,6 +633,7 @@
         "phone_number": "377-716-8081",
         "email": "mgaffey1l@domainmarket.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Nvg11vFeyeCExrhw8O0w.OS40yzyZmWQwvQXPXirS9p91pXrSWdsS"
     },
@@ -586,6 +644,7 @@
         "phone_number": "761-577-6287",
         "email": "gtuffin1m@hostgator.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$raiC8B.PNJ3GqsdbiSKXA.ob/IfANe9qsjS/jhutpjllS9j2JQI9O"
     },
@@ -596,6 +655,7 @@
         "phone_number": "654-892-7342",
         "email": "hgabites1n@huffingtonpost.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$tnaZEVf1szFjKRSsAK54AebP/xl4v53x5eKwoy.9ShJKN/TvgiZQO"
     },
@@ -606,6 +666,7 @@
         "phone_number": "741-825-1474",
         "email": "jcool1o@cdbaby.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$OpvXx5O.4Ia0unkopWxNE.0X5pMVQbvvViMqPJCe08kgIwcA/KVN6"
     },
@@ -616,6 +677,7 @@
         "phone_number": "992-846-5650",
         "email": "aphelips1p@nps.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$KKx3Fkym2Afv05v4/GNCbuKfpD6oABlMuLK60RUe2UBdJcYBjPuNi"
     },
@@ -626,6 +688,7 @@
         "phone_number": "321-625-3811",
         "email": "kbricksey1q@elegantthemes.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$aXq/Mh/jedWvECoszQtULOh9ZPe/aFFiIwcdnNW.nvUn.PWsTKirm"
     },
@@ -636,6 +699,7 @@
         "phone_number": "337-296-2747",
         "email": "kchadwyck1r@uol.com.br",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$NT00DtGv/3y73bkf26HT9OnHEWachZvtSqh0Syun/T4d7cQpe99HG"
     },
@@ -646,6 +710,7 @@
         "phone_number": "607-859-4362",
         "email": "wflear1s@altervista.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$CkXDMPjFmk4vgbQEy7Kqa.3kNOG2O7DML7x9yOrlXXG7AcPOCPhIG"
     },
@@ -656,6 +721,7 @@
         "phone_number": "934-970-3727",
         "email": "wlangrish1t@shinystat.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Z33dJhOf1YEY7IRlVN8TPuN13/ZVXutFSTmsSE786S/dJiNxQDQgK"
     },
@@ -666,6 +732,7 @@
         "phone_number": "847-229-7809",
         "email": "battiwill1u@nymag.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$3gT.XquZCz2ZlMyPwTA6Eu0fG/s8Hd.8oi3fT1BAOywY1VecVoFjW"
     },
@@ -676,6 +743,7 @@
         "phone_number": "275-888-1767",
         "email": "fwillard1v@tinyurl.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$H6nlvVquA8uTMz0FNgXZx.GdP6E6Fl36ZtdhqAJKY8Ki2Fuudah5e"
     },
@@ -686,6 +754,7 @@
         "phone_number": "437-449-2376",
         "email": "agallant1w@dion.ne.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$.9LP/ex2MdmkQQHxhscmO.nyws7FWbia/J0qDymsJnYUCiONjJNC."
     },
@@ -696,6 +765,7 @@
         "phone_number": "664-384-7549",
         "email": "bklazenga1x@hhs.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$/MK1eQMOEfh09Q.QknhOEeirF/3cmR2JFl84PCLWVwSLj3zXqoos2"
     },
@@ -706,6 +776,7 @@
         "phone_number": "491-406-9662",
         "email": "ktassaker1y@nationalgeographic.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$.w2iEwJjypZZQPtcBENooe8rZvkhu/nD1AaJB5EhJuH8ttRGjyqT."
     },
@@ -716,6 +787,7 @@
         "phone_number": "790-216-3004",
         "email": "jdedman1z@illinois.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$l57ieRND83YSf78q/WKJaugKjhx0Vh..9XLtfaV0.GV8oUT2mpUxG"
     },
@@ -726,6 +798,7 @@
         "phone_number": "110-388-5781",
         "email": "efitzalan20@ebay.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$MGOzyDEkkNXtnBYesw1qDurDwEBESipkEXE7HoAuG41WzGSzgH8fS"
     },
@@ -736,6 +809,7 @@
         "phone_number": "714-810-0551",
         "email": "qwraight21@imgur.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$mZpTaHilwiM4JQL2Qw08KOD2NJVcq.1.9KX8H5C8kso1CZK6MIhdu"
     },
@@ -746,6 +820,7 @@
         "phone_number": "459-344-5219",
         "email": "pjellico22@webeden.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Jq8q.0xBNuRkrqdogGZxkOdMZLnLJwy/Cg0IAYqfEF8kDz1Crd4Ky"
     },
@@ -756,6 +831,7 @@
         "phone_number": "128-189-8051",
         "email": "hmcgragh23@slideshare.net",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$edTceSp44FYbgtpTQlj0fOYvBWhy.BKTJK9uwM0XAUlCBDANeAkX2"
     },
@@ -766,6 +842,7 @@
         "phone_number": "875-196-7084",
         "email": "lhillett24@archive.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$plAfJnwfe8fqiMS1N93SQuWtFVmtbyRr4ENrcQcbxyrMezsoOhIua"
     },
@@ -776,6 +853,7 @@
         "phone_number": "357-749-9378",
         "email": "bdossettor25@meetup.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$GYTdR/S4hthR0oS2HKhy2.i.BY8tsLrgJCy1z3fZi/RXwc/pv5LoK"
     },
@@ -786,6 +864,7 @@
         "phone_number": "931-677-8946",
         "email": "apedersen26@guardian.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$CWbzWMrDpjS5Yj1uDl2S7ewk7ETtSzgLfoKknYb48pdHaDn7n17P2"
     },
@@ -796,6 +875,7 @@
         "phone_number": "667-656-0713",
         "email": "pchristley27@paginegialle.it",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$VuAuKUtnUSKDsT6DvTSKcepV.v7LpP91MCE772Hdf4It7RFwU1ifm"
     },
@@ -806,6 +886,7 @@
         "phone_number": "432-198-4421",
         "email": "lbisp28@exblog.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$/5dumY39idvJG6uf8QudAuPmGMWlHgDXH5iu2wBopgkQm5hEhWlNK"
     },
@@ -816,6 +897,7 @@
         "phone_number": "265-811-2165",
         "email": "dmitskevich29@phpbb.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$6bjEmt4njzJ./k.Jzbh4w.j5gd/BiEyO8Ifa4Z3SCAFDLwsnwqQQ."
     },
@@ -826,6 +908,7 @@
         "phone_number": "464-552-5434",
         "email": "cshapcott2a@census.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$oLt2DaxbFtygVTGdENsmo.F56SdTuE2k8Kx7EE3lPd2z4BXdt3EHa"
     },
@@ -836,6 +919,7 @@
         "phone_number": "193-617-6792",
         "email": "mmurrhardt2b@usatoday.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$ksIpfDCv4uHqGPBSlRmV.Odrw3wrNgommHzT1YzAUuDDp0FyoASA2"
     },
@@ -846,6 +930,7 @@
         "phone_number": "701-763-5768",
         "email": "yechallier2c@army.mil",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$fViaMYtaU0GLAOZFrSsELegkO9BblSLOkvxz0PRsLN.niO8QNvvyq"
     },
@@ -856,6 +941,7 @@
         "phone_number": "154-827-7165",
         "email": "mlewknor2d@oakley.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$rMa1GrHOfibejbcCeVzBaOdlAYl1h9UbowlDz9DQKRS0WIbhAQTvy"
     },
@@ -866,6 +952,7 @@
         "phone_number": "281-379-0547",
         "email": "agilbeart2e@boston.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$/cNvTrequpkv.if0i6VKquvjqqgM9M5PhkOnIsRp3EN0popk5.4pW"
     },
@@ -876,6 +963,7 @@
         "phone_number": "144-512-0443",
         "email": "bcloy2f@jugem.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$VG/4YIylP8SYw4RCVb6kReQhHWpKOvrCS.FawvdqfDsxw4xv/NMwi"
     },
@@ -886,6 +974,7 @@
         "phone_number": "295-124-8730",
         "email": "bhoffmann2g@guardian.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$2myIevUwpx93chl4o0V.Xe3ykqKKDHBhiDnJCzEZlIGU80dntz1sm"
     },
@@ -896,6 +985,7 @@
         "phone_number": "533-965-9444",
         "email": "mmoring2h@jalbum.net",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$VuhCDfd.86.bsZQ4mR5hcO6ezi27YllyZ0l45Q00Nci3cQkHXGBrW"
     },
@@ -906,6 +996,7 @@
         "phone_number": "967-431-5004",
         "email": "savrahm2i@123-reg.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$OmLTwPjrxq7xFWFnbE3Jh.yFRiimNuV826Koz6WmG.UEsoIbZRHiG"
     },
@@ -916,6 +1007,7 @@
         "phone_number": "492-322-1743",
         "email": "obenyan2j@google.fr",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$6W8x2JU.gc9i0IawGHR7UOkAfxHKrkjs9.yVpV9Uabf4IHs8XMtZu"
     },
@@ -926,6 +1018,7 @@
         "phone_number": "458-392-5151",
         "email": "ngreenlees2k@army.mil",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$06UqzIlYohRR9YoZ1d1UmefWUGc.AirIMrvunu2CizSa6NE1u.1Gi"
     },
@@ -936,6 +1029,7 @@
         "phone_number": "838-275-9994",
         "email": "mdunks2l@usnews.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$UqvU0u6fzbIIbfQs.vAZZuKMSBrVbk9k5YBLHyHvVdCZfCqMSb./y"
     },
@@ -946,6 +1040,7 @@
         "phone_number": "311-763-8033",
         "email": "kdearle2m@illinois.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$/We1PSl9FkSxXSkhR82rH.XC/PdnPXC1SPUwlBYAegl57BGWhzgTy"
     },
@@ -956,6 +1051,7 @@
         "phone_number": "499-102-5560",
         "email": "dkonrad2n@vistaprint.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$BO2eXF3ZLKTXA8OKr3SUBO7HdlYueTVBW7kkS.Y/3i9t0vS2NMrIe"
     },
@@ -966,6 +1062,7 @@
         "phone_number": "703-495-3553",
         "email": "ggillise2o@adobe.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$BCInghZV3ayrTQ5kPatrb.3nFJHQTgLwLrq43yhCScTqU6vOtnEWW"
     },
@@ -976,6 +1073,7 @@
         "phone_number": "421-395-1002",
         "email": "gswinbourne2p@usda.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$jz2b8st7gug5hdrN3wu1Venbmn7YlhZ5iOeQmgA7EW7UA1KsRdNfG"
     },
@@ -986,6 +1084,7 @@
         "phone_number": "332-185-0978",
         "email": "dsewell2q@lycos.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$jjZHtbsyjXz7fLPBTTfQZeE/5kBrDO/3G3CrgcGPkmQHGqGlmunyK"
     },
@@ -996,6 +1095,7 @@
         "phone_number": "923-493-3583",
         "email": "sbiskupski2r@usa.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$h.uu9ZGkdzNJqNVDZUJYQeEZULi6FY.mywkQIfwRbltszTRmhnKM6"
     },
@@ -1006,6 +1106,7 @@
         "phone_number": "189-253-6982",
         "email": "pmckeggie2s@goodreads.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$mz42PG5LoY6eXWDk/B.9DOeqmZNlmAUUsieWc4iOFKhuSn6f3koyK"
     },
@@ -1016,6 +1117,7 @@
         "phone_number": "935-133-7836",
         "email": "idutnell2t@pcworld.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$f/9/v8RqKlS/HqQnvEzYTe5XJM.PDUyE80.jsQlPhGFuhLeDDMuuS"
     },
@@ -1026,6 +1128,7 @@
         "phone_number": "990-725-4698",
         "email": "jmcnicol2u@forbes.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$oJji9NCDMr8pRt4AmU8HsuBOHvHb6vmoq5dR5YpJuT.vMBAeTQMwG"
     },
@@ -1036,6 +1139,7 @@
         "phone_number": "503-571-4748",
         "email": "smorden2v@army.mil",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$c0iR8QY0uVpvWytCmR/p0..iSH/JYBShx6Cz2xElFXqYwJhjxmC2C"
     },
@@ -1046,6 +1150,7 @@
         "phone_number": "425-950-3145",
         "email": "ocorro2w@geocities.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$71rBKO6WXZUTlv89j6nSI.YYjels1U5ZwWVfs.Iab594Fc7XynR3S"
     },
@@ -1056,6 +1161,7 @@
         "phone_number": "179-253-6617",
         "email": "rwrefford2x@flickr.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$mY/7GX/DLhylUxXnLxyise73Li1thO2zHbaVmkKt5GpfEzOa8pEFS"
     },
@@ -1066,6 +1172,7 @@
         "phone_number": "412-425-3821",
         "email": "mcadden2y@google.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$0El0B6OwQI6sjJGeIAIVV.FF775UZVwFBQFM63JJXWpALsqim3DBS"
     },
@@ -1076,6 +1183,7 @@
         "phone_number": "482-539-0855",
         "email": "zhasard2z@wikipedia.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$8XtkBHSfN5PKlsiIGDSfk.9RG00/wpegtMHhxmx9Y8AC9BiS70//2"
     },
@@ -1086,6 +1194,7 @@
         "phone_number": "756-829-9344",
         "email": "lbellwood30@independent.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$NZK9VVVLJuqsUkPMoBtWdu9HR68dGpORFrrS6ALEicNWDHW05BBzu"
     },
@@ -1096,6 +1205,7 @@
         "phone_number": "716-487-4388",
         "email": "amccoole31@ovh.net",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$YXd1heCHRxy.NpYZCSIQTuRmS90cKr/GQJAutmdO17iTbmXvwCLwK"
     },
@@ -1106,6 +1216,7 @@
         "phone_number": "556-998-4056",
         "email": "sdoone32@bluehost.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$vzuPq8MCCgm3wB4/M3Big.4snazKE1/RSMnKGtlAz.NZXURStJvbq"
     },
@@ -1116,6 +1227,7 @@
         "phone_number": "380-955-5740",
         "email": "ccowthart33@businessinsider.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$rCVabcFJicCQcLAsMOenXufHVJRZH8LTW8frqWNI0ja6Vap/R89jq"
     },
@@ -1126,6 +1238,7 @@
         "phone_number": "211-433-3014",
         "email": "uluppitt34@whitehouse.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$C7jCGh.N.hvxISoD3R/zm.cokrOIfAA1Zkh9GvyATQ7gT7vNyUTdG"
     },
@@ -1136,6 +1249,7 @@
         "phone_number": "688-609-8217",
         "email": "ewilliscroft35@barnesandnoble.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$cdebs.uVPmNnH36inVhZj.Ng9qcTbWtyl2pm5rL5dsd8MgEycnTHa"
     },
@@ -1146,6 +1260,7 @@
         "phone_number": "202-791-6726",
         "email": "hhandrahan36@jimdo.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Y4WsiTVosr84B0Bfw5rBGea5zpaieBdA2I3S9EQdATNFYN8wrjekC"
     },
@@ -1156,6 +1271,7 @@
         "phone_number": "965-133-9473",
         "email": "hbaty37@joomla.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$RZ4KLHmmxDYnXwx7UFw.IuczzdlWv1Z77VOSBnPT7ZDlRVlsNFKvm"
     },
@@ -1166,6 +1282,7 @@
         "phone_number": "767-729-9568",
         "email": "cminto38@nps.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$k2xakcemDHRicRJFrEt5SemlOURcyON0reQe1NI0cvLSb8t3eZzXy"
     },
@@ -1176,6 +1293,7 @@
         "phone_number": "804-605-4003",
         "email": "mwonham39@spotify.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Vky4NmkmQCuYsiOksl.WNOgSnILLtpvHEKAZX7NsBi22LS5L0ykGO"
     },
@@ -1186,6 +1304,7 @@
         "phone_number": "711-951-4821",
         "email": "nludewig3a@pcworld.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$NGMeODNH6x79ZZRVbh090.KZnj.5EpUnApLAD2d6fIk4bx5fLSFDq"
     },
@@ -1196,6 +1315,7 @@
         "phone_number": "646-917-1452",
         "email": "rjenno3b@privacy.gov.au",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Wej4tsYUvB7Nbx4gq0J6GuLf0ONYvi7nLLIPXds9a1yk9g6gIfm/q"
     },
@@ -1206,6 +1326,7 @@
         "phone_number": "964-294-7950",
         "email": "dsatterfitt3c@nih.gov",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$VtwcWEndZTucIO/808xDk.rDSaCfMO1A6DPqJbujmW7i2rUVkTAne"
     },
@@ -1216,6 +1337,7 @@
         "phone_number": "374-193-1960",
         "email": "gtrusdale3d@tumblr.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$9R8ZpgFIbsM0e.F4SZVZY.KdcWL8e.SLDzr67kacyUhUm8Zm3pEbK"
     },
@@ -1226,6 +1348,7 @@
         "phone_number": "754-441-5910",
         "email": "plugden3e@upenn.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$cRAE/iJhrTIXl5FqinjDleCSgqamsGqW3I1NVMt/T3Orl3Cwl6arC"
     },
@@ -1236,6 +1359,7 @@
         "phone_number": "858-410-3738",
         "email": "cnovill3f@ning.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$W19TbdG4JTDQuFG/mVVTnuZLm2ZFJZNsV3qb.EJA/TZZ2DWxZuBdC"
     },
@@ -1246,6 +1370,7 @@
         "phone_number": "319-977-1895",
         "email": "pkuhnt3g@bbc.co.uk",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$V07DRj0X3/8j5JIdSD35f.R9XBX5SnoDEat8I1hmB10iJK.fuHk8q"
     },
@@ -1256,6 +1381,7 @@
         "phone_number": "876-551-8510",
         "email": "dsnoding3h@php.net",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$XuQxK7A8bw6d44e7.PDOBO5AEKwQSa4jCLS0a6BaAiJv0urxofnpO"
     },
@@ -1266,6 +1392,7 @@
         "phone_number": "934-398-6078",
         "email": "ssisley3i@virginia.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Nb90RQbnCxignQ3YK3QSBOrM4h2ab6zRMO8qW7QgMGYfTfAiS2S6e"
     },
@@ -1276,6 +1403,7 @@
         "phone_number": "996-820-6172",
         "email": "dfayerman3j@eventbrite.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$kKQBmlObEEOJbu6yUGBBj.Xju0MTnxQfDgE1iZ1YDR6Ons.J/PfrK"
     },
@@ -1286,6 +1414,7 @@
         "phone_number": "145-718-2441",
         "email": "ctame3k@merriam-webster.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$822cf8U3SuYHrdxD1rNdP.URkWnynVHONAgLsDmi3ZzckcUq6FDyC"
     },
@@ -1296,6 +1425,7 @@
         "phone_number": "541-811-1742",
         "email": "cbolsteridge3l@cbc.ca",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$lGyeiUkZ26n8jIh3AgO5ROGh8hWUL0gYcjn0AWRcsrhIS.G1XM6lu"
     },
@@ -1306,6 +1436,7 @@
         "phone_number": "187-568-1194",
         "email": "wfernandes3m@moonfruit.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$n7HEkQdcNzrud0ab6MQuauH5MAGwUUXm2nbBFlUoOv.rNeFXxFnVe"
     },
@@ -1316,6 +1447,7 @@
         "phone_number": "891-879-3189",
         "email": "gbelward3n@linkedin.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$LhBtIg.LpDqUHCpzvdRmX.hPhfeFolzGIsoInKoG6CP0LwTpZt9lS"
     },
@@ -1326,6 +1458,7 @@
         "phone_number": "502-862-5061",
         "email": "acubbon3o@foxnews.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$CGkXUdjjoQ0yB9k/H66P4OwI7ZPrt84VbKpapi6S7n7khKa9tJ0Ua"
     },
@@ -1336,6 +1469,7 @@
         "phone_number": "226-579-7969",
         "email": "odubock3p@woothemes.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$a5TFJ2fETlIamKCLXIIrGuiBR7bimmCQqUpiGz7lnhzJ1M3.e2qmW"
     },
@@ -1346,6 +1480,7 @@
         "phone_number": "297-708-0429",
         "email": "aseagood3q@hostgator.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$wGdkGHuwiR7TQHYU3P/IjOckin.MxfuDJIcVnABsX3ljwQ/k2SXfG"
     },
@@ -1356,6 +1491,7 @@
         "phone_number": "459-438-1596",
         "email": "eandrzejowski3r@eventbrite.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$ZVfDDqDctqC50VhL1xfHMOnsIHw487LYybLMdz/t898IvbR45VtKK"
     },
@@ -1366,6 +1502,7 @@
         "phone_number": "106-781-8372",
         "email": "arockingham3s@pbs.org",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$a7QbQDcjqg6wWQhQFDA.S.n58VvLBsSENuQyzomHjgablBRhnKPu2"
     },
@@ -1376,6 +1513,7 @@
         "phone_number": "250-713-4963",
         "email": "abickers3t@jimdo.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$gUH0YWOQpUDqQ9sObaXt8eNs3T5x7kUHG3K6CfMO.2h1cKYe43rCW"
     },
@@ -1386,6 +1524,7 @@
         "phone_number": "492-428-8435",
         "email": "ieykelhof3u@vistaprint.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$kdgFBdfB/V5XpzeEJBvs3eR6.HPHppWA9/tpBIgKJLOyIs7Gml9um"
     },
@@ -1396,6 +1535,7 @@
         "phone_number": "325-543-8477",
         "email": "cmouse3v@webmd.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$q4d.ma/tAsan6S/tWThEa.YAVyHEk2sMxfMSWYadRpmKS9.b7hJt."
     },
@@ -1406,6 +1546,7 @@
         "phone_number": "281-577-7679",
         "email": "elawrenz3w@pagesperso-orange.fr",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$q9IfFN6MaBoo17eeaw/X4uhwATMR6q4vafczsIFHCx6d5O9QWsQHq"
     },
@@ -1416,6 +1557,7 @@
         "phone_number": "895-115-5376",
         "email": "bdoulton3x@desdev.cn",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$gZCGhCn4AJDPoxXWI7vRe.3JF/zsMyXhONSQdj7fKxczIDMByC6gW"
     },
@@ -1426,6 +1568,7 @@
         "phone_number": "190-740-3947",
         "email": "kpugsley3y@gizmodo.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$2OXTB1GXCGM16I1MmpnCOOAsJ5t0O0cjduQxc04nKiqC5.l8nHdIe"
     },
@@ -1436,6 +1579,7 @@
         "phone_number": "895-938-3999",
         "email": "ycharteris3z@amazon.co.jp",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$4WNXBO8OPv3lA2LlPS9aq.br0QAlEbn2.z1ziXyc83vS6gziQHIoW"
     },
@@ -1446,6 +1590,7 @@
         "phone_number": "830-578-9105",
         "email": "ihaizelden40@privacy.gov.au",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$0bj5rZI/fUfSdjgV6u0hhuxmLKZi/6FlqdUlLTMvVN2BrqVCsu/O6"
     },
@@ -1456,6 +1601,7 @@
         "phone_number": "117-491-9347",
         "email": "dchelnam41@omniture.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$Q6gpBeCgwXg3Zh04YTHtUeY7vt7b8fhnCPsdRxeSyCfJEWfAkQOu."
     },
@@ -1466,6 +1612,7 @@
         "phone_number": "963-864-0223",
         "email": "grude42@time.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$1dH8ATHAjinohGfX0Zx.1uQTb6hsvATtlgU9B5UKSS6j1m6Y6FbAW"
     },
@@ -1476,6 +1623,7 @@
         "phone_number": "829-881-3603",
         "email": "ddeane43@ezinearticles.com",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$buAUjxhBn873b07ArZcwte7Qm7tMwW1DfAKoS7JuYobqeanKafnY."
     },
@@ -1486,6 +1634,7 @@
         "phone_number": "377-189-7022",
         "email": "sstreat44@utexas.edu",
         "active": true,
+        "role": 0,
         "joined": "2024-01-28T13:02:02.213Z",
         "password": "$2a$04$.GxIOJbaKWEG2T2WyqXlyOwyWJYCH5V0w34v4EOzMmJrda2hLOKKC"
     },
@@ -1497,7 +1646,8 @@
         "email": "smeanwell45@furl.net",
         "active": true,
         "joined": "2024-01-28T13:02:02.213Z",
-        "password": "$2a$04$a7uezrkR8D3INqlj6NL70u8CPBM2OWEJwhoQVldVMDniz8ruJkKge"
+        "password": "$2a$04$a7uezrkR8D3INqlj6NL70u8CPBM2OWEJwhoQVldVMDniz8ruJkKge",
+        "role": 0
     },
     {
         "first_name": "Meir",
@@ -1507,6 +1657,7 @@
         "password": "$2a$12$dTPDmrINqIikQ5yZ6udVG.D/.i1xsJHRCcpHoQ0hPQ/oBfZ29PDnm",
         "active": true,
         "id": "7b54f7b6-6e91-4a0b-aa56-08f70566e92c",
-        "joined": "2024-03-05T18:40:30.616Z"
+        "joined": "2024-03-05T18:40:30.616Z",
+        "role": 100
     }
 ]

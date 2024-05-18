@@ -31,7 +31,7 @@ export class AuthService {
     }
 
     async login(user: any, loginPayload: LoginDto) {
-        const payload = { sub: user.id, rememberMe: loginPayload.rememberUser }
+        const payload = { sub: user.id, rememberMe: loginPayload.rememberUser, role: user.role }
 
         const token = await this.generateAccessToken(payload)
 
@@ -43,7 +43,7 @@ export class AuthService {
     }
 
     async generateAccessToken(payload: AceessTokenPayload): Promise<string> {
-        const token = await this.jwtService.signAsync(payload, { expiresIn: '5s' })
+        const token = await this.jwtService.signAsync(payload, { expiresIn: '900000s' })
 
         if (token)
             await this.updateUsersSession(token)
@@ -84,7 +84,7 @@ export class AuthService {
 
             if (decoded.rememberMe) {
 
-                const payload = { sub: decoded.sub, rememberMe: decoded.rememberMe }
+                const payload = { sub: decoded.sub, rememberMe: decoded.rememberMe, role: decoded.role }
 
                 const accessToken = await this.generateAccessToken(payload)
 

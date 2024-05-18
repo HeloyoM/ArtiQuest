@@ -14,4 +14,6 @@ export interface User {
     password: string
 
     joined: Date
+
+    rold: number
 }
