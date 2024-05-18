@@ -9,7 +9,6 @@ import { FileInterceptor } from '@nestjs/platform-express'
 import { PDFExtract } from 'pdf.js-extract'
 import { randomUUID } from 'crypto'
 import { Roles } from 'src/auth/rbac/roles.decorator'
-import { AuthGuard } from 'src/auth/auth.guard'
 import { RolesGuard } from 'src/auth/rbac/roles.guard'
 
 /*
