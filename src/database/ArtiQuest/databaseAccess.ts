@@ -115,7 +115,6 @@ class ArtDatabaseAccess implements IArtiQuest {
     }
 
     async create(art: Article): Promise<any> {
-        console.log({ art })
         this.arts.push(art)
 
         //query will replace it
