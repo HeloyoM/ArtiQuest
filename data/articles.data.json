@@ -300,5 +300,23 @@
             "my name is ",
             "Meir"
         ]
+    },
+    {
+        "title": "New title",
+        "sub_title": "New sub title",
+        "cat": "9f7f9a8c-38dd-48b1-912d-8ac609ecf91e",
+        "author": "7b54f7b6-6e91-4a0b-aa56-08f70566e92c",
+        "id": "23b66e48-a67f-43d8-a7b7-48fac85b8bd4",
+        "created": "23/05/2024",
+        "active": true,
+        "viewers": [],
+        "rank": {
+            "total": 0,
+            "voters": []
+        },
+        "body": [
+            "May 2023 Wevo Scan2Charge Generate QR code 1. Go to: https://qrgateway.com/qr-code-generator / 2. Copy the following URL to the required field (see picture below) https://scan2charge.wevo.energy/?id= chargerId 3. For multi connector charger, you can apply a separate QR for each connector by applying the following URL: https://scan2charge.wevo.energy/? id= chargerId &connectorNumber= connectorNo. 4. Put the charging stations Id (for the required specific charger) 5. Click “Download” (best to use the SVG for better quality, but can use PNG as well) and wait a few seconds till the file is downloaded. ",
+            "Page 1Page 1"
+        ]
     }
 ]

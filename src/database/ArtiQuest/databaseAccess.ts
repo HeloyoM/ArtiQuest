@@ -115,12 +115,7 @@ class ArtDatabaseAccess implements IArtiQuest {
     }
 
     async create(art: Article): Promise<any> {
-        art.id = randomUUID()
-        art.created = new Date().toLocaleDateString()
-        art.active = false
-        art.viewers = []
-        art.rank = { total: 0, voters: [] }
-
+        console.log({ art })
         this.arts.push(art)
 
         //query will replace it

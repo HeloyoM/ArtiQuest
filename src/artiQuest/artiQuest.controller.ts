@@ -85,10 +85,24 @@ export class ArtiQuestController {
     @UseGuards(JwtAuthGuard)
     @Post()
     async createArt(@Body() art: Article) {
-        const key = `ARTICLES_HAVE_BEEN_UPDATED`
-        await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
+        // const key = `ARTICLES_HAVE_BEEN_UPDATED`
+        // await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
+        const keys = await this.cacheManager.store.keys();
 
-        return await this.artService.createArt(art)
+        let storedInprogressArticles = [];
+        for (const key of keys) {
+            if (key === CachKeys.IN_PROGRESS)
+                storedInprogressArticles = await this.cacheManager.get(key);
+        }
+        const uploadedArticle = storedInprogressArticles.find((a: Article) => a.id === art.id)
+        console.log({ uploadedArticle })
+        uploadedArticle.author = uploadedArticle.author.id
+        uploadedArticle.cat = uploadedArticle.cat.id
+        uploadedArticle.sub_title = art.sub_title ? art.sub_title : uploadedArticle.sub_title
+        uploadedArticle.body = art.body ? art.body : uploadedArticle.body
+        uploadedArticle.title = art.title ? art.title : uploadedArticle.title
+        console.log({ uploadedArticle })
+        return await this.artService.createArt(uploadedArticle)
     }
 
     @Put(':id')
@@ -108,8 +122,8 @@ export class ArtiQuestController {
     @Patch('active/:id')
     @Roles([100])
     async activeArticle(@Param('id') id: string) {
-        const key = `ARTICLES_HAVE_BEEN_UPDATED`
-        await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
+        // const key = `ARTICLES_HAVE_BEEN_UPDATED`
+        // await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
 
         return await this.artService.toggleArticleActivity(id)
     }

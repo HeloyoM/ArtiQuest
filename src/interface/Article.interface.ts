@@ -13,5 +13,4 @@ export interface Article<T = string | Category> {
     rank: IArticleRank
     viewers: string[]
     active: boolean
-    // views: number
 }
