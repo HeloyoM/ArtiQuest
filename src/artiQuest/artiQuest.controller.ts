@@ -4,12 +4,13 @@ import { Article } from '../interface/Article.interface'
 import { EditPayloadDto } from './dto/editPayload.dto'
 import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard'
 import { Cache } from 'cache-manager'
-import { CACHE_MANAGER } from '@nestjs/cache-manager'
+import { CACHE_MANAGER, CacheKey } from '@nestjs/cache-manager'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { PDFExtract } from 'pdf.js-extract'
 import { randomUUID } from 'crypto'
 import { Roles } from 'src/auth/rbac/roles.decorator'
 import { RolesGuard } from 'src/auth/rbac/roles.guard'
+import CachKeys from 'src/utils/CachKeys'
 
 /*
 Multer may not compatible with
@@ -24,7 +25,6 @@ export class ArtiQuestController {
         @Inject(CACHE_MANAGER) private cacheManager: Cache
     ) { }
 
-    //arts
     @Get()
     async getAllArticles() {
         return await this.artService.getAllArticles()
@@ -38,6 +38,14 @@ export class ArtiQuestController {
         @Body() art: { art: string },
         @UploadedFile() file: Express.Multer.File,
     ) {
+        const keys = await this.cacheManager.store.keys();
+
+        let storedInprogressArticles = [];
+        for (const key of keys) {
+            if (key === CachKeys.IN_PROGRESS)
+                storedInprogressArticles = await this.cacheManager.get(key);
+        }
+
         const data = this.pdfExtract.extractBuffer(file.buffer)
 
         const content = (await data).pages.reduce((acc, page) => {
@@ -58,6 +66,12 @@ export class ArtiQuestController {
         artToReturn.viewers = []
         artToReturn.rank = { total: 0, voters: [] }
         artToReturn.body = content
+
+        const inprogressArray = [...storedInprogressArticles]
+
+        inprogressArray.push(artToReturn)
+
+        await this.cacheManager.set(CachKeys.IN_PROGRESS, inprogressArray, 24 * 3600 /* hour */)
 
         return artToReturn
     }
