@@ -37,13 +37,18 @@ export class ArtiQuestController {
     async getInprogressArts() {
         const keys = await this.cacheManager.store.keys();
 
-        let storedInprogressArticles = [];
+
+
+        let storedInprogressArticles = []
+        let ttl
         for (const key of keys) {
-            if (key === CachKeys.IN_PROGRESS)
-                storedInprogressArticles = await this.cacheManager.get(key);
+            if (key === CachKeys.IN_PROGRESS) {
+                storedInprogressArticles = await this.cacheManager.get(key)
+                ttl = await this.cacheManager.store.ttl(key)
+            }
         }
 
-        return storedInprogressArticles
+        return { storedInprogressArticles , ttl}
 
     }
 
