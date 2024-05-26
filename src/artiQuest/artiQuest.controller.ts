@@ -30,6 +30,23 @@ export class ArtiQuestController {
         return await this.artService.getAllArticles()
     }
 
+
+    @UseGuards(RolesGuard)
+    @Get('in-progress')
+    @Roles([100])
+    async getInprogressArts() {
+        const keys = await this.cacheManager.store.keys();
+
+        let storedInprogressArticles = [];
+        for (const key of keys) {
+            if (key === CachKeys.IN_PROGRESS)
+                storedInprogressArticles = await this.cacheManager.get(key);
+        }
+
+        return storedInprogressArticles
+
+    }
+
     @UseGuards(JwtAuthGuard)
     @Post('init-art')
     @UseInterceptors(FileInterceptor('file'))
@@ -71,7 +88,7 @@ export class ArtiQuestController {
 
         inprogressArray.push(artToReturn)
 
-        await this.cacheManager.set(CachKeys.IN_PROGRESS, inprogressArray, 24 * 3600 /* hour */)
+        await this.cacheManager.set(CachKeys.IN_PROGRESS, inprogressArray, 3_600_000 /* hour */)
 
         return artToReturn
     }
@@ -86,7 +103,7 @@ export class ArtiQuestController {
     @Post()
     async createArt(@Body() art: Article) {
         const key = `ARTICLES_HAVE_BEEN_UPDATED`
-        await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
+        await this.cacheManager.set(key, true, 3_600_000 /* hour */)
         const keys = await this.cacheManager.store.keys();
 
         let storedInprogressArticles = [];
@@ -166,7 +183,7 @@ export class ArtiQuestController {
         if (categoryContent == null || isUpdated) {
             categoryContent = await this.artService.getArticlesByCategoryId(id)
 
-            await this.cacheManager.set(key, categoryContent, 24 * 3600 /* hour */)
+            await this.cacheManager.set(key, categoryContent, 3_600_000 /* hour */)
         }
 
         return categoryContent
@@ -181,7 +198,7 @@ export class ArtiQuestController {
         if (articleContent == null) {
             articleContent = await this.artService.getArticleById(id)
 
-            await this.cacheManager.set(key, articleContent, 24 * 3600 /* hour */)
+            await this.cacheManager.set(key, articleContent, 3_600_000 /* hour */)
         }
 
         return articleContent
