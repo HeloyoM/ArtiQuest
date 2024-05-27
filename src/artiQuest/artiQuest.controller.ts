@@ -1,10 +1,10 @@
-import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGuards, Inject, UseInterceptors, UploadedFile } from '@nestjs/common'
+import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGuards, Inject, UseInterceptors, UploadedFile, Query } from '@nestjs/common'
 import { ArtiQuestService } from './artiQuest.service'
 import { Article } from '../interface/Article.interface'
 import { EditPayloadDto } from './dto/editPayload.dto'
 import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard'
 import { Cache } from 'cache-manager'
-import { CACHE_MANAGER, CacheKey } from '@nestjs/cache-manager'
+import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { PDFExtract } from 'pdf.js-extract'
 import { randomUUID } from 'crypto'
@@ -37,8 +37,6 @@ export class ArtiQuestController {
     async getInprogressArts() {
         const keys = await this.cacheManager.store.keys();
 
-
-
         let storedInprogressArticles = []
         let ttl
         for (const key of keys) {
@@ -48,9 +46,26 @@ export class ArtiQuestController {
             }
         }
 
-        return { storedInprogressArticles , ttl}
-
+        return { storedInprogressArticles, ttl }
     }
+
+    @UseGuards(RolesGuard)
+    @Get('init/:id')
+    async isAvailableArt(@Query('ids') ids: string) {
+        const arts_id = ids.split(',');
+        console.log({ arts_id })
+        const keys = await this.cacheManager.store.keys()
+
+        let storedInprogressArticles = []
+        for (const key of keys) {
+            if (key === CachKeys.IN_PROGRESS) {
+                storedInprogressArticles = await this.cacheManager.get(key)
+            }
+        }
+        console.log({ storedInprogressArticles })
+        return true
+    }
+
 
     @UseGuards(JwtAuthGuard)
     @Post('init-art')
