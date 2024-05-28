@@ -12,6 +12,9 @@ import { Roles } from 'src/auth/rbac/roles.decorator'
 import { RolesGuard } from 'src/auth/rbac/roles.guard'
 import CachKeys from 'src/utils/CachKeys'
 
+const CAT = '/cat'
+const IN_PROGRESS = '/in-progress'
+
 /*
 Multer may not compatible with
 third party cloud providers
@@ -30,6 +33,20 @@ export class ArtiQuestController {
         return await this.artService.getAllArticles()
     }
 
+    @Get('/findOne/:id')
+    async getArticleById(@Param('id') id: string) {
+        const key = `article_${id}`
+
+        let articleContent = await this.cacheManager.get(key)
+
+        if (articleContent == null) {
+            articleContent = await this.artService.getArticleById(id)
+
+            await this.cacheManager.set(key, articleContent, 3_600_000 /* hour */)
+        }
+
+        return articleContent
+    }
 
     @UseGuards(RolesGuard)
     @Get('in-progress')
@@ -117,6 +134,27 @@ export class ArtiQuestController {
     @Get('interest')
     async getUserCategoryInterest(@Request() req) {
         return this.artService.getUserCategoryInterest(req.user.userId)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get(`${IN_PROGRESS}/findByAuthor`)
+    async getAllPrivateInprogressArts(@Request() req) {
+        const authorId = req.user.userId
+        const keys = await this.cacheManager.store.keys()
+
+        let storedInprogressArticles = []
+        for (const key of keys) {
+            if (key === CachKeys.IN_PROGRESS) {
+                storedInprogressArticles = await this.cacheManager.get(`${CachKeys.IN_PROGRESS}-${key.slice(11, -1)}`)
+            }
+        }
+
+        const userInprogressArts = storedInprogressArticles.filter((a: Article) => {
+            if (typeof a.author !== 'string') {
+                return a.author.id === authorId
+            }
+        })
+        return userInprogressArts
     }
 
     @UseGuards(JwtAuthGuard)
@@ -209,33 +247,18 @@ export class ArtiQuestController {
         return categoryContent
     }
 
-    @Get('/findOne/:id')
-    async getArticleById(@Param('id') id: string) {
-        const key = `article_${id}`
-
-        let articleContent = await this.cacheManager.get(key)
-
-        if (articleContent == null) {
-            articleContent = await this.artService.getArticleById(id)
-
-            await this.cacheManager.set(key, articleContent, 3_600_000 /* hour */)
-        }
-
-        return articleContent
-    }
-
-    @Get('/cat')
+    @Get(CAT)
     getAllCategories() {
         return this.artService.getAllCategories()
     }
 
-    @Get('/cat/findOne/:id')
+    @Get(`${CAT}/findOne/:id`)
     getCategoryById(@Param('id') id: string) {
         return this.artService.getCategoryById(id)
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post('/cat')
+    @Post(CAT)
     async createCategory(@Body() cat: any) {
         return await this.artService.createCategory(cat)
     }
