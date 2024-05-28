@@ -66,7 +66,7 @@ export class ArtiQuestController {
         return { storedInprogressArticles, ttl }
     }
 
-    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get(`${IN_PROGRESS}/findByAuthor`)
     async getInprogressArtsByAuthorId(@Request() req) {
         const author_id = req.user.userId;
@@ -98,7 +98,8 @@ export class ArtiQuestController {
             if (key === CachKeys.IN_PROGRESS)
                 storedInprogressArticles = await this.cacheManager.get(key);
         }
-
+        console.log(storedInprogressArticles)
+        const author_id = req.user.userId
         const data = this.pdfExtract.extractBuffer(file.buffer)
 
         const content = (await data).pages.reduce((acc, page) => {
@@ -110,7 +111,7 @@ export class ArtiQuestController {
         const parsedArticle = JSON.parse(art.art)
 
         const [assignedCategory] = this.artService.assignCategories([parsedArticle])
-        assignedCategory.author = req.user.userId
+        assignedCategory.author = author_id
         const [artToReturn] = await this.artService.assignAuthors([assignedCategory])
 
         artToReturn.id = randomUUID()
