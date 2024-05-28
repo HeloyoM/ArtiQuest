@@ -49,7 +49,7 @@ export class ArtiQuestController {
     }
 
     @UseGuards(RolesGuard)
-    @Get('in-progress')
+    @Get(IN_PROGRESS)
     @Roles([100])
     async getInprogressArts() {
         const keys = await this.cacheManager.store.keys();
@@ -67,10 +67,10 @@ export class ArtiQuestController {
     }
 
     @UseGuards(RolesGuard)
-    @Get('init/:id')
-    async isAvailableArt(@Query('ids') ids: string) {
-        const arts_id = ids.split(',');
-        console.log({ arts_id })
+    @Get(`${IN_PROGRESS}/findByAuthor`)
+    async getInprogressArtsByAuthorId(@Request() req) {
+        const author_id = req.user.userId;
+
         const keys = await this.cacheManager.store.keys()
 
         let storedInprogressArticles = []
@@ -79,13 +79,12 @@ export class ArtiQuestController {
                 storedInprogressArticles = await this.cacheManager.get(key)
             }
         }
-        console.log({ storedInprogressArticles })
+
         return true
     }
 
-
     @UseGuards(JwtAuthGuard)
-    @Post('init-art')
+    @Post(IN_PROGRESS)
     @UseInterceptors(FileInterceptor('file'))
     async initalArticleBeforeUpload(
         @Request() req,
