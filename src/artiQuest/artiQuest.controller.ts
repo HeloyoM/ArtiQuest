@@ -10,7 +10,7 @@ import { PDFExtract } from 'pdf.js-extract'
 import { randomUUID } from 'crypto'
 import { Roles } from 'src/auth/rbac/roles.decorator'
 import { RolesGuard } from 'src/auth/rbac/roles.guard'
-import CachKeys from 'src/utils/CachKeys'
+import CacheKeys from 'src/utils/CacheKeys'
 
 const CAT = '/cat'
 const IN_PROGRESS = '/in-progress'
@@ -55,15 +55,18 @@ export class ArtiQuestController {
         const keys = await this.cacheManager.store.keys();
 
         let storedInprogressArticles = []
-        let ttl
         for (const key of keys) {
-            if (key === CachKeys.IN_PROGRESS) {
-                storedInprogressArticles = await this.cacheManager.get(key)
-                ttl = await this.cacheManager.store.ttl(key)
+            const splittedKey = key.split('-')
+            const inprogressKey = splittedKey.slice(0, 2).join('-')
+            if (inprogressKey === CacheKeys.IN_PROGRESS) {
+                const ttl = await this.cacheManager.store.ttl(key)
+                const art: any = await this.cacheManager.get(key)
+                art.ttl = ttl
+                storedInprogressArticles.push(art)
             }
         }
 
-        return { storedInprogressArticles, ttl }
+        return storedInprogressArticles
     }
 
     @UseGuards(JwtAuthGuard)
@@ -75,12 +78,21 @@ export class ArtiQuestController {
 
         let storedInprogressArticles = []
         for (const key of keys) {
-            if (key === CachKeys.IN_PROGRESS) {
-                storedInprogressArticles = await this.cacheManager.get(key)
+            const splittedKey = key.split('-')
+            const storedAuthorId = splittedKey.slice(2, 7).join('-')
+            const inprogressKey = splittedKey.slice(0, 2).join('-')
+
+            if (inprogressKey === CacheKeys.IN_PROGRESS) {
+                if (storedAuthorId === author_id) {
+                    const ttl = await this.cacheManager.store.ttl(key)
+                    const art: any = await this.cacheManager.get(key)
+                    art.ttl = ttl
+                    storedInprogressArticles.push(art)
+                }
             }
         }
 
-        return true
+        return storedInprogressArticles
     }
 
     @UseGuards(JwtAuthGuard)
@@ -91,14 +103,6 @@ export class ArtiQuestController {
         @Body() art: { art: string },
         @UploadedFile() file: Express.Multer.File,
     ) {
-        const keys = await this.cacheManager.store.keys();
-
-        let storedInprogressArticles = [];
-        for (const key of keys) {
-            if (key === CachKeys.IN_PROGRESS)
-                storedInprogressArticles = await this.cacheManager.get(key);
-        }
-        console.log(storedInprogressArticles)
         const author_id = req.user.userId
         const data = this.pdfExtract.extractBuffer(file.buffer)
 
@@ -121,11 +125,7 @@ export class ArtiQuestController {
         artToReturn.rank = { total: 0, voters: [] }
         artToReturn.body = content
 
-        const inprogressArray = [...storedInprogressArticles]
-
-        inprogressArray.push(artToReturn)
-
-        await this.cacheManager.set(CachKeys.IN_PROGRESS, inprogressArray, 3_600_000 /* hour */)
+        await this.cacheManager.set(`${CacheKeys.IN_PROGRESS}-${author_id}-${artToReturn.id}`, artToReturn, 3_600_000 /* hour */)
 
         return artToReturn
     }
@@ -144,8 +144,8 @@ export class ArtiQuestController {
 
         let storedInprogressArticles = []
         for (const key of keys) {
-            if (key === CachKeys.IN_PROGRESS) {
-                storedInprogressArticles = await this.cacheManager.get(`${CachKeys.IN_PROGRESS}-${key.slice(11, -1)}`)
+            if (key === CacheKeys.IN_PROGRESS) {
+                storedInprogressArticles = await this.cacheManager.get(`${CacheKeys.IN_PROGRESS}-${key.slice(11, -1)}`)
             }
         }
 
@@ -166,7 +166,7 @@ export class ArtiQuestController {
 
         let storedInprogressArticles = [];
         for (const key of keys) {
-            if (key === CachKeys.IN_PROGRESS)
+            if (key === CacheKeys.IN_PROGRESS)
                 storedInprogressArticles = await this.cacheManager.get(key);
         }
         const uploadedArticle = storedInprogressArticles.find((a: Article) => a.id === art.id)
