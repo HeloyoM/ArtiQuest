@@ -44,7 +44,6 @@ export class ArtiQuestController {
 
             await this.cacheManager.set(key, articleContent, 3_600_000 /* hour */)
         }
-
         return articleContent
     }
 
@@ -65,7 +64,6 @@ export class ArtiQuestController {
                 storedInprogressArticles.push(art)
             }
         }
-
         return storedInprogressArticles
     }
 
@@ -91,7 +89,6 @@ export class ArtiQuestController {
                 }
             }
         }
-
         return storedInprogressArticles
     }
 
