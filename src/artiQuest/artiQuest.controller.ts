@@ -11,6 +11,8 @@ import { randomUUID } from 'crypto'
 import { Roles } from 'src/auth/rbac/roles.decorator'
 import { RolesGuard } from 'src/auth/rbac/roles.guard'
 import CacheKeys from 'src/utils/CacheKeys'
+import AppCache from 'src/cache/AppCache'
+import IInprogress from 'src/cache/dto/IInprogressArt.dto'
 
 const CAT = '/cat'
 const IN_PROGRESS = '/in-progress'
@@ -24,6 +26,7 @@ like Google Firebase */
 export class ArtiQuestController {
     pdfExtract = new PDFExtract()
     constructor(
+        private readonly appCache: AppCache,
         private artService: ArtiQuestService,
         @Inject(CACHE_MANAGER) private cacheManager: Cache
     ) { }
@@ -51,45 +54,15 @@ export class ArtiQuestController {
     @Get(IN_PROGRESS)
     @Roles([100])
     async getInprogressArts() {
-        const keys = await this.cacheManager.store.keys();
-
-        let storedInprogressArticles = []
-        for (const key of keys) {
-            const splittedKey = key.split('-')
-            const inprogressKey = splittedKey.slice(0, 2).join('-')
-            if (inprogressKey === CacheKeys.IN_PROGRESS) {
-                const ttl = await this.cacheManager.store.ttl(key)
-                const art: any = await this.cacheManager.get(key)
-                art.ttl = ttl
-                storedInprogressArticles.push(art)
-            }
-        }
-        return storedInprogressArticles
+        return await this.appCache.getInprogressList
     }
 
     @UseGuards(JwtAuthGuard)
     @Get(`${IN_PROGRESS}/findByAuthor`)
     async getInprogressArtsByAuthorId(@Request() req) {
-        const author_id = req.user.userId;
+        const author_id = req.user.userId
 
-        const keys = await this.cacheManager.store.keys()
-
-        let storedInprogressArticles = []
-        for (const key of keys) {
-            const splittedKey = key.split('-')
-            const storedAuthorId = splittedKey.slice(2, 7).join('-')
-            const inprogressKey = splittedKey.slice(0, 2).join('-')
-
-            if (inprogressKey === CacheKeys.IN_PROGRESS) {
-                if (storedAuthorId === author_id) {
-                    const ttl = await this.cacheManager.store.ttl(key)
-                    const art: any = await this.cacheManager.get(key)
-                    art.ttl = ttl
-                    storedInprogressArticles.push(art)
-                }
-            }
-        }
-        return storedInprogressArticles
+        return this.appCache.getInprogressArtsByAuthorId(author_id)
     }
 
     @UseGuards(JwtAuthGuard)
@@ -134,45 +107,39 @@ export class ArtiQuestController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get(`${IN_PROGRESS}/findByAuthor`)
-    async getAllPrivateInprogressArts(@Request() req) {
-        const authorId = req.user.userId
-        const keys = await this.cacheManager.store.keys()
-
-        let storedInprogressArticles = []
-        for (const key of keys) {
-            if (key === CacheKeys.IN_PROGRESS) {
-                storedInprogressArticles = await this.cacheManager.get(`${CacheKeys.IN_PROGRESS}-${key.slice(11, -1)}`)
-            }
-        }
-
-        const userInprogressArts = storedInprogressArticles.filter((a: Article) => {
-            if (typeof a.author !== 'string') {
-                return a.author.id === authorId
-            }
-        })
-        return userInprogressArts
-    }
-
-    @UseGuards(JwtAuthGuard)
     @Post()
     async createArt(@Body() art: Article) {
-        const key = `ARTICLES_HAVE_BEEN_UPDATED`
-        await this.cacheManager.set(key, true, 3_600_000 /* hour */)
-        const keys = await this.cacheManager.store.keys();
-
-        let storedInprogressArticles = [];
-        for (const key of keys) {
-            if (key === CacheKeys.IN_PROGRESS)
-                storedInprogressArticles = await this.cacheManager.get(key);
+        let newArt: Article = {
+            active: false,
+            author: undefined,
+            body: undefined,
+            cat: undefined,
+            created: undefined,
+            id: undefined,
+            rank: undefined,
+            sub_title: undefined,
+            title: undefined,
+            viewers: undefined
         }
-        const uploadedArticle = storedInprogressArticles.find((a: Article) => a.id === art.id)
 
-        uploadedArticle.author = uploadedArticle.author.id
-        uploadedArticle.cat = uploadedArticle.cat.id
-        uploadedArticle.sub_title = art.sub_title ? art.sub_title : uploadedArticle.sub_title
-        uploadedArticle.body = art.body ? art.body : uploadedArticle.body
-        uploadedArticle.title = art.title ? art.title : uploadedArticle.title
+        const storedInprogressArticles = await this.appCache.getInprogressList
+        const uploadedArticle = storedInprogressArticles.find((a: IInprogress) => a.id === art.id)
+
+        if (typeof uploadedArticle.author === 'object' && uploadedArticle.author !== null) {
+            newArt.author = uploadedArticle.author.id;
+        } else {
+            console.warn("Author is not an object, cannot access id.");
+        }
+
+        if (typeof uploadedArticle.cat === 'object' && uploadedArticle.cat !== null) {
+            newArt.cat = uploadedArticle.cat.id;
+        } else {
+            console.warn("Category is not an object, cannot access id.");
+        }
+
+        newArt.sub_title = art.sub_title ? art.sub_title : uploadedArticle.sub_title
+        newArt.body = art.body ? art.body : uploadedArticle.body
+        newArt.title = art.title ? art.title : uploadedArticle.title
 
         await this.artService.createArt(uploadedArticle)
 
