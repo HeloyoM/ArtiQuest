@@ -161,6 +161,7 @@ export class ArtiQuestService {
     }
 
     async createArt(art: Article): Promise<void> {
+        console.log({ art })
         await this.artDatabaseAccess.create(art)
     }
 

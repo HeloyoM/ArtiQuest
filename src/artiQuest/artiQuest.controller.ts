@@ -110,41 +110,40 @@ export class ArtiQuestController {
     @UseGuards(JwtAuthGuard)
     @Post()
     async createArt(@Body() art: Article) {
-        let newArt: Article = {
-            active: false,
-            author: undefined,
-            body: undefined,
-            cat: undefined,
-            created: undefined,
-            id: undefined,
-            rank: undefined,
-            sub_title: undefined,
-            title: undefined,
-            viewers: undefined
+        try {
+            const storedInprogressArticles = await this.appCache.getInprogressList
+            const uploadedArticle = storedInprogressArticles.find((a: IInprogress) => a.id === art.id)
+
+            let newArt: Article = { ...uploadedArticle }
+            
+            if (typeof uploadedArticle.author !== 'string') {
+                newArt.author = uploadedArticle.author.id;
+            } else {
+                console.warn("Author is not an object, cannot access id.");
+            }
+
+            if (typeof uploadedArticle.cat !== 'string') {
+                newArt.cat = uploadedArticle.cat.id;
+            } else {
+                console.warn("Category is not an object, cannot access id.");
+            }
+
+            newArt.sub_title = art.sub_title ? art.sub_title : uploadedArticle.sub_title
+            newArt.body = art.body ? art.body : uploadedArticle.body
+            newArt.title = art.title ? art.title : uploadedArticle.title
+
+            try {
+                await this.artService.createArt(newArt)
+
+                await this.appCache.removeFromCache(newArt.author.toString(), newArt.id)
+                return uploadedArticle
+            } catch (error) {
+                throw Error('Unable to insert new article, please get support from site administrator')
+            }
+
+        } catch (error) {
+
         }
-
-        const storedInprogressArticles = await this.appCache.getInprogressList
-        const uploadedArticle = storedInprogressArticles.find((a: IInprogress) => a.id === art.id)
-
-        if (typeof uploadedArticle.author !== 'string') {
-            newArt.author = uploadedArticle.author.id;
-        } else {
-            console.warn("Author is not an object, cannot access id.");
-        }
-
-        if (typeof uploadedArticle.cat !== 'string') {
-            newArt.cat = uploadedArticle.cat.id;
-        } else {
-            console.warn("Category is not an object, cannot access id.");
-        }
-
-        newArt.sub_title = art.sub_title ? art.sub_title : uploadedArticle.sub_title
-        newArt.body = art.body ? art.body : uploadedArticle.body
-        newArt.title = art.title ? art.title : uploadedArticle.title
-
-        await this.artService.createArt(newArt)
-
-        return uploadedArticle
     }
 
     @Put(':id')
@@ -202,7 +201,7 @@ export class ArtiQuestController {
 
         const articlesUpdatedKey = `ARTICLES_HAVE_BEEN_UPDATED`
         const isUpdated = await this.cacheManager.get(articlesUpdatedKey)
-        
+
         if (categoryContent == null || isUpdated) {
             categoryContent = await this.artService.getArticlesByCategoryId(id)
 

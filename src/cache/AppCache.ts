@@ -47,6 +47,11 @@ class AppCache {
         return filteredData
     }
 
+    async removeFromCache(author_id: string, id: string) {
+        const keyToRemove = `${CacheKeys.IN_PROGRESS}-${author_id}-${id}`
+
+        await this.cacheManager.del(keyToRemove)
+    }
 
 }
 
