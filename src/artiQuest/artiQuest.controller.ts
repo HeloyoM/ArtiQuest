@@ -86,18 +86,19 @@ export class ArtiQuestController {
 
         const [assignedCategory] = this.artService.assignCategories([parsedArticle])
         assignedCategory.author = author_id
-        const [artToReturn] = await this.artService.assignAuthors([assignedCategory])
 
-        artToReturn.id = randomUUID()
-        artToReturn.created = new Date().toLocaleDateString()
-        artToReturn.active = false
-        artToReturn.viewers = []
-        artToReturn.rank = { total: 0, voters: [] }
-        artToReturn.body = content
+        const [resultArt] = await this.artService.assignAuthors([assignedCategory])
 
-        await this.cacheManager.set(`${CacheKeys.IN_PROGRESS}-${author_id}-${artToReturn.id}`, artToReturn, 3_600_000 /* hour */)
+        resultArt.id = randomUUID()
+        resultArt.created = new Date().toLocaleDateString()
+        resultArt.active = false
+        resultArt.viewers = []
+        resultArt.rank = { total: 0, voters: [] }
+        resultArt.body = content
 
-        return artToReturn
+        await this.cacheManager.set(`${CacheKeys.IN_PROGRESS}-${author_id}-${resultArt.id}`, resultArt, 3_600_000 /* hour */)
+
+        return resultArt
     }
 
     @UseGuards(JwtAuthGuard)
@@ -125,13 +126,13 @@ export class ArtiQuestController {
         const storedInprogressArticles = await this.appCache.getInprogressList
         const uploadedArticle = storedInprogressArticles.find((a: IInprogress) => a.id === art.id)
 
-        if (typeof uploadedArticle.author === 'object' && uploadedArticle.author !== null) {
+        if (typeof uploadedArticle.author !== 'string') {
             newArt.author = uploadedArticle.author.id;
         } else {
             console.warn("Author is not an object, cannot access id.");
         }
 
-        if (typeof uploadedArticle.cat === 'object' && uploadedArticle.cat !== null) {
+        if (typeof uploadedArticle.cat !== 'string') {
             newArt.cat = uploadedArticle.cat.id;
         } else {
             console.warn("Category is not an object, cannot access id.");
@@ -141,7 +142,7 @@ export class ArtiQuestController {
         newArt.body = art.body ? art.body : uploadedArticle.body
         newArt.title = art.title ? art.title : uploadedArticle.title
 
-        await this.artService.createArt(uploadedArticle)
+        await this.artService.createArt(newArt)
 
         return uploadedArticle
     }
@@ -201,7 +202,7 @@ export class ArtiQuestController {
 
         const articlesUpdatedKey = `ARTICLES_HAVE_BEEN_UPDATED`
         const isUpdated = await this.cacheManager.get(articlesUpdatedKey)
-        console.log({ isUpdated })
+        
         if (categoryContent == null || isUpdated) {
             categoryContent = await this.artService.getArticlesByCategoryId(id)
 

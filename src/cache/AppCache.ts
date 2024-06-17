@@ -41,7 +41,7 @@ class AppCache {
 
         const filteredData = allInprogressArts.filter((item: IInprogress) => {
             if (typeof item.author !== 'string')
-                item.author.id === authorId
+                return item.author.id === authorId
         })
 
         return filteredData
