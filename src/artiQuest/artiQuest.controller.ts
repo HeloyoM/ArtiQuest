@@ -13,6 +13,7 @@ import { RolesGuard } from 'src/auth/rbac/roles.guard'
 import CacheKeys from 'src/utils/CacheKeys'
 import AppCache from 'src/cache/AppCache'
 import IInprogress from 'src/cache/dto/IInprogressArt.dto'
+import { Category } from 'src/interface/category.interface'
 
 const CAT = '/cat'
 const IN_PROGRESS = '/in-progress'
@@ -115,7 +116,7 @@ export class ArtiQuestController {
             const uploadedArticle = storedInprogressArticles.find((a: IInprogress) => a.id === art.id)
 
             let newArt: Article = { ...uploadedArticle }
-            
+
             if (typeof uploadedArticle.author !== 'string') {
                 newArt.author = uploadedArticle.author.id;
             } else {
@@ -223,7 +224,7 @@ export class ArtiQuestController {
 
     @UseGuards(JwtAuthGuard)
     @Post(CAT)
-    async createCategory(@Body() cat: any) {
+    async createCategory(@Body() cat: Category) {
         return await this.artService.createCategory(cat)
     }
 }

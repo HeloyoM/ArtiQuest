@@ -116,7 +116,6 @@ export class ArtiQuestService {
         return byCatId
     }
 
-
     async getArticleById(id: string): Promise<Article> {
         const catefories = this.artDatabaseAccess.getAllCategories()
 
@@ -132,7 +131,6 @@ export class ArtiQuestService {
 
         return articleAssignRates
     }
-
 
     async getAllCategories() {
         const catefories = this.artDatabaseAccess.getAllCategories()
@@ -156,7 +154,7 @@ export class ArtiQuestService {
         return this.artDatabaseAccess.getCategoryById(id)
     }
 
-    async createCategory(cat) {
+    async createCategory(cat: Category) {
         return this.artDatabaseAccess.createCategory(cat)
     }
 

@@ -96,20 +96,24 @@ class ArtDatabaseAccess implements IArtiQuest {
         return this.categories.find(c => c.id.toString() === id.toString())
     }
 
-    createCategory(cat: any): Promise<any> {
+    async createCategory(cat: Category): Promise<Category> {
         cat.id = randomUUID()
 
         this.categories.push(cat)
 
-        fs.writeFile(this.categoriesPath, JSON.stringify(this.categories), 'utf-8', (err) => {
-            if (err) {
-                this.logger.error(
-                    `Something went wrong whild inserting new article: ${err}`,
-                )
-            }
+        try {
+            fs.writeFile(this.categoriesPath, JSON.stringify(this.categories), 'utf-8', (err) => {
+                if (err) {
+                    this.logger.error(
+                        `Something went wrong whild inserting new article: ${err}`,
+                    )
+                }
 
-            else this.logger.log('article inserted successfully')
-        })
+                else this.logger.log('article inserted successfully')
+            })
+        } catch (error) {
+
+        }
 
         return cat
     }
