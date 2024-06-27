@@ -36,6 +36,10 @@ class AppCache {
         return storedInprogressArticles
     }
 
+    async getCachedItemByKey(key: string) {
+        return await this.cacheManager.get(key)
+    }
+
     async getInprogressArtsByAuthorId(authorId: string) {
         const allInprogressArts = await this.getInprogressList
 
@@ -48,9 +52,26 @@ class AppCache {
     }
 
     async removeFromCache(author_id: string, id: string) {
-        const keyToRemove = `${CacheKeys.IN_PROGRESS}-${author_id}-${id}`
+        const key = `${CacheKeys.IN_PROGRESS}-${author_id}-${id}`
 
-        await this.cacheManager.del(keyToRemove)
+        await this.cacheManager.del(key)
+    }
+
+    async updateCacheTtl(author_id: string, id: string, ttlUnit: number) {
+        const key = `${CacheKeys.IN_PROGRESS}-${author_id}-${id}`
+
+        const art = await this.getCachedItemByKey(key)
+
+        const ttl = await this.cacheManager.store.ttl(key)
+
+        const newTtl = ttl + ttlUnit
+
+        console.log({ ttl, ttlUnit, newTtl })
+        try {
+            await this.cacheManager.set(`${CacheKeys.IN_PROGRESS}-${author_id}-${id}`, art, newTtl)
+        } catch (error) {
+
+        }
     }
 
 }

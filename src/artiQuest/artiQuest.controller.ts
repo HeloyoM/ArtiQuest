@@ -66,6 +66,12 @@ export class ArtiQuestController {
         return this.appCache.getInprogressArtsByAuthorId(author_id)
     }
 
+    @Patch(`${IN_PROGRESS}/ttl`)
+    async getTtl(@Body() ttl: any) {
+        console.log({ ttl })
+        return this.appCache.updateCacheTtl(ttl.author_id, ttl.id, ttl.ttlUnit)
+    }
+
     @UseGuards(JwtAuthGuard)
     @Post(IN_PROGRESS)
     @UseInterceptors(FileInterceptor('file'))
