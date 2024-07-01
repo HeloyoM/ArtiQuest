@@ -66,11 +66,12 @@ class AppCache {
 
         const newTtl = ttl + ttlUnit
 
-        console.log({ ttl, ttlUnit, newTtl })
         try {
             await this.cacheManager.set(`${CacheKeys.IN_PROGRESS}-${author_id}-${id}`, art, newTtl)
-        } catch (error) {
 
+            return newTtl
+        } catch (error) {
+            throw Error(`Unable to increase ttl of pending article with given id ${id}`)
         }
     }
 

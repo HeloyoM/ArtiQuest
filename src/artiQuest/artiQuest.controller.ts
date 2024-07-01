@@ -14,6 +14,7 @@ import CacheKeys from 'src/utils/CacheKeys'
 import AppCache from 'src/cache/AppCache'
 import IInprogress from 'src/cache/dto/IInprogressArt.dto'
 import { Category } from 'src/interface/category.interface'
+import { UpdateTtl } from './dto/updateTtl.dto'
 
 const CAT = '/cat'
 const IN_PROGRESS = '/in-progress'
@@ -67,9 +68,8 @@ export class ArtiQuestController {
     }
 
     @Patch(`${IN_PROGRESS}/ttl`)
-    async getTtl(@Body() ttl: any) {
-        console.log({ ttl })
-        return this.appCache.updateCacheTtl(ttl.author_id, ttl.id, ttl.ttlUnit)
+    async getTtl(@Body() payload: UpdateTtl) {
+        return this.appCache.updateCacheTtl(payload.author_id, payload.id, payload.ttl)
     }
 
     @UseGuards(JwtAuthGuard)
