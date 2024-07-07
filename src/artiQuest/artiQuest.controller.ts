@@ -101,7 +101,7 @@ export class ArtiQuestController {
         resultArt.active = false
         resultArt.viewers = []
         resultArt.rank = { total: 0, voters: [] }
-        resultArt.body = content
+        resultArt.body = [content]
 
         await this.cacheManager.set(`${CacheKeys.IN_PROGRESS}-${author_id}-${resultArt.id}`, resultArt, 3_600_000 /* hour */)
 
@@ -170,9 +170,6 @@ export class ArtiQuestController {
     @Patch('active/:id')
     @Roles([100])
     async activeArticle(@Param('id') id: string) {
-        // const key = `ARTICLES_HAVE_BEEN_UPDATED`
-        // await this.cacheManager.set(key, true, 24 * 3600 /* hour */)
-
         return await this.artService.toggleArticleActivity(id)
     }
 

@@ -9,7 +9,7 @@ export interface Article<T = string | Category> {
     cat: T
     created: Date | string
     author: Partial<User> | string 
-    body: string
+    body: string[]
     rank: IArticleRank
     viewers: string[]
     active: boolean

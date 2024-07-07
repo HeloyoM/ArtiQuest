@@ -1,14 +1,14 @@
-import { join } from "path"
-import { Article } from "../../interface/Article.interface"
-import * as fs from 'fs'
 import { Injectable, Logger } from "@nestjs/common"
+import { randomUUID } from "crypto"
+import { join } from "path"
+import * as fs from 'fs'
+
+import { Article } from "../../interface/Article.interface"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
-import { randomUUID } from "crypto"
 import UserDatabaseAccess from "../User/userDatabaseAccess"
 import { EditPayloadDto } from "../../artiQuest/dto/editPayload.dto"
 import { IRate } from "./interface/IRate.interface"
-
 
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
@@ -19,7 +19,6 @@ class ArtDatabaseAccess implements IArtiQuest {
     arts: Article[] = []
     categories: Category[] = []
     rates: IRate[] = []
-
 
     constructor(private readonly userDatabaseAccess: UserDatabaseAccess) {
         this.initArts()
@@ -136,7 +135,6 @@ class ArtDatabaseAccess implements IArtiQuest {
 
     }
 
-
     async update(id: string, art: Article): Promise<Article> {
         const artToUpdate = this.arts.find(a => a.id.toString() === id.toString())
 
@@ -162,9 +160,7 @@ class ArtDatabaseAccess implements IArtiQuest {
         return art
     }
 
-
-
-    async editArticle(id: string, payload: EditPayloadDto): Promise<Article> {
+    async editArticle(id: string, payload: EditPayloadDto): Promise<any/*Article*/> {
 
         try {
             const { body: editedParagraphs, location } = payload
@@ -173,7 +169,7 @@ class ArtDatabaseAccess implements IArtiQuest {
             const currentArt = this.getArticleById(id)
 
             const { body } = currentArt
-            const paragraphs = body.split(/[\n\r]+/)
+            const paragraphs = body//.split(/[\n\r]+/)
 
             const updatedBody: string[] = paragraphs
             for (let i = 0; i < location.length; i++) {
@@ -192,7 +188,7 @@ class ArtDatabaseAccess implements IArtiQuest {
                 else return a
             })
 
-            this.arts = newArtsArray
+            //this.arts = newArtsArray
 
             //query will replace it
             fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
@@ -274,6 +270,7 @@ class ArtDatabaseAccess implements IArtiQuest {
             else this.logger.log(`article viewed by user with given id [${user.userId}]`)
         })
     }
+
     async getUserCategoryInterest(user_id: string): Promise<any> {
         const articlesReadByUser = this.arts.filter(a => a.viewers.includes(user_id.toString()))
 
@@ -311,10 +308,11 @@ class ArtDatabaseAccess implements IArtiQuest {
                 this.logger.error(`Error occuer while removing article [${id}]`)
 
 
-            else this.logger.log('article removed !')
+            else this.logger.log('article removed seccussfuly!')
         })
 
         return id
     }
 }
+
 export default ArtDatabaseAccess
