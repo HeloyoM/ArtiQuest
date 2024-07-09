@@ -164,7 +164,7 @@ export class ArtiQuestService {
     }
 
     async editArticle(id: string, payload: EditPayloadDto) {
-        return await this.artDatabaseAccess.editArticle(id, payload)
+        //return await this.artDatabaseAccess.editArticle(id, payload)
     }
 
     async toggleArticleActivity(id: string) {

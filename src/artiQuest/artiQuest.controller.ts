@@ -101,7 +101,20 @@ export class ArtiQuestController {
         resultArt.active = false
         resultArt.viewers = []
         resultArt.rank = { total: 0, voters: [] }
-        resultArt.body = [content]
+        resultArt.body = {
+            blocks: [
+                {
+                    key: '3eesq',
+                    text: content,
+                    depth: 0,
+                    type: 'unstyled',
+                    inlineStyleRanges: [],
+                    entityRanges: [],
+                    data: {}
+                }
+            ],
+            entityMap: {}
+        }
 
         await this.cacheManager.set(`${CacheKeys.IN_PROGRESS}-${author_id}-${resultArt.id}`, resultArt, 3_600_000 /* hour */)
 

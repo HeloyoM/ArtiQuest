@@ -160,50 +160,50 @@ class ArtDatabaseAccess implements IArtiQuest {
         return art
     }
 
-    async editArticle(id: string, payload: EditPayloadDto): Promise<any/*Article*/> {
+    // async editArticle(id: string, payload: EditPayloadDto): Promise<any/*Article*/> {
 
-        try {
-            const { body: editedParagraphs, location } = payload
+    //     try {
+    //         const { body: editedParagraphs, location } = payload
 
 
-            const currentArt = this.getArticleById(id)
+    //         const currentArt = this.getArticleById(id)
 
-            const { body } = currentArt
-            const paragraphs = body//.split(/[\n\r]+/)
+    //         const { body } = currentArt
+    //         const paragraphs = body//.split(/[\n\r]+/)
 
-            const updatedBody: string[] = paragraphs
-            for (let i = 0; i < location.length; i++) {
-                const p = paragraphs[location[i]]
+    //         const updatedBody: string[] = paragraphs
+    //         for (let i = 0; i < location.length; i++) {
+    //             const p = paragraphs[location[i]]
 
-                const index = paragraphs.indexOf(p)
+    //             const index = paragraphs.indexOf(p)
 
-                updatedBody[index] = editedParagraphs[i]
-            }
+    //             updatedBody[index] = editedParagraphs[i]
+    //         }
 
-            const updatedItem = { ...currentArt, body: updatedBody.join('\n') }
+    //         const updatedItem = { ...currentArt, body: updatedBody.join('\n') }
 
-            const newArtsArray = this.arts.map((a: Article) => {
-                if (a.id.toString() === id.toString()) return updatedItem
+    //         const newArtsArray = this.arts.map((a: Article) => {
+    //             if (a.id.toString() === id.toString()) return updatedItem
 
-                else return a
-            })
+    //             else return a
+    //         })
 
-            //this.arts = newArtsArray
+    //         //this.arts = newArtsArray
 
-            //query will replace it
-            fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
+    //         //query will replace it
+    //         fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
 
-                if (err)
-                    this.logger.error(`Something went wrong whild editing article body with given id ${id}`)
+    //             if (err)
+    //                 this.logger.error(`Something went wrong whild editing article body with given id ${id}`)
 
-                else this.logger.log('article updated successfully')
-            })
+    //             else this.logger.log('article updated successfully')
+    //         })
 
-            return updatedItem
-        } catch (error) {
+    //         return updatedItem
+    //     } catch (error) {
 
-        }
-    }
+    //     }
+    // }
 
     async toggleArticleActivity(id: string) {
         try {

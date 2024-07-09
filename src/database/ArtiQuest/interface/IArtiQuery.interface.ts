@@ -22,7 +22,7 @@ export interface IArtiQuest {
     update(id: string, art: Article): Promise<Article>
 
     /*Patch*/
-    editArticle(id: string, payload: EditPayloadDto): Promise<Article>
+    //editArticle(id: string, payload: EditPayloadDto): Promise<Article>
     toggleArticleActivity(id: string): Promise<string>
     rate(id: string, rate: number, user: any): void
     incViewers(id: string, user: any): void

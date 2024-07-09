@@ -1,4 +1,5 @@
 import { IArticleRank } from "./IArticleRank.interface"
+import { RawDraftContentState } from "./RawDraftContentState.interface"
 import { Category } from "./category.interface"
 import { User } from "./user.interface"
 
@@ -8,8 +9,8 @@ export interface Article<T = string | Category> {
     sub_title: string
     cat: T
     created: Date | string
-    author: Partial<User> | string 
-    body: string[]
+    author: Partial<User> | string
+    body: RawDraftContentState
     rank: IArticleRank
     viewers: string[]
     active: boolean
