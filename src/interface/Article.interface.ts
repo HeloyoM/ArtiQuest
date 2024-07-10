@@ -8,7 +8,7 @@ export interface Article<T = string | Category> {
     title: string
     sub_title: string
     cat: T
-    created: Date | string
+    createdAt: Date | string
     author: Partial<User> | string
     body: RawDraftContentState
     rank: IArticleRank

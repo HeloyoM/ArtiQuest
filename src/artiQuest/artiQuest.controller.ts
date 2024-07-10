@@ -97,7 +97,7 @@ export class ArtiQuestController {
         const [resultArt] = await this.artService.assignAuthors([assignedCategory])
 
         resultArt.id = randomUUID()
-        resultArt.created = new Date().toLocaleDateString()
+        resultArt.createdAt = new Date().toLocaleDateString()
         resultArt.active = false
         resultArt.viewers = []
         resultArt.rank = { total: 0, voters: [] }
