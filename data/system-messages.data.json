@@ -1,0 +1,35 @@
+{
+    "msg": {
+        "blocks": [
+            {
+                "key": "447tl",
+                "text": "asdsdaasdasdasdsad",
+                "type": "unstyled",
+                "depth": 0,
+                "inlineStyleRanges": [
+                    {
+                        "offset": 3,
+                        "length": 3,
+                        "style": "ITALIC"
+                    },
+                    {
+                        "offset": 6,
+                        "length": 6,
+                        "style": "UNDERLINE"
+                    },
+                    {
+                        "offset": 12,
+                        "length": 6,
+                        "style": "HIGHLIGHT"
+                    }
+                ],
+                "entityRanges": [],
+                "data": {}
+            }
+        ],
+        "entityMap": {}
+    },
+    "timestemp": 1721050342017,
+    "sender": "7b54f7b6-6e91-4a0b-aa56-08f70566e92c",
+    "topic": "Topic name"
+}

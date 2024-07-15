@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import UserDatabaseAccess from '../../database/User/userDatabaseAccess'
 import { User } from '../../interface/user.interface'
 import { UpdateUserDto } from '../dto/UpdateUser.dto'
+import { ContactMsgDto } from '../dto/contectMsg.dto'
 
 @Injectable()
 export class UserService {
@@ -26,6 +27,10 @@ export class UserService {
 
     async remove(id: string): Promise<string> {
         return await this.userDatabaseAccess.remove(id)
+    }
+
+    receiveMsgFromUser(payload: ContactMsgDto, sender_id?: string) {
+        this.userDatabaseAccess.receiveMsgFromUser(payload, sender_id)
     }
 
 

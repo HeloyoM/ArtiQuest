@@ -7,16 +7,18 @@ import { randomUUID } from "crypto"
 import { UpdateUserDto } from "../../auth/dto/UpdateUser.dto"
 import { updateUserFields } from '../../utils/updateUserUtil'
 import { hashingPassword } from "../../utils/hashingPassword"
+import { ContactMsgDto } from "src/auth/dto/contectMsg.dto"
 
 @Injectable()
 class UserDatabaseAccess implements IUserQuery {
     path = join(__dirname, '../../../data/users.data.json')
-
+    sysMessages = join(__dirname, '../../../data/system-messages.data.json')
     users: User[] = []
 
     constructor() {
         this.init()
     }
+
 
     init() {
         const file = fs.readFileSync(this.path, 'utf-8')
@@ -25,6 +27,22 @@ class UserDatabaseAccess implements IUserQuery {
         for (const a of usersList) {
             this.users.push(a)
         }
+    }
+
+    receiveMsgFromUser(payload: ContactMsgDto, sender_id?: string): void {
+        const msg = {
+            msg: payload.msg,
+            timestemp: new Date().getTime(),
+            sender: sender_id,
+            topic: payload.topic
+        }
+
+        fs.writeFile(this.sysMessages, JSON.stringify(msg), 'utf-8', (err) => {
+            if (err)
+                throw Error(`Something went wrong while new user registered: ${err}`)
+
+            else return 'user registered successfully'
+        })
     }
 
     async getUserById(id: string): Promise<User> {
