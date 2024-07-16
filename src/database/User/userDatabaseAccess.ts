@@ -19,7 +19,6 @@ class UserDatabaseAccess implements IUserQuery {
         this.init()
     }
 
-
     init() {
         const file = fs.readFileSync(this.path, 'utf-8')
         const usersList = JSON.parse(file)
@@ -29,11 +28,13 @@ class UserDatabaseAccess implements IUserQuery {
         }
     }
 
-    receiveMsgFromUser(payload: ContactMsgDto, sender_id?: string): void {
+    receiveMsgFromUser(payload: ContactMsgDto): void {
+        const sender = payload.sender.id ? payload.sender.id : payload.sender
+
         const msg = {
             msg: payload.msg,
             timestemp: new Date().getTime(),
-            sender: sender_id,
+            sender,
             topic: payload.topic
         }
 

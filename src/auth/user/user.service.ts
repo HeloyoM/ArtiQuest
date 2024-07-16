@@ -29,8 +29,8 @@ export class UserService {
         return await this.userDatabaseAccess.remove(id)
     }
 
-    receiveMsgFromUser(payload: ContactMsgDto, sender_id?: string) {
-        this.userDatabaseAccess.receiveMsgFromUser(payload, sender_id)
+    receiveMsgFromUser(payload: ContactMsgDto) {
+        this.userDatabaseAccess.receiveMsgFromUser(payload)
     }
 
 

@@ -10,6 +10,7 @@ import { PassportModule } from '@nestjs/passport'
 import { LocalStrategy } from './local/local.strategy'
 import { JwtStrategy } from './jwt/jwt.strategy'
 import AuthDatabaseAccess from '../database/Auth/databaseAccess'
+import { MailSerivce } from 'src/email/email.service'
 
 @Module({
     imports: [
@@ -21,6 +22,6 @@ import AuthDatabaseAccess from '../database/Auth/databaseAccess'
         }),
     ],
     controllers: [AuthController, UserController],
-    providers: [UserService, AuthService, userDatabaseAccess, AuthDatabaseAccess, LocalStrategy, JwtStrategy],
+    providers: [UserService, AuthService, MailSerivce, userDatabaseAccess, AuthDatabaseAccess, LocalStrategy, JwtStrategy],
 })
 export class AuthModule { }

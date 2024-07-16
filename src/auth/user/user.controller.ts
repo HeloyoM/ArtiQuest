@@ -4,14 +4,22 @@ import { User } from '../../interface/user.interface'
 import { JwtAuthGuard } from '../jwt/jwt-auth.guard'
 import { UpdateUserDto } from '../dto/UpdateUser.dto'
 import { ContactMsgDto } from '../dto/contectMsg.dto'
+import { MailSerivce } from 'src/email/email.service'
 
 @Controller('user')
 export class UserController {
-    constructor(private userService: UserService) { }
+    constructor(
+        private readonly mailSerivce: MailSerivce,
+        private userService: UserService) { }
 
     @Get()
     async get() {
         return this.userService.findAll()
+    }
+
+    @Get('test')
+    async testEmail() {
+        return this.mailSerivce.sendMail()
     }
 
     @Post()
@@ -19,10 +27,9 @@ export class UserController {
         return await this.userService.createUser(user)
     }
 
-    @UseGuards(JwtAuthGuard)
     @Post('/contact')
-    async contact(@Request() req, @Body() payload: ContactMsgDto) {
-        this.userService.receiveMsgFromUser(payload, req.user.userId)
+    async contact(@Body() payload: ContactMsgDto) {
+        this.userService.receiveMsgFromUser(payload)
     }
 
     @UseGuards(JwtAuthGuard)
