@@ -3,11 +3,15 @@ import UserDatabaseAccess from '../../database/User/userDatabaseAccess'
 import { User } from '../../interface/user.interface'
 import { UpdateUserDto } from '../dto/UpdateUser.dto'
 import { ContactMsgDto } from '../dto/contectMsg.dto'
+import { MailSerivce } from 'src/email/email.service'
 
 @Injectable()
 export class UserService {
 
-    constructor(private readonly userDatabaseAccess: UserDatabaseAccess) { }
+    constructor(
+        private readonly mailService: MailSerivce,
+        private readonly userDatabaseAccess: UserDatabaseAccess
+    ) { }
 
     async getUserById(id: string) {
         return this.userDatabaseAccess.getUserById(id)
@@ -31,6 +35,8 @@ export class UserService {
 
     receiveMsgFromUser(payload: ContactMsgDto) {
         this.userDatabaseAccess.receiveMsgFromUser(payload)
+
+        this.mailService.sendMail(payload)
     }
 
 

@@ -1,4 +1,4 @@
-import { Controller, Request, Get, Post, Delete, Put, Body, Param, UseGuards, Query } from '@nestjs/common'
+import { Controller, Request, Get, Post, Delete, Put, Body, Param, UseGuards } from '@nestjs/common'
 import { UserService } from './user.service'
 import { User } from '../../interface/user.interface'
 import { JwtAuthGuard } from '../jwt/jwt-auth.guard'
@@ -15,11 +15,6 @@ export class UserController {
     @Get()
     async get() {
         return this.userService.findAll()
-    }
-
-    @Get('test')
-    async testEmail() {
-        return this.mailSerivce.sendMail()
     }
 
     @Post()
