@@ -4,12 +4,12 @@ import { User } from '../../interface/user.interface'
 import { JwtAuthGuard } from '../jwt/jwt-auth.guard'
 import { UpdateUserDto } from '../dto/UpdateUser.dto'
 import { ContactMsgDto } from '../dto/contectMsg.dto'
-import { MailSerivce } from 'src/email/email.service'
+import { MailService } from 'src/email/email.service'
 
 @Controller('user')
 export class UserController {
     constructor(
-        private readonly mailSerivce: MailSerivce,
+        private readonly mailSerivce: MailService,
         private userService: UserService) { }
 
     @Get()

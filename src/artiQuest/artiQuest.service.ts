@@ -6,10 +6,12 @@ import UserDatabaseAccess from '../database/User/userDatabaseAccess'
 import { EditPayloadDto } from './dto/editPayload.dto'
 import { IRate } from '../database/ArtiQuest/interface/IRate.interface'
 import { User } from '../interface/user.interface'
+import { MailService } from 'src/email/email.service'
 
 @Injectable()
 export class ArtiQuestService {
     constructor(
+        private readonly MailService: MailService,
         private readonly artDatabaseAccess: ArtDatabaseAccess,
         private readonly userDatabaseAccess: UserDatabaseAccess
     ) { }
@@ -159,7 +161,6 @@ export class ArtiQuestService {
     }
 
     async createArt(art: Article): Promise<void> {
-        console.log({ art })
         await this.artDatabaseAccess.create(art)
     }
 
@@ -168,7 +169,11 @@ export class ArtiQuestService {
     }
 
     async toggleArticleActivity(id: string) {
-        return await this.artDatabaseAccess.toggleArticleActivity(id)
+        const art_id = await this.artDatabaseAccess.toggleArticleActivity(id)
+
+        this.MailService.updateAuthorAboutArticle(id)
+
+        return art_id
     }
 
     async rate(id: string, rate: number, user: any) {

@@ -3,9 +3,9 @@ import { ArtiQuestModule } from './artiQuest/artiQuest.module'
 import { AuthModule } from './auth/auth.module'
 import { AboutModule } from './about/about.module'
 import { CacheModule } from '@nestjs/cache-manager'
-import { PostModule } from './posts/post.module'
 import { MailerModule } from '@nestjs-modules/mailer'
 import { ConfigModule } from '@nestjs/config'
+import { MailModule } from './email/email.module'
 
 @Module({
   imports: [
@@ -17,8 +17,8 @@ import { ConfigModule } from '@nestjs/config'
 
     AboutModule,
 
-    PostModule,
-
+    MailModule,
+    
     MailerModule.forRoot({
       transport: {
         host: process.env.EMAIL_HOST,

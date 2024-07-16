@@ -1,10 +1,13 @@
 import { Injectable } from "@nestjs/common"
 import { MailerService } from '@nestjs-modules/mailer'
 import { ContactMsgDto } from "src/auth/dto/contectMsg.dto";
+import { ArtiQuestService } from "src/artiQuest/artiQuest.service";
 
 @Injectable()
-export class MailSerivce {
-    constructor(private readonly mailService: MailerService) { }
+export class MailService {
+    constructor(
+        private readonly mailService: MailerService
+    ) { }
 
     sendMail(payload: ContactMsgDto) {
         try {
@@ -15,7 +18,12 @@ export class MailSerivce {
                 html: payload.msg
             })
         } catch (error) {
+
         }
+    }
+
+    updateAuthorAboutArticle(id: string) {
+        console.log({ id })
     }
 
 }

@@ -3,13 +3,13 @@ import UserDatabaseAccess from '../../database/User/userDatabaseAccess'
 import { User } from '../../interface/user.interface'
 import { UpdateUserDto } from '../dto/UpdateUser.dto'
 import { ContactMsgDto } from '../dto/contectMsg.dto'
-import { MailSerivce } from 'src/email/email.service'
+import { MailService } from 'src/email/email.service'
 
 @Injectable()
 export class UserService {
 
     constructor(
-        private readonly mailService: MailSerivce,
+        private readonly mailService: MailService,
         private readonly userDatabaseAccess: UserDatabaseAccess
     ) { }
 
