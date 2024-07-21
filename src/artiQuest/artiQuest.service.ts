@@ -7,6 +7,7 @@ import { EditPayloadDto } from './dto/editPayload.dto'
 import { IRate } from '../database/ArtiQuest/interface/IRate.interface'
 import { User } from '../interface/user.interface'
 import { MailService } from 'src/email/email.service'
+import { EmailMsg } from 'src/email/enum/EmailMsg.enum'
 
 @Injectable()
 export class ArtiQuestService {
@@ -172,7 +173,7 @@ export class ArtiQuestService {
     async toggleArticleActivity(id: string) {
         const art_id = await this.artDatabaseAccess.toggleArticleActivity(id)
 
-        this.mailService.updateAuthorAboutArticle(id)
+        this.mailService.updateAuthorAboutArticle(id, EmailMsg.ACTIVATION)
 
         return art_id
     }
