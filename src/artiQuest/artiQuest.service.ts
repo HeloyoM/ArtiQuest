@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable, forwardRef } from '@nestjs/common'
 import ArtDatabaseAccess from '../database/ArtiQuest/databaseAccess'
 import { Article } from '../interface/Article.interface'
 import { Category } from '../interface/category.interface'
@@ -11,7 +11,8 @@ import { MailService } from 'src/email/email.service'
 @Injectable()
 export class ArtiQuestService {
     constructor(
-        private readonly MailService: MailService,
+        @Inject(forwardRef(() => MailService))
+        private mailService: MailService,
         private readonly artDatabaseAccess: ArtDatabaseAccess,
         private readonly userDatabaseAccess: UserDatabaseAccess
     ) { }
@@ -171,7 +172,7 @@ export class ArtiQuestService {
     async toggleArticleActivity(id: string) {
         const art_id = await this.artDatabaseAccess.toggleArticleActivity(id)
 
-        this.MailService.updateAuthorAboutArticle(id)
+        this.mailService.updateAuthorAboutArticle(id)
 
         return art_id
     }

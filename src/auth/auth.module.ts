@@ -11,6 +11,9 @@ import { LocalStrategy } from './local/local.strategy'
 import { JwtStrategy } from './jwt/jwt.strategy'
 import AuthDatabaseAccess from '../database/Auth/databaseAccess'
 import { MailService } from 'src/email/email.service'
+import { ArtiQuestModule } from 'src/artiQuest/artiQuest.module'
+import { ArtiQuestService } from 'src/artiQuest/artiQuest.service'
+import ArtDatabaseAccess from 'src/database/ArtiQuest/databaseAccess'
 
 @Module({
     imports: [
@@ -22,6 +25,6 @@ import { MailService } from 'src/email/email.service'
         }),
     ],
     controllers: [AuthController, UserController],
-    providers: [UserService, AuthService, MailService, userDatabaseAccess, AuthDatabaseAccess, LocalStrategy, JwtStrategy],
+    providers: [UserService, AuthService, ArtiQuestService, ArtDatabaseAccess, MailService, ArtiQuestModule, userDatabaseAccess, AuthDatabaseAccess, LocalStrategy, JwtStrategy],
 })
 export class AuthModule { }
