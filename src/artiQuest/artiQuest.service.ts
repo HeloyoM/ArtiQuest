@@ -117,6 +117,9 @@ export class ArtiQuestService {
             })
         }
 
+        if (!byCatId.length)
+            throw Error('unalbe to find category with given id')
+
         return byCatId
     }
 

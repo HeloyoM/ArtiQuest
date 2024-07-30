@@ -1,4 +1,4 @@
-import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGuards, Inject, UseInterceptors, UploadedFile, Query } from '@nestjs/common'
+import { Controller, Request, Get, Post, Delete, Put, Body, Param, Patch, UseGuards, Inject, UseInterceptors, UploadedFile, Query, HttpException, HttpStatus } from '@nestjs/common'
 import { ArtiQuestService } from './artiQuest.service'
 import { Article } from '../interface/Article.interface'
 import { EditPayloadDto } from './dto/editPayload.dto'
@@ -40,16 +40,26 @@ export class ArtiQuestController {
 
     @Get('/findOne/:id')
     async getArticleById(@Param('id') id: string) {
-        const key = `article_${id}`
+        try {
+            const key = `article_${id}`
 
-        let articleContent = await this.cacheManager.get(key)
+            let articleContent = await this.cacheManager.get(key)
 
-        if (articleContent == null) {
-            articleContent = await this.artService.getArticleById(id)
+            if (articleContent == null) {
+                articleContent = await this.artService.getArticleById(id)
 
-            await this.cacheManager.set(key, articleContent, 3_600_000 /* hour */)
+                await this.cacheManager.set(key, articleContent, 3_600_000 /* hour */)
+            }
+            return articleContent
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: 'article not found',
+            }, HttpStatus.FORBIDDEN, {
+                cause: error
+            });
         }
-        return articleContent
+
     }
 
     @UseGuards(RolesGuard)
@@ -212,20 +222,31 @@ export class ArtiQuestController {
     //category
     @Get('/findBy/:cat')
     async getArticlesByCategoryId(@Param('cat') id: string) {
-        const key = `category_${id}`
+        try {
+            const key = `category_${id}`
 
-        let categoryContent = await this.cacheManager.get(key)
+            let categoryContent = await this.cacheManager.get(key)
 
-        const articlesUpdatedKey = `ARTICLES_HAVE_BEEN_UPDATED`
-        const isUpdated = await this.cacheManager.get(articlesUpdatedKey)
+            const articlesUpdatedKey = `ARTICLES_HAVE_BEEN_UPDATED`
+            const isUpdated = await this.cacheManager.get(articlesUpdatedKey)
 
-        if (categoryContent == null || isUpdated) {
-            categoryContent = await this.artService.getArticlesByCategoryId(id)
+            if (categoryContent == null || isUpdated) {
+                categoryContent = await this.artService.getArticlesByCategoryId(id)
 
-            await this.cacheManager.set(key, categoryContent, 3_600_000 /* hour */)
+                await this.cacheManager.set(key, categoryContent, 3_600_000 /* hour */)
+            }
+
+            return categoryContent
+        }
+        catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: 'category not found',
+            }, HttpStatus.NOT_FOUND, {
+                cause: error
+            });
         }
 
-        return categoryContent
     }
 
     @Get(CAT)
