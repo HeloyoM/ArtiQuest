@@ -243,10 +243,9 @@ export class ArtiQuestController {
                 status: HttpStatus.NOT_FOUND,
                 error: 'category not found',
             }, HttpStatus.NOT_FOUND, {
-                cause: error
+                cause: error,
             });
         }
-
     }
 
     @Get(CAT)
@@ -262,6 +261,17 @@ export class ArtiQuestController {
     @UseGuards(JwtAuthGuard)
     @Post(CAT)
     async createCategory(@Body() cat: Category) {
-        return await this.artService.createCategory(cat)
+        try {
+            return await this.artService.createCategory(cat)
+        }
+        catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: 'category not found',
+            }, HttpStatus.NOT_FOUND, {
+                cause: error,
+            });
+        }
+
     }
 }

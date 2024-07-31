@@ -7,7 +7,6 @@ import { Article } from "../../interface/Article.interface"
 import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import UserDatabaseAccess from "../User/userDatabaseAccess"
-import { EditPayloadDto } from "../../artiQuest/dto/editPayload.dto"
 import { IRate } from "./interface/IRate.interface"
 
 @Injectable()
@@ -30,14 +29,12 @@ class ArtDatabaseAccess implements IArtiQuest {
         return this.rates
     }
 
-
     async getAllArticles(): Promise<Article[]> {
         if (!this.arts.length)
             this.initRates()
 
         return this.arts
     }
-
 
     initArts() {
         const file = fs.readFileSync(this.path, 'utf-8')
@@ -67,7 +64,6 @@ class ArtDatabaseAccess implements IArtiQuest {
             this.rates.push(a)
         }
     }
-
 
     getArticleById(id: string): Article {
         const art = this.arts.find((a: Article) => a.id.toString() === id.toString())
@@ -111,7 +107,7 @@ class ArtDatabaseAccess implements IArtiQuest {
                 else this.logger.log('article inserted successfully')
             })
         } catch (error) {
-
+            throw Error('Unalbe to create new category')
         }
 
         return cat
@@ -132,7 +128,6 @@ class ArtDatabaseAccess implements IArtiQuest {
         })
 
         return art
-
     }
 
     async update(id: string, art: Article): Promise<Article> {
@@ -219,14 +214,14 @@ class ArtDatabaseAccess implements IArtiQuest {
             fs.writeFile(this.path, JSON.stringify(this.arts), 'utf-8', (err) => {
 
                 if (err)
-                    this.logger.error(`Something went wrong while active article with given id ${id}`)
+                    this.logger.error(`Unalbe to toggle activity of article id [${id}], with given error: [${err}]`)
 
                 else this.logger.log('article updated successfully')
             })
 
             return id
         } catch (error) {
-
+            throw Error('Unalbe to toggle activity of article')
         }
     }
 
@@ -238,13 +233,18 @@ class ArtDatabaseAccess implements IArtiQuest {
         }
 
         this.rates.push(rank)
-        fs.writeFile(this.ratePath, JSON.stringify(this.rates), 'utf-8', (err) => {
 
-            if (err)
-                this.logger.error(`cannot update rating to article with given id [${id}]`)
+        try {
+            fs.writeFile(this.ratePath, JSON.stringify(this.rates), 'utf-8', (err) => {
 
-            else this.logger.log('article rated successfully')
-        })
+                if (err)
+                    this.logger.error(`cannot update rating to article with given id [${id}]`)
+
+                else this.logger.log('article rated successfully')
+            })
+        } catch (error) {
+            throw Error('unable to score article')
+        }
     }
 
     incViewers(id: string, user: any): void {

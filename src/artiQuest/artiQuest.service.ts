@@ -109,16 +109,12 @@ export class ArtiQuestService {
         let byCatId = articlesWithCat.filter((a: Article<Category>) => a.cat.id.toString() === id.toString())
 
         if (!byCatId.length) {
-            articlesWithCat.map(a => console.log(a.author))
             byCatId = articlesWithCat.filter((a: Article<Category>) => {
                 const authorObj = a.author as User
 
                 return authorObj.id.toString() === id.toString()
             })
         }
-
-        if (!byCatId.length)
-            throw Error('unalbe to find category with given id')
 
         return byCatId
     }
@@ -162,7 +158,11 @@ export class ArtiQuestService {
     }
 
     async createCategory(cat: Category) {
-        return this.artDatabaseAccess.createCategory(cat)
+        try {
+            return this.artDatabaseAccess.createCategory(cat)
+        } catch (error) {
+            throw Error('Unalbe to create new category')
+        }
     }
 
     async createArt(art: Article): Promise<void> {
@@ -174,11 +174,15 @@ export class ArtiQuestService {
     }
 
     async toggleArticleActivity(id: string) {
-        const art_id = await this.artDatabaseAccess.toggleArticleActivity(id)
+        try {
+            const art_id = await this.artDatabaseAccess.toggleArticleActivity(id)
 
-        this.mailService.updateAuthorAboutArticle(id, EmailMsg.ACTIVATION)
+            //this.mailService.updateAuthorAboutArticle(id, EmailMsg.ACTIVATION)
 
-        return art_id
+            return art_id
+        } catch (error) {
+            throw Error('Unalbe to toggle activity of article')
+        }
     }
 
     async rate(id: string, rate: number, user: any) {
@@ -187,7 +191,7 @@ export class ArtiQuestService {
 
             return this.getArticleRank(id)
         } catch (error) {
-            throw Error('unable to rate article')
+            throw Error('unable to score article')
         }
     }
 
