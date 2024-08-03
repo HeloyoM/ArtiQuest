@@ -147,7 +147,7 @@ export class ArtiQuestService {
         const categoriesList = catefories.map((cat: Category) => {
             const catArticles = articlesAssignedRates.filter(a => a.cat.toString() === cat.id.toString())
 
-            return { ...cat, arts: catArticles, len: catArticles.length }
+            return { ...cat, arts: catArticles, len: catArticles.filter(c => c.active).length }
         })
 
         return categoriesList
