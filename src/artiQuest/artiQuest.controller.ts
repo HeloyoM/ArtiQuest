@@ -15,6 +15,7 @@ import AppCache from 'src/cache/AppCache'
 import IInprogress from 'src/cache/dto/IInprogressArt.dto'
 import { Category } from 'src/interface/category.interface'
 import { UpdateTtl } from './dto/updateTtl.dto'
+import { ChangeCatergoryNameDto } from './dto/ChangeCategoryName.dto'
 
 const CAT = '/cat'
 const IN_PROGRESS = '/in-progress'
@@ -36,6 +37,12 @@ export class ArtiQuestController {
     @Get()
     async getAllArticles() {
         return await this.artService.getAllArticles()
+    }
+
+    @UseGuards(RolesGuard)
+    @Put(CAT)
+    async changeCategoryName(@Body() payload: ChangeCatergoryNameDto) {
+        return await this.artService.changeCategoryName(payload)
     }
 
     @Get('/findOne/:id')

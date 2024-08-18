@@ -8,6 +8,7 @@ import { IRate } from '../database/ArtiQuest/interface/IRate.interface'
 import { User } from '../interface/user.interface'
 import { MailService } from 'src/email/email.service'
 import { EmailMsg } from 'src/email/enum/EmailMsg.enum'
+import { ChangeCatergoryNameDto } from './dto/ChangeCategoryName.dto'
 
 @Injectable()
 export class ArtiQuestService {
@@ -163,6 +164,10 @@ export class ArtiQuestService {
         } catch (error) {
             throw Error('Unalbe to create new category')
         }
+    }
+
+    async changeCategoryName(payload: ChangeCatergoryNameDto) {
+        return this.artDatabaseAccess.changeCategoryName(payload)
     }
 
     async createArt(art: Article): Promise<void> {

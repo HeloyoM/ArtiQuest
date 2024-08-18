@@ -8,6 +8,7 @@ import { IArtiQuest } from "./interface/IArtiQuery.interface"
 import { Category } from "../../interface/category.interface"
 import UserDatabaseAccess from "../User/userDatabaseAccess"
 import { IRate } from "./interface/IRate.interface"
+import { ChangeCatergoryNameDto } from "src/artiQuest/dto/ChangeCategoryName.dto"
 
 @Injectable()
 class ArtDatabaseAccess implements IArtiQuest {
@@ -113,6 +114,41 @@ class ArtDatabaseAccess implements IArtiQuest {
         return cat
     }
 
+    async changeCategoryName(payload: ChangeCatergoryNameDto): Promise<string> {
+        const categoryToUpdate = this.categories.find(cat => cat.id.toString() === payload.id.toString())
+
+        const category = {
+            name: payload.name,
+            id: payload.id,
+            color: categoryToUpdate.color
+        }
+        if (!categoryToUpdate)
+            throw Error(`Unable to find category with given id: ${payload.id}`)
+
+        const newCategoriesArray = this.categories.map((cat: Category) => {
+            if (cat.id.toString() === payload.id.toString()) return category
+
+            else return cat
+        })
+
+        this.categories = newCategoriesArray
+
+        try {
+            fs.writeFile(this.categoriesPath, JSON.stringify(this.categories), 'utf-8', (err) => {
+                if (err) {
+                    this.logger.error(
+                        `Something went wrong whild inserting new article: ${err}`,
+                    )
+                }
+
+                else this.logger.log('article inserted successfully')
+            })
+
+            return payload.name
+        } catch (error) {
+
+        }
+    }
     async create(art: Article): Promise<any> {
         this.arts.push(art)
 

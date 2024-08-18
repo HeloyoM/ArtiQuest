@@ -1,3 +1,4 @@
+import { ChangeCatergoryNameDto } from "src/artiQuest/dto/ChangeCategoryName.dto"
 import { EditPayloadDto } from "../../../artiQuest/dto/editPayload.dto"
 import { Article } from "../../../interface/Article.interface"
 import { Category } from "../../../interface/category.interface"
@@ -20,6 +21,7 @@ export interface IArtiQuest {
 
     /*Put*/
     update(id: string, art: Article): Promise<Article>
+    changeCategoryName(payload: ChangeCatergoryNameDto): Promise<string>
 
     /*Patch*/
     //editArticle(id: string, payload: EditPayloadDto): Promise<Article>
